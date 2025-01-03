@@ -1,0 +1,1 @@
+ALTER TABLE opentalk_topic MODIFY topic_name VARCHAR(255);
