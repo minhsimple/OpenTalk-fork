@@ -1,0 +1,104 @@
+.circle-picker {
+    background: rgb(255, 255, 255);
+    border: 0px solid rgba(0, 0, 0, 0.25);
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 1px 4px;
+    border-radius: 4px;
+	position: relative;
+	width: 267px !important;
+    display: flex;
+    flex-wrap: wrap;
+    margin-right: -14px;
+    margin-bottom: -14px;
+    margin-top: 10px;
+	padding: 10px 0px 0 15px;
+}
+
+.color-picker-container {
+	&.drop_up {
+		.circle-picker.wrapped-circle-picker {
+			bottom: 210px;
+		}
+		.color-picker-arrow {
+			top: -64px;
+			border-color: white transparent transparent transparent;
+			border-width: 9px 10px 10px;
+		}
+	}
+}
+
+#selectColourButton {
+	&:hover {
+		filter: brightness(110%);
+	}
+	&.btn-control {
+		border: none;
+		font-size: 80%;
+		padding: 1rem 0.66667rem;
+		border-radius: 0.25rem;
+		box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+	}
+}
+
+div.circle-picker > span > div > span > div {
+	border-radius: 4px!important;
+}
+
+.color-picker-arrow {
+	width: 0px;
+    height: 0px;
+    border-style: solid;
+    border-width: 0px 9px 10px;
+    border-color: transparent transparent rgb(255, 255, 255);
+    position: absolute;
+    top: 0px;
+    right: 12px;
+}
+
+.color-picker-body {
+	padding: 15px 9px 9px 15px;
+}
+
+.color-picker-overlay {
+    position: fixed;
+    top: -1vw;
+    right: -32vw;
+    bottom: -1.4vw;
+    left: -33vw;
+	background-color: black; 
+	opacity: 0.5;
+}
+.color-picker-popover {
+	position: absolute;
+	z-index: 2;
+	right: 55px;
+}
+
+.color-picker-remove-button {
+	position: absolute;
+	margin: 0;
+	opacity: 1;
+	font-weight: bold;
+	font-size: 1rem;
+	text-align: center;
+	background-color: rgb(236, 6, 6);
+	color: white;
+	line-height: 1.2;
+	border: none;
+	right: 16px;
+	top: 28px;
+	border-radius: 5px;
+}
+
+/* Text at the bottom of the color picker. Uncomment to enable*/
+// .color-picker-bottom-text {
+// 	left: 50px;
+//     bottom: 4px;
+// 	background-color: white;
+// 	position: absolute;
+// 	text-align: center;
+// }
+
+button.color-picker-remove-button:hover {
+	cursor: pointer;
+	background-color: lighten(rgb(236, 6, 6), 20%);
+}
