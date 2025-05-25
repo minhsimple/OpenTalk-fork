@@ -1,0 +1,74 @@
+import React from 'react';
+import PropTypes from 'prop-types';
+import { Label, FormGroup } from 'reactstrap';
+import NumberFormat from 'react-number-format';
+import { FieldFeedback, FieldFeedbacks } from 'react-form-with-constraints';
+
+const propTypes = {
+	fieldValue: PropTypes.any,
+	valueMissing: PropTypes.string,
+	fieldPlaceholder: PropTypes.string,
+	handleBlur: PropTypes.func.isRequired,
+	fieldName: PropTypes.string.isRequired,
+	fieldLabel: PropTypes.string.isRequired,
+	handleChange: PropTypes.func.isRequired,
+	fieldRequired: PropTypes.bool.isRequired,
+	fieldTabIndex: PropTypes.number.isRequired,
+	fieldAutoComplete: PropTypes.string.isRequired,
+};
+
+const defaultProps = {
+	fieldName: '',
+	fieldValue: '',
+	fieldLabel: '',
+	valueMissing: '',
+	fieldTabIndex: '-1',
+	currencySymbol: '£',
+	handleBlur: () => {},
+	fieldRequired: false,
+	fieldPlaceholder: '',
+	handleChange: () => {},
+	fieldAutoComplete: 'off',
+};
+
+const NumberField = ({
+	fieldName,
+	fieldValue,
+	fieldLabel,
+	handleBlur,
+	valueMissing,
+	handleChange,
+	fieldRequired,
+	fieldTabIndex,
+	fieldPlaceholder,
+	fieldAutoComplete,
+	currencySymbol,
+}) => (
+	<FormGroup>
+		<Label for={fieldName}>{fieldLabel} {(fieldRequired) ? (<span className="text-danger">&#42;</span>) : null}</Label>
+		{(fieldName === 'budget') ? (
+			<NumberFormat name={fieldName} id={fieldName} value={fieldValue} className="form-control" placeholder={fieldPlaceholder} tabIndex={fieldTabIndex} autoComplete={fieldAutoComplete} onValueChange={(values, event) => handleChange(event, values)} onBlur={handleBlur} required={fieldRequired} displayType={'input'} allowEmptyFormatting={false} allowNegative={false} thousandSeparator={true} prefix={currencySymbol} />
+		) : null}
+		{(fieldName === 'mobile') ? (
+			<NumberFormat type="tel" name={fieldName} id={fieldName} value={fieldValue} className="form-control" placeholder={fieldPlaceholder} tabIndex={fieldTabIndex} autoComplete={fieldAutoComplete} onValueChange={(values, event) => handleChange(event, values)} onBlur={handleBlur} required={fieldRequired} displayType={'input'} allowEmptyFormatting={false} format="+44 (#) ###-###-####" mask="_" />
+		) : null}
+		{(fieldName === 'salary') ? (
+			<NumberFormat name={fieldName} id={fieldName} value={fieldValue} className="form-control" placeholder={fieldPlaceholder} tabIndex={fieldTabIndex} autoComplete={fieldAutoComplete} onValueChange={(values, event) => handleChange(event, values)} onBlur={handleBlur} required={fieldRequired} displayType={'input'} allowEmptyFormatting={false} allowNegative={false} fixedDecimalScale={true} thousandSeparator={true} decimalScale={2} prefix={currencySymbol} />
+		) : null}
+		{(fieldName === 'hourlyRate') ? (
+			<NumberFormat name={fieldName} id={fieldName} value={fieldValue} className="form-control" placeholder={fieldPlaceholder} tabIndex={fieldTabIndex} autoComplete={fieldAutoComplete} onValueChange={(values, event) => handleChange(event, values)} onBlur={handleBlur} required={fieldRequired} displayType={'input'} allowEmptyFormatting={false} allowNegative={false} fixedDecimalScale={true} thousandSeparator={true} decimalScale={2} thousandSeparator={true} prefix={currencySymbol} />
+		) : null}
+		{(fieldName === 'weeklyContractHours') ? (
+			<NumberFormat name={fieldName} id={fieldName} value={fieldValue} className="form-control" placeholder={fieldPlaceholder} tabIndex={fieldTabIndex} autoComplete={fieldAutoComplete} onValueChange={(values, event) => handleChange(event, values)} onBlur={handleBlur} required={fieldRequired} displayType={'input'} allowEmptyFormatting={false} allowNegative={false} fixedDecimalScale={true} decimalScale={1} />
+		) : null}
+		<FieldFeedbacks for={fieldName} show="all">
+			<FieldFeedback when="valueMissing">- {valueMissing}</FieldFeedback>
+		</FieldFeedbacks>
+	</FormGroup>
+);
+
+NumberField.propTypes = propTypes;
+
+NumberField.defaultProps = defaultProps;
+
+export default NumberField;
