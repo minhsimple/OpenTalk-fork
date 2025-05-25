@@ -1,0 +1,30 @@
+export default {
+	shiftId: 'be3d2060-280d-4669-9b70-4b98a5bbecc2',
+	isClosingShift: false,
+	roleColor: 'red',
+	roleName: 'P',
+	startTime: '2019-08-05 19:00:00.0',
+	endTime: '2019-08-05 20:00:00.0',
+	placement: [
+		{
+			firstName: 'John',
+			lastName: 'McVitty',
+			cost: 115,
+			placementId: 'fc5619c2-23b2-4ae8-aebb-b19977848d41',
+			notified: false,
+			employeeId: 'b0131c6a-984e-4a6a-bbe0-41b070422271',
+			status: 'DRAFT',
+		},
+	],
+	role: {
+		object: 'role',
+		rotaTypeRoles: null,
+		roleId: '24e7e104-a72d-411f-84a9-9ec88f928942',
+		roleName: 'MANAGER',
+		roleColour: '#f44336',
+	},
+	shiftColour: '#ff1e1e',
+	unpaidBreakDuration: 0,
+	status: 'DRAFT',
+	rotaStatus: 'EDITED',
+};
