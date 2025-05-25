@@ -15,38 +15,38 @@
 
 ## 📌 Suggested Branch Names by Feature
 
-| Feature                       | Backend Branch Name                         | Frontend Branch Name                  |
-| ----------------------------- | ------------------------------------------- | ------------------------------------- |
-| 🔐 Authentication             | feature/be-auth-login-jwt                   | feature/fe-auth-login-screen          |
-| 👥 Employee Management        | feature/be-employee-sync-hrm                | feature/fe-employee-list-filter       |
-| 🗓 Opentalk Management         | feature/be-opentalk-create                  | feature/fe-opentalk-register-form     |
-| 🖼 Slide Upload                | feature/be-slide-upload-handler             | feature/fe-slide-upload-ui            |
-| 🎰 Opentalk Lottery           | feature/be-lottery-random-host              | feature/fe-lottery-notification-modal |
-| ⏰ Dynamic Cronjob Config     | feature/be-cronjob-lottery-config           | _(Not applicable)_                    |
-| 📄 Employee Filters           | feature/be-employee-filter-by-branch-status | feature/fe-employee-advanced-filters  |
-| 🏢 Branch Management          | feature/be-branch-management-api            | feature/fe-branch-select-dropdown     |
-| 🧾 Opentalk Topics Management | feature/be-topic-create-edit-delete         | feature/fe-topic-input-form           |
-| 📊 Opentalk Session Listing   | feature/be-opentalk-pagination-filters      | feature/fe-opentalk-list-table        |
-| 📧 Email Notification         | feature/be-email-thymeleaf-reminder         | _(Not applicable)_                    |
-| 🌐 Internationalization       | feature/be-i18n-config-support              | feature/fe-i18n-language-toggle       |
-| 🔍 Query Optimization         | refactor/be-query-cache-pagination          | _(Not applicable)_                    |
-| 🧪 Testing                    | test/be-opentalk-controller-test            | test/fe-opentalk-screen-test          |
-| 🚀 Release                    | release/be-v1.0.0                           | release/fe-v1.0.0                     |
+| Feature                       | Backend Branch Name                          | Frontend Branch Name                      |
+| ----------------------------- | -------------------------------------------- | ----------------------------------------- |
+| 🔐 Authentication             | feature/api-auth-login-jwt                   | feature/screen-auth-login-screen          |
+| 👥 Employee Management        | feature/api-employee-sync-hrm                | feature/screen-employee-list-filter       |
+| 🗓 Opentalk Management         | feature/api-opentalk-create                  | feature/screen-opentalk-register-form     |
+| 🖼 Slide Upload                | feature/api-slide-upload-handler             | feature/screen-slide-upload-ui            |
+| 🎰 Opentalk Lottery           | feature/api-lottery-random-host              | feature/screen-lottery-notification-modal |
+| ⏰ Dynamic Cronjob Config     | feature/api-cronjob-lottery-config           | _(Not applicable)_                        |
+| 📄 Employee Filters           | feature/api-employee-filter-by-branch-status | feature/screen-employee-advanced-filters  |
+| 🏢 Branch Management          | feature/api-branch-management-api            | feature/screen-branch-select-dropdown     |
+| 🧾 Opentalk Topics Management | feature/api-topic-create-edit-delete         | feature/screen-topic-input-form           |
+| 📊 Opentalk Session Listing   | feature/api-opentalk-pagination-filters      | feature/screen-opentalk-list-table        |
+| 📧 Email Notification         | feature/api-email-thymeleaf-reminder         | _(Not applicable)_                        |
+| 🌐 Internationalization       | feature/api-i18n-config-support              | feature/screen-i18n-language-toggle       |
+| 🔍 Query Optimization         | refactor/api-query-cache-pagination          | _(Not applicable)_                        |
+| 🧪 Testing                    | test/api-opentalk-controller-test            | test/screen-opentalk-screen-test          |
+| 🚀 Release                    | release/api-v1.0.0                           | release/screen-v1.0.0                     |
 
 ---
 
 ## ✏️ Commit Message Format
 
 ```
-<type> - <module>: <short-description>
+<type> - <role>: <short-description>
 ```
 
 ### Examples:
 
-- `feat(auth): implement JWT login endpoint`
-- `fix(employee): correct HRM sync bug`
-- `refactor(opentalk): optimize schedule fetching logic`
-- `test(slide): add unit test for upload controller`
+- `feat - api: implement JWT login endpoint`
+- `fix - api: correct HRM sync bug`
+- `refactor - api: optimize schedule fetching logic`
+- `test - api: add unit test for upload controller`
 
 ### Conventional Commit Types:
 
@@ -85,7 +85,7 @@
 - Keep it short but descriptive enough to identify the task.
 - Include Jira/task ID if your workflow uses it:
 
-  - Example: `feature/be-opentalk-create-JIRA123`
+  - Example: `feature/api-opentalk-create-JIRA123`
 
 ---
 
