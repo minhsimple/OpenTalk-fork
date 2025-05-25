@@ -1,0 +1,250 @@
+.btn {
+	box-shadow: none;
+	// font-size: 0.75rem;
+	text-transform: none;
+	color: $body-color-light;
+	border-radius: $border-radius;
+	font-weight: $font-weight-semi;
+
+	@include media-breakpoint-down(lg) {
+		padding: 0 1.5rem;
+	}
+
+	@include media-breakpoint-up(lg) {
+		padding: 0 1.5rem;
+		line-height: calculateRem(44px);
+	}
+
+	&:focus {
+		outline: none !important;
+	}
+	
+	&:disabled {
+		opacity: 0.5;
+		color: $white;
+		cursor: not-allowed !important;
+
+		&:hover {
+			color: $white !important;
+			background-color: darken($dark, 10%);
+		}
+	}
+}
+
+.btn-rotas-disabled {
+	opacity: 0.5;
+	color: #F7F7F7;
+	cursor: not-allowed !important;
+	
+}
+
+.btn-secondary-alt {
+	color: #fff;
+    background-color: #343E48; 
+	border-color: #343E48;
+	&:hover {
+		background-color: darken(#343E48, 5%);
+	}
+}
+
+.btn-dark {
+	&:hover {
+		background-color: #6b6c6d;
+	}
+}
+
+.btn-lines {
+	font-size: calculateRem(16px);
+}
+
+.tablet-rota-container {
+	.btn-rotas-popover:hover {
+		color: $dark !important;
+		background-color: $white !important;
+	}
+	.btn-action:hover {
+		opacity: 1;
+		color: inherit;
+		background-color: lighten($dark, 10%);;
+	}
+	.btn-user:hover {
+		background-color: inherit;
+	}
+}
+
+.btn-rotas-popover {
+	color: $dark;
+	opacity: 1 !important;
+	background-color: $white;
+	
+	&:hover {
+		color: $white !important;
+		background-color: darken($dark, 10%);
+	}
+	
+	&:disabled {
+		opacity: 1 !important;
+		color: $dark !important;
+			
+		&:hover {
+			opacity: 1 !important;
+			color: $dark !important;
+			background-color: $white !important;
+		}
+	}
+}
+
+.btn-nav {
+	padding: 0 1.5rem;
+	line-height: calculateRem(44px);
+}
+
+.btn-action {
+	background-color: lighten($dark, 10%);
+	
+	&:hover {
+		color: $body-color-light;
+		background-color: darken($dark, 10%);
+	}
+}
+
+.btn-user {
+	background-color: transparent;
+
+	&:hover {
+		color: $body-color-light;
+		background-color: darken($dark, 10%);
+	}
+}
+
+.btn-sm {
+	line-height: normal;
+}
+
+.btn-icon {
+	padding: 0.5rem;
+	font-size: 0.60rem;
+	line-height: normal;
+}
+
+.btn-overview {
+	padding: 0.5rem;
+	line-height: normal;
+}
+
+.btn-disabled {
+	color: $white !important;
+	cursor: not-allowed !important;
+	background-color: #EBEBE4 !important;
+	
+	i {
+		color: $white !important;
+		cursor: not-allowed !important;
+	}
+	
+	&:hover {
+		color: $white !important;
+		cursor: not-allowed !important;
+		background-color: #EBEBE4 !important;
+		
+		i {
+			color: $white !important;
+			cursor: not-allowed !important;
+		}
+	}
+}
+
+.btn-publish-rota-changes {
+	color: $white !important;
+	background-color: #ffc107 !important;
+
+	&:hover {
+		color: $white !important;
+		background-color: #e0a800 !important;
+	}
+}
+
+.btn-outline-danger {
+	background-color: #FFFFFF;
+	color: red;
+	&:hover {
+		color: #ffffff !important;
+	}
+}
+
+.btn-toggle-fields {
+	color: $dark;
+	background-color: #c8c8c8;
+	
+	&:hover {
+		color: $dark;
+		background-color: #b1b1b1;
+	}
+}
+
+.btn-create-select {
+	color: $dark;
+	border-color: #D9D9D9;
+	height: 48px !important;
+    background-color: #F0F0F0;
+	
+	&:hover {
+		color: $dark;
+		border-color: #D9D9D9;
+		background-color: #f8f9fa;
+	}
+	@include media-breakpoint-down(sm) {
+		line-height: 1.4rem !important;
+		padding: 0.4rem 0.66667rem !important;
+		background-color: #F0F0F0 !important;
+	}
+}
+
+.btn-no-click {
+	cursor: default !important;
+	
+	&:active,
+	&:hover {
+		background-color: inherit !important;
+	}
+}
+
+.filter-buttons {
+	padding: 0 4px;
+	
+	button {
+		width: 50%;
+		padding: 5px 10px;
+		font-size: 0.60rem;
+		line-height: normal;
+		font-weight: normal;
+		
+		&:nth-child(2) {
+			@include border-top-right-radius(0);
+			@include border-bottom-right-radius(0);
+		}
+		
+		&:last-child {
+			@include border-top-left-radius(0);
+			@include border-bottom-left-radius(0);
+		}
+	}
+}
+
+.btn-filter-active {
+	color: $white;
+	border-color: $warning !important;
+	background-color: $warning !important;
+}
+
+.btn-med {
+    font-weight: 500;
+    font-size: 0.85rem;
+    line-height: calculateRem(32px) !important;
+    margin-top: calculateRem(-2px) !important;
+    
+    @include media-breakpoint-down(sm) {
+	    font-size: 0.95rem;
+        line-height: calculateRem(33px) !important;
+    }
+}

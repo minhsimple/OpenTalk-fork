@@ -1,0 +1,469 @@
+$primary: #343E48;
+
+[draggable=true] {
+	user-select: none;
+	-moz-user-select: none;
+	-khtml-user-select: none;
+	-webkit-user-select: none;
+	/* Required to make elements draggable in old WebKit */
+	-khtml-user-drag: element;
+	-webkit-user-drag: element;
+}
+
+.table-wrapper {
+	position: relative;
+}
+
+.table-scroller {
+	width: 100%;
+	overflow-y: hidden;
+	white-space: nowrap;
+	overflow-x: inherit;  
+	background-color: $white;
+	border-radius: calculateRem(5px);
+	border: calculateRem(5px) solid $white;
+}
+
+.table-scroller-custom {
+	width: 100%;
+	white-space: nowrap;
+	background-color: $white;
+	border-radius: calculateRem(5px);
+	border: calculateRem(5px) solid $white;
+}
+
+.employees tr td {
+    background-color: #ffffff!important;
+}
+
+.employees,
+.rota-employees {
+	width: 100%;
+	table-layout: auto;
+	border-collapse: collapse;
+
+	thead {
+		position: relative;
+	}
+	
+	tr {
+		th {
+			background-color: $gray-700;
+			font-weight: $font-weight-semi;
+			border: 0.2rem solid #e4e3e3;
+			
+			.sort-direction {
+				width: 0;
+				height: 0;
+				display: inline-block;
+				margin: 0 0 calculateRem(2px) calculateRem(5px);
+				border-left: calculateRem(5px) solid transparent;
+				border-right: calculateRem(5px) solid transparent;
+			
+				&.asc {
+					border-bottom: calculateRem(5px) solid #000000;
+				}
+			
+				&.desc {
+					border-top: calculateRem(5px) solid #000000;
+				}
+			}
+			
+			.placements-status {
+				* {
+					display: inline-block;
+					vertical-align: middle;
+				}
+			
+				.indicator {
+					margin-top: -2px;
+					width: calculateRem(10px);
+					height: calculateRem(10px);
+					border-radius: calculateRem(5px);
+			
+					&.todo {
+						color: $danger;
+						background-color: $danger;
+					}
+			
+					&.doing {
+						color: $info;
+						background-color: $info;
+					}
+			
+					&.done {
+						color: $success;
+						background-color: $success;
+					}
+				}
+			
+				.count {
+					color: $dark;
+					background-color: transparent;
+					font-weight: $font-weight-normal;
+				}
+			}
+			
+			.flex-column {
+				width: 30%;
+				background-color: transparent;
+				
+				.flex-row {
+					&:first-child {
+						background-color: $gray-100;
+					}
+	
+					&:last-child {
+						background-color: $gray-200;
+					}
+				}
+				
+				&:last-child {
+					width: 70%;	
+				}
+			}
+
+			.flex-column-full {
+				width: 100%;
+				background-color: transparent;
+				
+				.flex-row {
+					&:first-child {
+						background-color: $gray-100;
+					}
+	
+					&:last-child {
+						background-color: $gray-200;
+					}
+				}
+				
+				&:last-child {
+					width: 100%;	
+				}
+			}
+		}
+		
+		.column {
+			width: auto;
+			min-width: 140px;
+			
+			@include media-breakpoint-down(md) {
+				width: 120px;
+			}
+		}
+		
+		.column.first {
+			width: 350px;
+			max-width: 300px;
+			
+			.flex-column {
+				width: 50%;
+	
+				&:last-child {
+					width: 50%;
+				}
+			}
+			
+			@include media-breakpoint-down(md) {
+				width: 185px;
+			}
+			
+			@include media-breakpoint-down(sm) {
+				width: 165px;
+			}
+		}
+		
+		.column.last {
+			width: auto;			
+			@include media-breakpoint-down(md) {
+				width: 100px;
+			}
+		}
+	
+		td {
+			cursor: default;
+			white-space: nowrap;
+			background-color: $gray-400;
+			border: 0.2rem solid #e4e3e3;
+			
+			.complete {
+				color: $primary;
+			}
+			.incomplete {
+				color: #ff9800;
+			}
+
+			/* shift */
+			.shift-container {
+				position: relative;
+				.edit-handler {
+					display: none;
+				}
+			
+				&:hover {
+					background-color: darken($gray-400, 5%);
+				
+					.edit-handler {
+						top: 10px;
+						right: 0;
+						display: inline-block;
+					}
+				}
+
+			}
+
+			.shift {
+				border: 0;
+				z-index: 1;
+				width: 100%;
+				cursor: pointer;
+				position: relative;
+				color: #000000;
+				background-color: #FFFFFF;
+				
+				@include media-breakpoint-down(md) {
+					min-height: 37px;
+				}
+			}
+
+			
+			.unavailability {
+    			border: 0;
+				z-index: 1;
+				width: 100%;
+				color: $white;
+                cursor: pointer !important;
+				min-height: 60px;
+				position: relative;
+				background-color: #fd8b25;
+			    padding: 5px;
+		
+				&:hover {
+					cursor: pointer !important;
+				}
+
+				&:not(:only-child, :last-child) {
+					border-bottom: calculateRem(3px) solid darken(#fd8b25, 10%);
+				}
+
+				@include media-breakpoint-down(md) {
+					min-height: 37px;
+				}
+			}
+			
+			.red {
+				background-color: rgba(0, 255, 255, 0.5);
+			}
+			
+			.green {
+				background-color: rgba(0, 128, 0, 0.5);
+			}
+			
+			.shift-selected {
+				background-color: '#FFFFFF' !important;
+			}
+			
+			.shift-invisible {
+				display: none !important;
+			}
+	
+		}
+		
+		th.non-draggable-cell {
+			color: $dark;
+			background-color: $gray-700;
+		}
+		
+		td.unavailability-cell {
+			color: $dark;
+			background-color: $gray-500;
+		}
+		
+		td.past-cell,
+		td.non-draggable-cell {
+			z-index: 1;
+			cursor: no-drop;
+			color: $white;
+			background-color: $white;
+			background-image: repeating-linear-gradient(45deg, transparent, transparent 3px, rgba(235, 235, 235, 0.5) 3px, rgba(235, 235, 235, 0.9) 6px);
+		}
+	
+		.draggable-cell {
+			z-index: 1;
+				
+			&:hover {
+				z-index: 2;
+				
+				.add-shift {
+					opacity: 1;
+				}
+
+				.unavailability {
+                    cursor: pointer !important;
+				}
+			}
+        }
+		
+		.cell-highlighted {
+			opacity: 0.5;
+			background-color: $success !important;
+		}
+		
+		.drag-handler {
+			cursor: move !important;
+			
+			&:active,
+			&:hover {
+				cursor: move !important;
+			}
+		}
+		
+		.edit-employee {
+			.edit-handler {
+				display: none;
+			}
+		
+			&:hover {
+				background-color: darken($gray-400, 5%);
+			
+				.edit-handler {
+					top: 0;
+					right: 0;
+					display: inline-block;
+				}
+			}
+		}
+	}
+	
+	tr.open-shifts {
+		td {
+			cursor: default;
+			white-space: nowrap;
+			background-color: #FFFFFF;
+			background-color: $gray-700;
+			
+			.shift {
+				background-color: $dark;
+				color: #FFFFFF;
+				min-height: 0;
+				text-align: center!important;
+				height: 35px;
+				
+				&:not(:only-child, :last-child) {
+					border-bottom: calculateRem(3px) solid darken($dark, 20%);
+				}
+			}
+			
+			.past {
+				cursor: not-allowed;
+			}
+		}
+		
+		th.non-draggable-cell {
+			color: $dark;
+			cursor: no-drop;
+			background-color: $white;
+			background-color: $gray-700;
+			background-image: none;
+		}
+		
+		td.non-draggable-cell {
+			z-index: 1;
+			cursor: no-drop;
+			color: $white;
+			background-color: $white;
+			background-color: $gray-700;
+			background-image: none;
+		}
+	
+		.draggable-cell {
+			z-index: 1;
+				
+			&:hover {
+				z-index: 2;
+				
+				.add-shift {
+					opacity: 1;
+				}
+			}
+		}
+	}
+	
+	.draggable-row,
+	.draggable-row-drag td {
+		cursor: move !important;
+		
+		&:active,
+		&:hover {
+			cursor: move !important;
+		}
+	}
+	
+	.draggable-row-ghost {
+		td {
+			border: 5px solid $white;
+			background-color: rgba(144, 189, 72, 0.3);
+		}
+	}
+	
+	tfoot tr th {
+		background-color: $white;
+	}
+}
+
+.employees {    
+    .column.numeric {
+		width: 120px !important;
+		max-width: 120px !important;
+	}
+	.column.account-access {
+		width: 120px !important;
+	}
+	.column.last {
+		max-width: 300px !important;
+	}
+}
+
+.flex-row-wrap {
+	flex-direction: row;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	.card-shadow {
+		box-shadow: 1px 2px 4px 1px rgba(0, 0, 0, 0.2);
+		border-radius: 5px;
+		background-color: rgba(0, 0, 0, 0.05);
+		&:hover {
+			box-shadow: 1px 4px 8px 1px rgba(0, 0, 0, 0.4);
+			cursor: pointer
+		}
+		div {
+			font-size: 13px;
+		}
+	}
+}
+.card-selected {
+	border: 3px green solid;
+	padding: 5px !important;
+	box-shadow: 1px 4px 8px 1px rgba(0, 0, 0, 0.4) !important;
+}
+.text-green {
+	color: #33D41E
+}
+
+.text-blue {
+	color: blue
+}
+.primary-color {
+	background-color: $primary
+}
+
+#fullname {
+	font-size: 15px;
+	font-family: Arial, Helvetica, sans-serif;
+	font-weight: 550;
+	max-width: 300px;
+	word-wrap: break-word; 
+	text-overflow: ellipsis;
+	overflow: hidden;
+}

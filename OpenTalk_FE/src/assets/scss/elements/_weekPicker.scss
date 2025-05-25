@@ -1,0 +1,21 @@
+// TODO REMOVE THIS FILE
+.week-toggle {
+  border-radius: $border-radius;
+  background-color: $white;
+
+  .btn-toggle {
+    // font-size: 0.80rem;
+    font-size: inherit;
+    background-color: transparent;
+    line-height: calculateRem(42px);
+
+    &:hover {
+      cursor: pointer;
+      color: $primary !important;
+    }
+  }
+
+  .btn-week-picker {
+    line-height: calculateRem(43px);
+  }
+}

@@ -1,0 +1,116 @@
+input,
+button,
+textarea {
+	&:focus {
+		outline: none !important;
+	}
+}
+
+label {
+	@extend %text-uppercase;
+	
+	// font-size: 0.75rem;
+	letter-spacing: 0;
+	font-weight: $font-weight-semi;
+}
+
+.custom-select,
+.form-control {
+	font-size: 100%;
+	// font-size: 0.875em;
+	background-color: $gray-300;
+	color: $body-color !important;
+	height: auto;
+	line-height: calculateRem(34px) !important;
+	// font-weight: $font-weight-semi;
+	border: calculateRem(1px) solid $gray-600;
+}
+.form-check-input:focus {
+	outline: 1px solid #c8dea4 !important;
+}
+
+.react-phone-number-input--focus {
+	color: #C4C4C4 !important;
+	background-color: #fff !important;
+	border-color: #c8dea4 !important;
+	outline: 0;
+}
+
+.form-control-md,
+.form-control-sm {
+	line-height: calculateRem(24px) !important;
+}
+
+.form-control-sm {
+	height: $input-height-sm;
+}
+
+.custom-select,
+select.form-control:not([size]):not([multiple]) {
+	height: auto;
+}
+
+.custom-select-md,
+.custom-select-lg,
+.custom-select-xl {
+	height: auto !important;
+	line-height: calculateRem(34px);
+	// height: $custom-select-height-xl !important;
+	// font-size: $custom-select-font-size-xl !important;
+}
+
+input:disabled,
+select:disabled,
+textarea:disabled {
+	cursor: not-allowed;
+	opacity: 0.5 !important;
+}
+
+.uploader {
+	width: 100%;
+	display: flex;
+	cursor: pointer;
+	position: relative;
+	align-items: center;
+	justify-content: center;
+	height: calculateRem(300px);
+	outline-offset: calculateRem(10px);
+	background-color: rgba(0, 0, 0, 0.1);
+	outline: calculateRem(2px) dashed #cccccc;
+	
+	input { 
+		display: none; 
+	}
+	
+	& img,
+	& .icon { 
+		pointer-events: none; 
+	}
+	
+	&, .icon {
+		transition: all 100ms ease-in;
+	}
+	
+	.icon {
+		clear: both;
+		color: #eeeeee;
+		font-size: 5em;
+		display: block;
+	}
+	
+	img {
+		top: 50%;
+		left: 50%;
+		opacity: 0;
+		z-index: -1;
+		max-width: 100%;
+		max-height: 100%;
+		position: absolute;
+		transition: all 300ms ease-in;
+		transform: translate(-50%, -50%);
+		
+		&.loaded {
+			opacity: 1;
+		}
+	}
+}

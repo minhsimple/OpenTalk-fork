@@ -1,0 +1,79 @@
+.popover {
+	z-index: 1011;
+	box-shadow: 0 0 calculateRem(10px) 0 rgba(0, 0, 0, 0.5);
+	-moz-box-shadow: 0 0 calculateRem(10px) 0 rgba(0, 0, 0, 0.5);
+	-webkit-box-shadow: 0 0 calculateRem(10px) 0 rgba(0, 0, 0, 0.5);
+}
+
+.popover-body {
+	padding: 0;
+	text-align: center;
+	// font-size: 0.75rem;
+	// max-height: 300px;
+	overflow-y: inherit;
+	overflow-x: hidden;
+	.popover-roles {
+		.btn-action:hover {
+			opacity: 0.8;
+			transition: all 0.15s;
+		}
+	}
+	.popover-menu {
+		@extend %clearlist;
+	
+		margin: calculateRem(5px);
+	
+		li {
+			margin: 0;
+			float: none;
+			padding: 0 !important;
+			min-width: calculateRem(150px);
+	
+			&:not(:last-child) {
+				margin-bottom: 0.5rem;
+			}
+			
+			&:last-child {
+				margin-bottom: 0.4rem;
+			}
+	
+			.btn {
+				width: 100%;
+			}
+		}
+		
+		input {
+			min-width: calculateRem(200px);
+		}
+		
+		.btn-sm {
+			// font-size: 0.75rem;
+		}
+	}
+}
+
+.bs-popover-right {
+	.arrow {
+		top: calculateRem(9px) !important;
+	}
+}
+
+.cell-popover {
+	a:not(.btn),
+	button:not(.btn) {
+		padding: 10px 0;
+		cursor: pointer;
+		text-decoration: none;
+		color: $body-color-light;
+		background-color: $dark;
+		min-width: calculateRem(150px);
+		&:last-child {
+			background-color: darken($dark, 10%);
+		}
+		
+		&:hover {
+			text-decoration: none;
+			background-color: darken($dark, 20%);
+		}
+	}
+}
