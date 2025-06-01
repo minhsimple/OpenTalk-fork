@@ -20,9 +20,7 @@ Link: [JIRA-XXX](https://your-jira-url)
 - Anything reviewers should double-check?
 
 ---
-
 ### Frontend
-
 
 ### 📌 Summary
 Briefly describe the UI/UX update or logic change.
