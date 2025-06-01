@@ -44,7 +44,7 @@ function Setting() {
     return <h2>Setting Page</h2>;
 }
 
-export default function App() {
+function App() {
     return (
         <Router>
             <Layout>
@@ -67,3 +67,5 @@ export default function App() {
         </Router>
     );
 }
+
+export default App
