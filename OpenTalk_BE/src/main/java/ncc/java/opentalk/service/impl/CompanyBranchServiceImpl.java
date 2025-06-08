@@ -19,6 +19,8 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 
 @Service
 @RequiredArgsConstructor
@@ -31,11 +33,11 @@ public class CompanyBranchServiceImpl implements CompanyBranchService {
     private final EntityManager entityManager;
 
     @Override
-    public List<CompanyBranchDTO> getCompanyBranches() {
+    public List<CompanyBranchDTO> getCompanyBranches(int page, int size) {
         log.info("==========* Start Query *==========");
-        List<CompanyBranch> branches = companyBranchRepository.findAllWithUsers();
+        Page<CompanyBranch> branches = companyBranchRepository.findAllWithUsers(PageRequest.of(page, size));
         log.info("==========* End Query *==========");
-        return branches.stream().map(CompanyBranchMapper.INSTANCE::toDto).toList();
+        return branches.map(CompanyBranchMapper.INSTANCE::toDto).toList();
     }
 
     @Override
