@@ -1,6 +1,7 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Layout from "./layouts/MainLayout"; // đường dẫn tùy bạn
+import Layout from "./layouts/MainLayout";
+import BranchListPage from "./pages/BranchListPage";
 // import Overview from "./pages/Overview";
 // import Meeting from "./pages/Meeting";
 // import Message from "./pages/Message";
@@ -61,6 +62,7 @@ function App() {
                     <Route path="/organization" element={<Organization />} />
                     <Route path="/account" element={<Account />} />
                     <Route path="/setting" element={<Setting />} />
+                    <Route path="/branches" element={<BranchListPage />} />
                     {/* các route khác */}
                 </Routes>
             </Layout>
