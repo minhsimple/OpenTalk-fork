@@ -106,29 +106,20 @@ public class CompanyBranchServiceImpl implements CompanyBranchService {
     @Transactional
     public boolean deleteCompanyBranch(Long companyBranchId) {
         log.info("==========* Start Company Branch Query *==========");
-        CompanyBranch existingCompanyBranch = companyBranchRepository.findById(companyBranchId).orElse(null);
+        Optional<CompanyBranch> existingCompanyBranchOpt = companyBranchRepository.findById(companyBranchId);
         log.info("==========* End Company Branch Query *==========");
 
-        User user = existingCompanyBranch.getUsers().get(0);
-        user.setUsername("Nguyen Van B"); //Nguyen Van -> Nguyen Van A
-        userRepository.save(user);
+        if (existingCompanyBranchOpt.isPresent()) {
+            CompanyBranch existingCompanyBranch = existingCompanyBranchOpt.get();
 
-        existingCompanyBranch.setName("ABC"); //ABC
-        companyBranchRepository.save(existingCompanyBranch);
-        int i = 5/0;
-//        if (existingCompanyBranch != null) {
-//            log.info("==========* Start *==========");
-//            User user = userRepository.findById(45L).orElse(null);
-//            System.out.println(user.getFullName());
-//            existingCompanyBranch.removeUser(user);
-//            for (User users : existingCompanyBranch.getUsers()) {
-//                System.out.println(users.getFullName());
-//            }
-//            companyBranchRepository.save(existingCompanyBranch);
-//            log.info("==========* End **==========");
-//            companyBranchRepository.delete(existingCompanyBranch);
-//            return true;
-//        }
+            // remove association with users to satisfy orphanRemoval
+            for (User user : existingCompanyBranch.getUsers()) {
+                user.setCompanyBranch(null);
+            }
+
+            companyBranchRepository.delete(existingCompanyBranch);
+            return true;
+        }
         return false;
     }
 
