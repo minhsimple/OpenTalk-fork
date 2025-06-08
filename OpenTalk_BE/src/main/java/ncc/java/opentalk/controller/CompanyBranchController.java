@@ -3,7 +3,6 @@ package ncc.java.opentalk.controller;
 import lombok.RequiredArgsConstructor;
 import ncc.java.opentalk.dto.BranchEmployeeCountDTO;
 import ncc.java.opentalk.dto.CompanyBranchDTO;
-import ncc.java.opentalk.entity.CompanyBranch;
 import ncc.java.opentalk.service.CompanyBranchService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -17,8 +16,10 @@ public class CompanyBranchController {
     private final CompanyBranchService companyBranchService;
 
     @GetMapping
-    public ResponseEntity<List<CompanyBranchDTO>> getCompanyBranchs() {
-        List<CompanyBranchDTO> dtos = companyBranchService.getCompanyBranches();
+    public ResponseEntity<List<CompanyBranchDTO>> getCompanyBranchs(
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "10") int size) {
+        List<CompanyBranchDTO> dtos = companyBranchService.getCompanyBranches(page, size);
         return ResponseEntity.ok(dtos);
     }
 

@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Optional;
 
 public interface CompanyBranchService {
-    List<CompanyBranchDTO> getCompanyBranches();
+    List<CompanyBranchDTO> getCompanyBranches(int page, int size);
 
     CompanyBranchDTO createCompanyBranch(CompanyBranchDTO companyBranch);
 
