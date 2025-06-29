@@ -7,7 +7,7 @@ import {
   updateCompanyBranch,
 } from '../api/companyBranch';
 
-const BranchListPage = () => {
+const OrganizationListPage = () => {
   const [branches, setBranches] = useState([]);
   const [modalOpen, setModalOpen] = useState(false);
   const [selected, setSelected] = useState(null);
@@ -43,9 +43,9 @@ const BranchListPage = () => {
   return (
     <div className="container-fluid">
       <div className="d-flex justify-content-between align-items-center mb-3">
-        <h2>Company Branches</h2>
+        <h2>Organization</h2>
         <Button color="primary" onClick={() => { setSelected(null); setModalOpen(true); }}>
-          Add Branch
+          Add Company
         </Button>
       </div>
       <Table bordered hover>
@@ -84,4 +84,4 @@ const BranchListPage = () => {
   );
 };
 
-export default BranchListPage;
+export default OrganizationListPage;

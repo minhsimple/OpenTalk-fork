@@ -1,7 +1,7 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Layout from "./layouts/MainLayout";
-import BranchListPage from "./pages/BranchListPage";
+import OrganizationListPage from "./pages/OrganizationListPage";
 // import Overview from "./pages/Overview";
 // import Meeting from "./pages/Meeting";
 // import Message from "./pages/Message";
@@ -35,9 +35,6 @@ function Notice() {
 function HRTab() {
     return <h2>HR Tab Page</h2>;
 }
-function Organization() {
-    return <h2>Organization Page</h2>;
-}
 function Account() {
     return <h2>Account Page</h2>;
 }
@@ -59,10 +56,9 @@ function App() {
                     <Route path="/attendance" element={<Attendance />} />
                     <Route path="/notice" element={<Notice />} />
                     <Route path="/hrtab" element={<HRTab />} />
-                    <Route path="/organization" element={<Organization />} />
+                    <Route path="/organization" element={<OrganizationListPage />} />
                     <Route path="/account" element={<Account />} />
                     <Route path="/setting" element={<Setting />} />
-                    <Route path="/branches" element={<BranchListPage />} />
                     {/* các route khác */}
                 </Routes>
             </Layout>

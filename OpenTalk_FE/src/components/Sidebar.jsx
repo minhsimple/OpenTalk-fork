@@ -27,7 +27,6 @@ const menuItems = [
     { label: "Notice", icon: <FaRegNewspaper />, path: "/notice" },
     { label: "HR Tab", icon: <FaFileAlt />, path: "/hrtab" },
     { label: "Organization", icon: <FaBuilding />, path: "/organization" },
-    { label: "Branches", icon: <FaBuilding />, path: "/branches" },
     { label: "Account", icon: <FaUserCircle />, path: "/account" },
     { label: "Setting", icon: <FaCog />, path: "/setting" },
 ];
