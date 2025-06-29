@@ -12,6 +12,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/company-branch")
 @RequiredArgsConstructor
+@CrossOrigin(origins = "http://localhost:5173", maxAge = 3600)
 public class CompanyBranchController {
     private final CompanyBranchService companyBranchService;
 

@@ -15,6 +15,7 @@ const BranchListPage = () => {
   const loadData = async () => {
     try {
       const data = await getCompanyBranches();
+      console.log('Branches data:', data);
       setBranches(data);
     } catch (e) {
       console.error(e);
@@ -50,13 +51,17 @@ const BranchListPage = () => {
       <Table bordered hover>
         <thead className="table-light">
           <tr>
-            <th>#</th>
-            <th>Name</th>
-            <th></th>
+            <th>Id</th>
+            <th>Company Name</th>
+            <th>Country</th>
+            <th>City</th>
+            <th>Email</th>
+            <th>Phone</th>
+            <th>Web Url</th>
           </tr>
         </thead>
         <tbody>
-          {branches.map((b) => (
+          {(Array.isArray(branches) ? branches : []).map((b) => (
             <tr key={b.id}>
               <td>{b.id}</td>
               <td>{b.name}</td>

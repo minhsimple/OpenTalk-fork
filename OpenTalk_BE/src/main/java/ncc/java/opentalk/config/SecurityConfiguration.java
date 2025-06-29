@@ -52,7 +52,7 @@ public class SecurityConfiguration {
                         .hasRole("ADMIN")
 
                         .anyRequest()
-                        .authenticated())
+                        .permitAll())
                 .sessionManagement((session) -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authenticationProvider(authenticationProvider)
                 .addFilterBefore(authenticationFilter, UsernamePasswordAuthenticationFilter.class);

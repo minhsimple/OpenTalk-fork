@@ -4,7 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4a4ad0da-a035-4eb6-8277-a300dd06adf1" name="Changes" comment="" />
+    <list default="true" id="4a4ad0da-a035-4eb6-8277-a300dd06adf1" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/OpenTalk_BE/src/main/java/ncc/java/opentalk/config/ApplicationConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/OpenTalk_BE/src/main/java/ncc/java/opentalk/config/ApplicationConfiguration.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/OpenTalk_BE/src/main/java/ncc/java/opentalk/config/SecurityConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/OpenTalk_BE/src/main/java/ncc/java/opentalk/config/SecurityConfiguration.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/OpenTalk_BE/src/main/java/ncc/java/opentalk/controller/CompanyBranchController.java" beforeDir="false" afterPath="$PROJECT_DIR$/OpenTalk_BE/src/main/java/ncc/java/opentalk/controller/CompanyBranchController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/OpenTalk_BE/src/main/java/ncc/java/opentalk/service/impl/CompanyBranchServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/OpenTalk_BE/src/main/java/ncc/java/opentalk/service/impl/CompanyBranchServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/OpenTalk_BE/src/main/resources/application-dev.properties" beforeDir="false" afterPath="$PROJECT_DIR$/OpenTalk_BE/src/main/resources/application-dev.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/OpenTalk_FE/src/api/companyBranch.js" beforeDir="false" afterPath="$PROJECT_DIR$/OpenTalk_FE/src/api/companyBranch.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/OpenTalk_FE/src/pages/BranchListPage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/OpenTalk_FE/src/pages/BranchListPage.jsx" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -13,9 +21,9 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 7
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 7
+}</component>
   <component name="ProjectId" id="2xZyfNmjYimqRTZ4vjCIt1klOsw" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -24,11 +32,14 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
     "git-widget-placeholder": "main",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "D:/Anh Vu Nguyen/FPT_University/Semester 7/SBA301/OpenTalk/OpenTalk_BE",
+    "last_opened_file_path": "D:/ITELLIJ/OpenTalk-Fork/OpenTalk-fork",
     "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
     "vue.rearranger.settings.migration": "true"
   }
@@ -36,8 +47,8 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-jdk-9f38398b9061-39b83d9b5494-intellij.indexing.shared.core-IU-241.15989.150" />
-        <option value="bundled-js-predefined-1d06a55b98c1-91d5c284f522-JavaScript-IU-241.15989.150" />
+        <option value="bundled-jdk-9823dce3aa75-fbdcb00ec9e3-intellij.indexing.shared.core-IU-251.26094.121" />
+        <option value="bundled-js-predefined-d6986cc7102b-b26f3e71634d-JavaScript-IU-251.26094.121" />
       </set>
     </attachedChunks>
   </component>
@@ -50,6 +61,7 @@
       <option name="presentableId" value="Default" />
       <updated>1748159992922</updated>
       <workItem from="1748159994103" duration="24000" />
+      <workItem from="1751189424335" duration="394000" />
     </task>
     <servers />
   </component>

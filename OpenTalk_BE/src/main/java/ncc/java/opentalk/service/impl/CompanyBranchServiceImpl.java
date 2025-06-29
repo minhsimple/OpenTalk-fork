@@ -37,7 +37,7 @@ public class CompanyBranchServiceImpl implements CompanyBranchService {
         log.info("==========* Start Query *==========");
         Page<CompanyBranch> branches = companyBranchRepository.findAllWithUsers(PageRequest.of(page, size));
         log.info("==========* End Query *==========");
-        return branches.map(CompanyBranchMapper.INSTANCE::toDto).toList();
+        return branches.get().map(CompanyBranchMapper.INSTANCE::toDto).toList();
     }
 
     @Override
