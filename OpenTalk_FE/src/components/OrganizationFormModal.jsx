@@ -11,7 +11,7 @@ import {
   Input,
 } from 'reactstrap';
 
-const BranchFormModal = ({ isOpen, toggle, onSubmit, initialData }) => {
+const OrganizationFormModal = ({ isOpen, toggle, onSubmit, initialData }) => {
   const [name, setName] = useState('');
 
   useEffect(() => {
@@ -27,7 +27,7 @@ const BranchFormModal = ({ isOpen, toggle, onSubmit, initialData }) => {
     <Modal isOpen={isOpen} toggle={toggle} centered>
       <Form onSubmit={handleSubmit}>
         <ModalHeader toggle={toggle}>
-          {initialData ? 'Update Branch' : 'Create Branch'}
+          {initialData ? 'Update Organization' : 'Create Organization'}
         </ModalHeader>
         <ModalBody>
           <FormGroup>
@@ -53,4 +53,4 @@ const BranchFormModal = ({ isOpen, toggle, onSubmit, initialData }) => {
   );
 };
 
-export default BranchFormModal;
+export default OrganizationFormModal;

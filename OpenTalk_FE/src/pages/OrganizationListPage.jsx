@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Table, Button } from 'reactstrap';
-import BranchFormModal from '../components/BranchFormModal';
+import OrganizationFormModal from '../components/OrganizationFormModal';
 import {
   getCompanyBranches,
   createCompanyBranch,
@@ -74,7 +74,7 @@ const OrganizationListPage = () => {
           ))}
         </tbody>
       </Table>
-      <BranchFormModal
+      <OrganizationFormModal
         isOpen={modalOpen}
         toggle={() => { setModalOpen(false); setSelected(null); }}
         onSubmit={selected ? handleUpdate : handleCreate}
