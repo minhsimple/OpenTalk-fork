@@ -1,7 +1,9 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Layout from "./layouts/MainLayout";
-import MeetingList from "./pages/test.jsx"; // đường dẫn tùy bạn
+import MeetingList from "./pages/test.jsx";
+import CustomTextEditor from "./components/textEdit/RichTextEditor.jsx";
+import TiptapEditor from "./components/textEdit/TiptapEditor.jsx"; // đường dẫn tùy bạn
 // import Overview from "./pages/Overview";
 // import Meeting from "./pages/Meeting";
 // import Message from "./pages/Message";
@@ -30,7 +32,19 @@ function Attendance() {
     return <h2>Attendance Page</h2>;
 }
 function Notice() {
-    return <h2>Notice Page</h2>;
+    return (
+        <>
+            <div>
+                <h2 style={{ textAlign: "center" }}>My Meeting Notes</h2>
+                <CustomTextEditor />
+            </div>
+            <div>
+                {/* xấu vl đừng dùng :>>>*/}
+                <TiptapEditor/>
+            </div>
+        </>
+
+    );
 }
 function HRTab() {
     return <h2>HR Tab Page</h2>;
