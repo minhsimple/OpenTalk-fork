@@ -1,7 +1,9 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Layout from "./layouts/MainLayout";
-import MeetingList from "./pages/test.jsx";
+import Layout from "./layouts/MainLayout"; 
+import OpenTalkManagerPage from "./pages/OpenTalkManager";
+import AddMeeting from "./components/opentalk_manager/AddNewMeeting"; 
+import "./App.css";
 import CustomTextEditor from "./components/textEdit/RichTextEditor.jsx";
 import TiptapEditor from "./components/textEdit/TiptapEditor.jsx"; // đường dẫn tùy bạn
 // import Overview from "./pages/Overview";
@@ -14,13 +16,13 @@ function Overview() {
     return <h2>Overview Page</h2>;
 }
 function Meeting() {
-    return <MeetingList />;
+    return <h2>Meeting Page</h2>;
 }
 function Message() {
     return <h2>Message Page</h2>;
 }
 function Project() {
-    return <h2>Project Page</h2>;
+    return <OpenTalkManagerPage />;
 }
 function Ticket() {
     return <h2>Ticket Page</h2>;
@@ -76,6 +78,7 @@ function App() {
                     <Route path="/organization" element={<Organization />} />
                     <Route path="/account" element={<Account />} />
                     <Route path="/setting" element={<Setting />} />
+                    <Route path="/project/new-meeting" element={<AddMeeting />} />
                     {/* các route khác */}
                 </Routes>
             </Layout>
