@@ -2,6 +2,8 @@ import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Layout from "./layouts/MainLayout";
 import OrganizationListPage from "./pages/OrganizationListPage";
+import ListCompanyBranches from "./pages/ListCompanyBranches";
+import ListDepartments from "./pages/ListDepartments";
 // import Overview from "./pages/Overview";
 // import Meeting from "./pages/Meeting";
 // import Message from "./pages/Message";
@@ -57,6 +59,8 @@ function App() {
                     <Route path="/notice" element={<Notice />} />
                     <Route path="/hrtab" element={<HRTab />} />
                     <Route path="/organization" element={<OrganizationListPage />} />
+                    <Route path="/organization/:companyId/branches" element={<ListCompanyBranches />} />
+                    <Route path="/organization/:companyId/branches/:branchId/departments" element={<ListDepartments />} />
                     <Route path="/account" element={<Account />} />
                     <Route path="/setting" element={<Setting />} />
                     {/* các route khác */}

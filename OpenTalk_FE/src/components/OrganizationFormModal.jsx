@@ -9,19 +9,11 @@ import {
   FormGroup,
   Label,
   Input,
-  Nav,
-  NavItem,
-  NavLink,
-  TabContent,
-  TabPane,
   Row,
   Col,
-  Table,
 } from 'reactstrap';
-import { FaSearch } from 'react-icons/fa';
 
 const OrganizationFormModal = ({ isOpen, toggle, onSubmit, initialData }) => {
-  const [activeTab, setActiveTab] = useState('profile');
   const [formData, setFormData] = useState({
     companyName: '',
     address: '',
@@ -35,7 +27,6 @@ const OrganizationFormModal = ({ isOpen, toggle, onSubmit, initialData }) => {
     totalDepartment: '',
     websiteUrl: '',
   });
-  const [filters, setFilters] = useState({ employee: '', department: '', head: '' });
 
   useEffect(() => {
     setFormData({
@@ -70,29 +61,7 @@ const OrganizationFormModal = ({ isOpen, toggle, onSubmit, initialData }) => {
           {initialData ? 'Update Organization' : 'Create Organization'}
         </ModalHeader>
         <ModalBody>
-          <Nav tabs>
-            <NavItem>
-              <NavLink
-                className={activeTab === 'profile' ? 'active' : ''}
-                style={{ cursor: 'pointer' }}
-                onClick={() => setActiveTab('profile')}
-              >
-                Profile
-              </NavLink>
-            </NavItem>
-            <NavItem>
-              <NavLink
-                className={activeTab === 'departments' ? 'active' : ''}
-                style={{ cursor: 'pointer' }}
-                onClick={() => setActiveTab('departments')}
-              >
-                Departments
-              </NavLink>
-            </NavItem>
-          </Nav>
-          <TabContent activeTab={activeTab} className="mt-3">
-            <TabPane tabId="profile">
-              <Row className="g-3">
+          <Row className="g-3">
                 <Col md="6">
                   <FormGroup>
                     <Label for="companyName">Company Name</Label>
@@ -217,80 +186,14 @@ const OrganizationFormModal = ({ isOpen, toggle, onSubmit, initialData }) => {
                   </FormGroup>
                 </Col>
               </Row>
-            </TabPane>
-            <TabPane tabId="departments">
-              <Row className="g-2 mb-3 align-items-end">
-                <Col md="4">
-                  <FormGroup>
-                    <Label for="filterEmployee">Employee Name</Label>
-                    <Input
-                      id="filterEmployee"
-                      value={filters.employee}
-                      onChange={(e) => setFilters({ ...filters, employee: e.target.value })}
-                      placeholder="Employee Name"
-                    />
-                  </FormGroup>
-                </Col>
-                <Col md="3">
-                  <FormGroup>
-                    <Label for="filterDepartment">Department</Label>
-                    <Input
-                      id="filterDepartment"
-                      type="select"
-                      value={filters.department}
-                      onChange={(e) => setFilters({ ...filters, department: e.target.value })}
-                    >
-                      <option value="">All</option>
-                    </Input>
-                  </FormGroup>
-                </Col>
-                <Col md="3">
-                  <FormGroup>
-                    <Label for="filterHead">Head Of Department</Label>
-                    <Input
-                      id="filterHead"
-                      type="select"
-                      value={filters.head}
-                      onChange={(e) => setFilters({ ...filters, head: e.target.value })}
-                    >
-                      <option value="">All</option>
-                    </Input>
-                  </FormGroup>
-                </Col>
-                <Col md="2">
-                  <Button color="primary" className="w-100">
-                    <FaSearch />
-                  </Button>
-                </Col>
-              </Row>
-              <Table bordered hover responsive>
-                <thead className="table-light">
-                  <tr>
-                    <th>Employee Id</th>
-                    <th>Employee Name</th>
-                    <th>Department</th>
-                    <th>Head Of Department</th>
-                    <th>Total Employee</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td colSpan="5" className="text-center">No data</td>
-                  </tr>
-                </tbody>
-              </Table>
-            </TabPane>
-          </TabContent>
         </ModalBody>
         <ModalFooter>
           <Button color="secondary" onClick={toggle} type="button">
             Cancel
           </Button>
-          {activeTab === 'profile' && (
-            <Button color="primary" type="submit">
-              {initialData ? 'Update' : 'Create'}
-            </Button>
-          )}
+          <Button color="primary" type="submit">
+            {initialData ? 'Update' : 'Create'}
+          </Button>
         </ModalFooter>
       </Form>
     </Modal>

@@ -1,90 +1,69 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { Table, Button } from 'reactstrap';
-import { useNavigate } from 'react-router-dom';
-import OrganizationFormModal from '../components/OrganizationFormModal';
-import {
-  getCompanyBranches,
-  createCompanyBranch,
-  updateCompanyBranch,
-} from '../api/companyBranch';
+import { useNavigate, useParams } from 'react-router-dom';
+import CompanyBranchFormModal from '../components/CompanyBranchFormModal';
 
-const OrganizationListPage = () => {
+const ListCompanyBranches = () => {
+  const { companyId } = useParams();
   const navigate = useNavigate();
   const [branches, setBranches] = useState([]);
   const [modalOpen, setModalOpen] = useState(false);
   const [selected, setSelected] = useState(null);
 
-  const loadData = async () => {
-    try {
-      const data = await getCompanyBranches();
-      console.log('Branches data:', data);
-      setBranches(data);
-    } catch (e) {
-      console.error(e);
-    }
-  };
-
-  useEffect(() => {
-    loadData();
-  }, []);
-
   const handleCreate = async (payload) => {
-    await createCompanyBranch(payload);
+    // TODO: call API
     setModalOpen(false);
-    loadData();
   };
 
   const handleUpdate = async (payload) => {
-    if (!selected) return;
-    await updateCompanyBranch(selected.id, payload);
+    // TODO: call API
     setModalOpen(false);
     setSelected(null);
-    loadData();
+  };
+
+  const handleViewDepartments = (branchId) => {
+    navigate(`/organization/${companyId}/branches/${branchId}/departments`);
   };
 
   return (
     <div className="container-fluid">
       <div className="d-flex justify-content-between align-items-center mb-3">
-        <h2>Organization</h2>
+        <h2>Company Branches</h2>
         <Button color="primary" onClick={() => { setSelected(null); setModalOpen(true); }}>
-          Add Company
+          Add Branch
         </Button>
       </div>
       <Table bordered hover>
         <thead className="table-light">
           <tr>
             <th>Id</th>
-            <th>Company Name</th>
+            <th>Branch Name</th>
             <th>Country</th>
             <th>City</th>
-            <th>Email</th>
-            <th>Phone</th>
-            <th>Web Url</th>
+            <th>Action</th>
           </tr>
         </thead>
         <tbody>
-          {(Array.isArray(branches) ? branches : []).map((b) => (
+          {branches.map((b) => (
             <tr key={b.id}>
               <td>{b.id}</td>
-              <td>{b.name}</td>
-              <td className="text-end">
-                <Button
-                  size="sm"
-                  color="info"
-                  className="me-2"
-                  onClick={() => navigate(`/organization/${b.id}/branches`)}
-                >
-                  Branches
-                </Button>
+              <td>{b.branchName}</td>
+              <td>{b.country}</td>
+              <td>{b.city}</td>
+              <td className="d-flex gap-1">
                 <Button size="sm" color="secondary" onClick={() => { setSelected(b); setModalOpen(true); }}>
                   Edit
                 </Button>
+                <Button size="sm" color="info" onClick={() => handleViewDepartments(b.id)}>
+                  View Departments
+                </Button>
+                <Button size="sm" color="danger">Delete</Button>
               </td>
             </tr>
           ))}
         </tbody>
       </Table>
-      <OrganizationFormModal
+      <CompanyBranchFormModal
         isOpen={modalOpen}
         toggle={() => { setModalOpen(false); setSelected(null); }}
         onSubmit={selected ? handleUpdate : handleCreate}
@@ -94,4 +73,4 @@ const OrganizationListPage = () => {
   );
 };
 
-export default OrganizationListPage;
+export default ListCompanyBranches;
