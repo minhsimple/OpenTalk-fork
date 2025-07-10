@@ -1,0 +1,85 @@
+/* BlogCard.css */
+.blog-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 360px;
+    height: 280px;
+    padding: 24px;
+    border-radius: 12px;
+    background: #ffffff;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+    font-family: sans-serif;
+}
+
+.blog-card__content {
+    flex: 1;
+}
+
+.blog-card__title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin: 0 0 12px;
+    color: #1f2937;
+}
+
+.blog-card__excerpt {
+    font-size: 0.9rem;
+    line-height: 1.4;
+    color: #4b5563;
+    margin: 0;
+}
+
+.blog-card__footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 24px;
+}
+
+.blog-card__author {
+    display: flex;
+    align-items: center;
+}
+
+.blog-card__avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 12px;
+}
+
+.blog-card__name {
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: #1f2937;
+}
+
+.blog-card__date {
+    font-size: 0.8rem;
+    color: #6b7280;
+}
+
+.blog-card__bookmark {
+    display: flex;
+    align-items: center;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 0.9rem;
+    color: #4b5563;
+    padding: 6px 8px;
+    border-radius: 6px;
+    transition: background 0.2s;
+}
+
+.blog-card__bookmark:hover {
+    background: rgba(0,0,0,0.05);
+}
+
+.blog-card__bookmark-icon {
+    width: 16px;
+    height: 16px;
+    margin-right: 4px;
+    fill: currentColor;
+}
