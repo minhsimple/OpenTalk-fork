@@ -1,0 +1,78 @@
+.notice-card {
+    background: #fff;
+    border-radius: 10px;
+    padding: 20px 24px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    font-family: 'Segoe UI', sans-serif;
+    color: #333;
+}
+
+.notice-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+}
+
+.notice-title {
+    font-weight: 600;
+    font-size: 1.1rem;
+    color: #1e1e1e;
+}
+
+.notice-options {
+    color: #999;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.notice-meta {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+    font-size: 0.9rem;
+    margin-bottom: 12px;
+}
+
+.meta-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    color: #00786b;
+}
+
+.meta-item.date {
+    color: #c62828;
+}
+
+.notice-content {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: #444;
+}
+.notice-options-wrapper {
+    position: relative;
+}
+
+.options-dropdown {
+    position: absolute;
+    top: 24px;
+    right: 0;
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    width: 100px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    z-index: 10;
+}
+
+.options-dropdown div {
+    padding: 10px;
+    cursor: pointer;
+    font-size: 14px;
+    color: #333;
+}
+
+.options-dropdown div:hover {
+    background: #f3f3f3;
+}
