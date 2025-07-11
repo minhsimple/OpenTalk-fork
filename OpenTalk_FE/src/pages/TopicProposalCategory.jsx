@@ -1,8 +1,7 @@
 import React from 'react';
 
-import "/src/css/TopicCategory.css"
-import TopicIdea from "../components/common/TopicIdea.jsx";
-import TopicProposal from "../components/common/TopicIdea.jsx";
+import "/src/css/TopicProposalCategory.css"
+import TopicProposal from "../components/common/TopicProposalCard.jsx";
 
 const posts = [
     {
@@ -12,6 +11,7 @@ const posts = [
         authorName: 'John James',
         date: '29 February 2019',
         avatarUrl: 'https://i.pravatar.cc/40?img=5',
+        status: 'pending'
     },
     {
         id: 2,
@@ -20,6 +20,7 @@ const posts = [
         authorName: 'John James',
         date: '29 February 2019',
         avatarUrl: 'https://i.pravatar.cc/40?img=5',
+        status: 'pending'
     },
     {
         id: 3,
@@ -28,6 +29,7 @@ const posts = [
         authorName: 'John James',
         date: '29 February 2019',
         avatarUrl: 'https://i.pravatar.cc/40?img=5',
+        status: 'pending'
     },
     {
         id: 4,
@@ -36,6 +38,7 @@ const posts = [
         authorName: 'John James',
         date: '29 February 2019',
         avatarUrl: 'https://i.pravatar.cc/40?img=5',
+        status: 'pending'
     },
     {
         id: 5,
@@ -44,6 +47,7 @@ const posts = [
         authorName: 'John James',
         date: '29 February 2019',
         avatarUrl: 'https://i.pravatar.cc/40?img=5',
+        status: 'rejected'
     },
     {
         id: 6,
@@ -52,12 +56,17 @@ const posts = [
         authorName: 'John James',
         date: '29 February 2019',
         avatarUrl: 'https://i.pravatar.cc/40?img=5',
+        status: 'approved'
     },
 ];
 
 const TopicProposalCategory = () => {
     return (
-        <div className="blog-list">
+        <>
+        <div className="topic-proposal-header">
+            <button className="add-new-btn">+ Add New</button>
+        </div>
+        <div className="category-list">
             {posts.map(post => (
                 <TopicProposal
                     key={post.id}
@@ -66,9 +75,11 @@ const TopicProposalCategory = () => {
                     authorName={post.authorName}
                     date={post.date}
                     avatarUrl={post.avatarUrl}
+                    status={post.status}
                 />
             ))}
         </div>
+        </>
     );
 };
 

@@ -2,11 +2,13 @@ import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Layout from "./layouts/MainLayout";
 import MeetingList from "./pages/test.jsx";
-import TopicProposalCategory from "./pages/TopicCategory.jsx"; // đường dẫn tùy bạn
+import TopicProposalCategory from "./pages/TopicProposalCategory.jsx";
+import CampaignPage from "./pages/CampaignPage.jsx";
+
 
 // Tạo các component placeholder tương ứng từng route
 function Overview() {
-    return <h2>Overview Page</h2>;
+    return <CampaignPage/>;
 }
 function Meeting() {
     return <MeetingList />;

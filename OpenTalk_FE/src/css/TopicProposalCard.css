@@ -1,5 +1,5 @@
-/* BlogCard.css */
-.blog-card {
+/* ProposalCard.css */
+.proposal-card {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -12,55 +12,55 @@
     font-family: sans-serif;
 }
 
-.blog-card__content {
+.proposal-card__content {
     flex: 1;
 }
 
-.blog-card__title {
+.proposal-card__title {
     font-size: 1.25rem;
     font-weight: 600;
     margin: 0 0 12px;
     color: #1f2937;
 }
 
-.blog-card__excerpt {
+.proposal-card__excerpt {
     font-size: 0.9rem;
     line-height: 1.4;
     color: #4b5563;
     margin: 0;
 }
 
-.blog-card__footer {
+.proposal-card__footer {
     display: flex;
     align-items: center;
     justify-content: space-between;
     margin-top: 24px;
 }
 
-.blog-card__author {
+.proposal-card__author {
     display: flex;
     align-items: center;
 }
 
-.blog-card__avatar {
+.proposal-card__avatar {
     width: 40px;
     height: 40px;
     border-radius: 50%;
     margin-right: 12px;
 }
 
-.blog-card__name {
+.proposal-card__name {
     font-size: 0.95rem;
     font-weight: 500;
     color: #1f2937;
 }
 
-.blog-card__date {
+.proposal-card__date {
     font-size: 0.8rem;
     color: #6b7280;
 }
 
-.blog-card__bookmark {
+.proposal-card__bookmark {
     display: flex;
     align-items: center;
     background: none;
@@ -73,13 +73,37 @@
     transition: background 0.2s;
 }
 
-.blog-card__bookmark:hover {
+.proposal-card__bookmark:hover {
     background: rgba(0,0,0,0.05);
 }
 
-.blog-card__bookmark-icon {
+.proposal-card__bookmark-icon {
     width: 16px;
     height: 16px;
-    margin-right: 4px;
+    margin-right: 10px;
     fill: currentColor;
+}
+.proposal-card__status {
+    display: inline-block;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    font-weight: 500;
+    margin-top: 12px;
+}
+
+/* Màu cho từng trạng thái */
+.status--pending {
+    background: #fbbf24;    /* vàng */
+    color: #92400e;
+}
+
+.status--approved {
+    background: #34d399;    /* xanh lá */
+    color: #064e3b;
+}
+
+.status--rejected {
+    background: #f87171;    /* đỏ nhạt */
+    color: #7f1d1d;
 }
