@@ -14,7 +14,7 @@ function Overview() {
     return <h2>Overview Page</h2>;
 }
 function Meeting() {
-    return <h2>Meeting Page</h2>;
+    return <MeetingList />;
 }
 function Message() {
     return <h2>Message Page</h2>;
@@ -32,7 +32,19 @@ function Attendance() {
     return <h2>Attendance Page</h2>;
 }
 function Notice() {
-    return <h2>Notice Page</h2>;
+    return (
+        <>
+            <div>
+                <h2 style={{ textAlign: "center" }}>My Meeting Notes</h2>
+                <CustomTextEditor />
+            </div>
+            <div>
+                {/* xấu vl đừng dùng :>>>*/}
+                <TiptapEditor/>
+            </div>
+        </>
+
+    );
 }
 function HRTab() {
     return <h2>HR Tab Page</h2>;
