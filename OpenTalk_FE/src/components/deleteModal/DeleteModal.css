@@ -1,0 +1,86 @@
+.modal-overlay {
+    position: fixed;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.3); /* mờ xung quanh */
+    backdrop-filter: blur(4px);          /* làm mờ background */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 100;
+}
+
+.modal-content {
+    background: #fff !important; /* hoặc rgba(255,255,255,0.95) nếu thích hiệu ứng kính */
+    border-radius: 16px !important;
+    padding: 24px 20px;
+    width: 60% !important;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+    text-align: center;
+    animation: fadeInUp 0.25s ease-out;
+}
+
+.modal-title {
+    color: #e53935;
+    font-weight: 600;
+    font-size: 1.1rem;
+    margin-bottom: 12px;
+}
+
+.modal-message {
+    font-size: 0.95rem;
+    color: #333;
+}
+
+.modal-message strong {
+    display: block;
+    margin-bottom: 6px;
+    font-weight: 600;
+}
+
+.modal-actions {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+    gap: 10px;
+}
+
+.btn-cancel,
+.btn-delete {
+    flex: 1;
+    padding: 10px 0;
+    font-size: 1rem;
+    border-radius: 8px;
+    cursor: pointer;
+    border: none;
+    transition: 0.2s ease;
+}
+
+.btn-cancel {
+    background: white;
+    border: 1px solid #ccc;
+    color: #333;
+}
+
+.btn-cancel:hover {
+    background: #f3f3f3;
+}
+
+.btn-delete {
+    background: #e53935;
+    color: white;
+}
+
+.btn-delete:hover {
+    background: #c62828;
+}
+
+@keyframes fadeInUp {
+    from {
+        transform: translateY(10px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}

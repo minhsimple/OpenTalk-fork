@@ -10,6 +10,10 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@tiptap/extension-link": "^2.25.0",
+    "@tiptap/extension-underline": "^2.25.0",
+    "@tiptap/react": "^2.25.0",
+    "@tiptap/starter-kit": "^2.25.0",
     "bootstrap": "^5.3.6",
     "axios": "^1.6.2",
     "reactstrap": "^9.2.0",
