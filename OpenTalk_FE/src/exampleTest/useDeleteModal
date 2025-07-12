@@ -1,0 +1,27 @@
+import React, { useState } from "react";
+import DeleteModal from "./DeleteModal";
+
+const App = () => {
+  const [showModal, setShowModal] = useState(false);
+
+  const handleDelete = () => {
+    console.log("Deleted!");
+    setShowModal(false);
+  };
+
+  return (
+    <div>
+      <button onClick={() => setShowModal(true)}>Delete Company</button>
+
+      <DeleteModal
+        isOpen={showModal}
+        title="Delete Company"
+        message="You want to Delete Company"
+        onCancel={() => setShowModal(false)}
+        onConfirm={handleDelete}
+      />
+    </div>
+  );
+};
+
+export default App;
