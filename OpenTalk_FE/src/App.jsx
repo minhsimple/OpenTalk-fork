@@ -4,6 +4,7 @@ import Layout from "./layouts/MainLayout";
 import MeetingList from "./pages/test.jsx";
 import CustomTextEditor from "./components/textEdit/RichTextEditor.jsx";
 import TiptapEditor from "./components/textEdit/TiptapEditor.jsx"; // đường dẫn tùy bạn
+import OrganizationListPage from "./pages/OrganizationListPage.jsx";
 // import Overview from "./pages/Overview";
 // import Meeting from "./pages/Meeting";
 // import Message from "./pages/Message";
