@@ -4,6 +4,7 @@ import Layout from "./layouts/MainLayout";
 import MeetingList from "./pages/test.jsx";
 import SuggestTopic from "./pages/SuggestTopic.jsx";
 import MeetingListPage from "./pages/MeetingListPage.jsx";
+import MeetingDetailPage from "./pages/MeetingDetailPage.jsx";
 import CustomTextEditor from "./components/textEdit/RichTextEditor.jsx";
 import TiptapEditor from "./components/textEdit/TiptapEditor.jsx"; // đường dẫn tùy bạn
 import OrganizationListPage from "./pages/OrganizationListPage.jsx";
@@ -54,6 +55,7 @@ function App() {
                 <Routes>
                     <Route path="/" element={<Overview />} />
                     <Route path="/meeting" element={<Meeting />} />
+                    <Route path="/meeting/:id" element={<MeetingDetailPage />} />
                     <Route path="/message" element={<Message />} />
                     <Route path="/project" element={<Project />} />
                     <Route path="/ticket" element={<Ticket />} />

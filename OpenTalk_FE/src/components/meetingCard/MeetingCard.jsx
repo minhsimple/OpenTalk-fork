@@ -7,10 +7,11 @@ const MeetingCard = ({
                          description,
                          participants,
                          extraCount,
-                         onJoin
+                         onJoin,
+                         onView
                      }) => {
     return (
-        <div className="meeting-card">
+        <div className="meeting-card" onClick={onView}>
             <div className="meeting-icon">
                 <span role="img" aria-label="video">📹</span>
             </div>
@@ -27,7 +28,7 @@ const MeetingCard = ({
                 {extraCount > 0 && <div className="extra-count">+{extraCount}</div>}
             </div>
 
-            <button className="join-button" onClick={onJoin}>Join Meeting</button>
+            <button className="join-button" onClick={(e) => { e.stopPropagation(); onJoin(); }}>Join Meeting</button>
         </div>
     );
 };
