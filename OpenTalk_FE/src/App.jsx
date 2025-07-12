@@ -4,6 +4,7 @@ import Layout from "./layouts/MainLayout";
 import MeetingList from "./pages/test.jsx";
 import TopicProposalCategory from "./pages/TopicProposalCategory.jsx";
 import CampaignPage from "./pages/CampaignPage.jsx";
+import SuggestTopic from "./pages/SuggestTopic.jsx";
 
 
 // Tạo các component placeholder tương ứng từng route
@@ -29,7 +30,7 @@ function Attendance() {
     return <h2>Attendance Page</h2>;
 }
 function Notice() {
-    return <h2>Notice Page</h2>;
+   return <SuggestTopic />;
 }
 function HRTab() {
     return <h2>HR Tab Page</h2>;
