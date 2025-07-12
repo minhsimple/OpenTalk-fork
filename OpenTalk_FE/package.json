@@ -9,6 +9,9 @@
     "lint": "eslint .",
     "preview": "vite preview"
   },
+  "config": {
+    "api": "http://localhost:8080"
+  },
   "dependencies": {
     "@tiptap/extension-link": "^2.25.0",
     "@tiptap/extension-underline": "^2.25.0",
