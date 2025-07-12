@@ -53,11 +53,6 @@ const OrganizationListPage = () => {
           <tr>
             <th>Id</th>
             <th>Company Name</th>
-            <th>Country</th>
-            <th>City</th>
-            <th>Email</th>
-            <th>Phone</th>
-            <th>Web Url</th>
           </tr>
         </thead>
         <tbody>
