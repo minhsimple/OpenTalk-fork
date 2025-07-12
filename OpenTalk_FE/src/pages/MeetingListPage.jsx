@@ -1,4 +1,7 @@
+import { useEffect, useState } from 'react';
 import MeetingCard from '../components/meetingCard/MeetingCard';
+import { getMeetings } from '../api/meeting';
+import './styles/MeetingListPage.css';
 
 const mockMeetings = [
   { id: 1, topicName: 'Weekly Sync', scheduledDate: '2025-07-14 10:00', meetingLink: 'https://meeting.com/1' },
@@ -24,7 +27,21 @@ const mockMeetings = [
 ];
 
 const MeetingListPage = () => {
-  const meetings = mockMeetings;
+  const [meetings, setMeetings] = useState(mockMeetings);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const data = await getMeetings();
+        setMeetings(Array.isArray(data) ? data : mockMeetings);
+      } catch (e) {
+        console.error(e);
+        setMeetings(mockMeetings);
+      }
+    };
+
+    fetchData();
+  }, []);
 
   const handleJoin = (link) => {
     if (link) {
@@ -33,7 +50,7 @@ const MeetingListPage = () => {
   };
 
   return (
-    <div style={{ padding: '20px', display: 'flex', flexWrap: 'wrap', gap: '20px' }}>
+    <div className="meeting-list-container">
       {meetings.map((m) => (
         <MeetingCard
           key={m.id}
@@ -50,4 +67,3 @@ const MeetingListPage = () => {
 };
 
 export default MeetingListPage;
-
