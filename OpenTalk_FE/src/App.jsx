@@ -1,7 +1,7 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Layout from "./layouts/MainLayout";
-import MeetingList from "./pages/test.jsx";
+import MeetingListPage from "./pages/MeetingListPage.jsx";
 import CustomTextEditor from "./components/textEdit/RichTextEditor.jsx";
 import TiptapEditor from "./components/textEdit/TiptapEditor.jsx"; // đường dẫn tùy bạn
 import OrganizationListPage from "./pages/OrganizationListPage.jsx";
@@ -15,7 +15,7 @@ function Overview() {
     return <h2>Overview Page</h2>;
 }
 function Meeting() {
-    return <MeetingList />;
+    return <MeetingListPage />;
 }
 function Message() {
     return <h2>Message Page</h2>;
