@@ -1,5 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import { FaPlus, FaEye, FaTrash } from 'react-icons/fa';
+import {
+  FaPlus,
+  FaEye,
+  FaTrash,
+  FaSearch,
+  FaChevronLeft,
+  FaChevronRight,
+} from 'react-icons/fa';
 import BranchFormModal from '../components/BranchFormModal';
 import DeleteModal from '../components/deleteModal/DeleteModal.jsx';
 import {
@@ -23,6 +30,8 @@ const OrganizationListPage = () => {
   const [selected, setSelected] = useState(null);
   const [showDelete, setShowDelete] = useState(false);
   const [selectedBranch, setSelectedBranch] = useState(null);
+  const [searchTerm, setSearchTerm] = useState('');
+  const [currentPage, setCurrentPage] = useState(1);
 
   const loadData = async () => {
     try {
@@ -56,6 +65,14 @@ const OrganizationListPage = () => {
     setShowDelete(false);
   };
 
+  const itemsPerPage = 8;
+  const filteredBranches = (Array.isArray(branches) ? branches : []).filter((b) =>
+    b.name.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+  const totalPages = Math.ceil(filteredBranches.length / itemsPerPage);
+  const startIndex = (currentPage - 1) * itemsPerPage;
+  const paginatedBranches = filteredBranches.slice(startIndex, startIndex + itemsPerPage);
+
   return (
     <div className="organization-page">
       <div className="header">
@@ -71,6 +88,22 @@ const OrganizationListPage = () => {
         </div>
       </div>
 
+      <div className="filters">
+        <div className="search-container">
+          <FaSearch className="search-icon" />
+          <input
+            type="text"
+            className="search-input"
+            placeholder="Search branch"
+            value={searchTerm}
+            onChange={(e) => {
+              setSearchTerm(e.target.value);
+              setCurrentPage(1);
+            }}
+          />
+        </div>
+      </div>
+
       <div className="table-container">
         <table className="table">
           <thead>
@@ -81,7 +114,7 @@ const OrganizationListPage = () => {
             </tr>
           </thead>
           <tbody>
-            {(Array.isArray(branches) ? branches : []).map((b) => (
+            {paginatedBranches.map((b) => (
               <tr key={b.id}>
                 <td>{b.id}</td>
                 <td>{b.name}</td>
@@ -113,6 +146,37 @@ const OrganizationListPage = () => {
           onCancel={() => setShowDelete(false)}
           onConfirm={handleDelete}
         />
+
+        <div className="pagination">
+          <div className="pagination-info">
+            Showing {startIndex + 1} to {Math.min(startIndex + itemsPerPage, filteredBranches.length)} of {filteredBranches.length} results
+          </div>
+          <div className="pagination-buttons">
+            <button
+              onClick={() => setCurrentPage(Math.max(1, currentPage - 1))}
+              disabled={currentPage === 1}
+              className="pagination-btn"
+            >
+              <FaChevronLeft />
+            </button>
+            {[...Array(totalPages)].map((_, i) => (
+              <button
+                key={i + 1}
+                onClick={() => setCurrentPage(i + 1)}
+                className={`pagination-number ${currentPage === i + 1 ? 'active' : ''}`}
+              >
+                {i + 1}
+              </button>
+            ))}
+            <button
+              onClick={() => setCurrentPage(Math.min(totalPages, currentPage + 1))}
+              disabled={currentPage === totalPages}
+              className="pagination-btn"
+            >
+              <FaChevronRight />
+            </button>
+          </div>
+        </div>
       </div>
 
       <BranchFormModal
