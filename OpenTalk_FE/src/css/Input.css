@@ -1,0 +1,47 @@
+.custom-input-wrapper {
+    margin-bottom: 1rem;
+}
+
+.input-label {
+    display: block;
+    margin-bottom: 4px;
+    font-weight: 600;
+}
+
+.required {
+    color: red;
+}
+
+.input-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.input-field {
+    width: 100%;
+    padding: 10px 40px 10px 12px; /* Chừa chỗ cho icon bên phải */
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 1rem;
+}
+
+.input-error {
+    border-color: red;
+}
+
+.input-icon-inside {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #888;
+    pointer-events: none;
+    font-size: 16px;
+}
+
+.error-text {
+    color: red;
+    font-size: 0.875rem;
+    margin-top: 4px;
+}
