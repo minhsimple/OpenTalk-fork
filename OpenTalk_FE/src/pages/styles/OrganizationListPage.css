@@ -159,6 +159,21 @@
     border-collapse: collapse;
 }
 
+/* Ensure the action column stays to the far right and takes minimal space */
+.table th:last-child,
+.table td:last-child {
+    text-align: right;
+    white-space: nowrap;
+    width: 1%;
+}
+
+/* Give the company name column the most space and center its text */
+.table th:nth-child(2),
+.table td:nth-child(2) {
+    width: 100%;
+    text-align: center;
+}
+
 .table thead {
     background-color: #f9fafb;
     border-bottom: 1px solid #e5e7eb;
