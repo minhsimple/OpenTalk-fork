@@ -1,7 +1,7 @@
 .action-card {
     border: 1px solid #e0e0e0;
     border-radius: 8px;
-    width: 280px;
+    width: 100%;
     font-family: Arial, sans-serif;
     box-shadow: 0 2px 8px rgba(0,0,0,0.05);
     background: #fff;
@@ -96,12 +96,12 @@
 
 /* 3. Editor: flex-grow để chiếm không gian */
 .layout__main {
-    flex: 1;         /* chiếm hết phần còn lại */
+    width: 80%;  /* chiếm hết phần còn lại */
 }
 
 /* 4. Sidebar cố định */
 .layout__sidebar {
-    flex: 0 0 280px; /* width cố định 280px */
+    width: 20%;
 }
 .page-header {
     margin-bottom: 24px;
