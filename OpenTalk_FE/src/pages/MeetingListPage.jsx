@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import MeetingCard from '../components/meetingCard/MeetingCard';
 import { FaSearch, FaChevronDown, FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 import { getMeetings } from '../api/meeting';
@@ -36,6 +37,7 @@ const mockBranches = [
 ];
 
 const MeetingListPage = () => {
+  const navigate = useNavigate();
   const [meetings, setMeetings] = useState(mockMeetings);
   const [branches, setBranches] = useState(mockBranches);
   const [searchTerm, setSearchTerm] = useState('');
@@ -127,6 +129,7 @@ const MeetingListPage = () => {
             participants={[]}
             extraCount={0}
             onJoin={() => handleJoin(m.meetingLink)}
+            onView={() => navigate(`/meeting/${m.id}`)}
           />
         ))}
       </div>
