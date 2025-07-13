@@ -83,7 +83,7 @@ const OrganizationListPage = () => {
         <div className="header-buttons">
           <button className="btn btn-primary" onClick={() => { setSelected(null); setModalOpen(true); }}>
             <FaPlus />
-            Add Company
+            Add Branch
           </button>
         </div>
       </div>
