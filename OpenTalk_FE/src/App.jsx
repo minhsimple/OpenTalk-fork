@@ -1,12 +1,16 @@
-import React from "react";
+import React, {useState} from "react";
+// import 'bootstrap/dist/css/bootstrap.min.css'
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Layout from "./layouts/MainLayout";
 import MeetingList from "./pages/test.jsx";
-import SuggestTopic from "./pages/SuggestTopic.jsx";
-// import Overview from "./pages/Overview";
-// import Meeting from "./pages/Meeting";
-// import Message from "./pages/Message";
-// import thêm các trang khác
+import CustomTextEditor from "./components/textEdit/RichTextEditor.jsx";
+import TiptapEditor from "./components/textEdit/TiptapEditor.jsx";
+import NoticeCard from "./components/noticeCard/NoticeCard.jsx";
+import EmployeePage from "./pages/EmployeePage.jsx";
+import EditEmployeePage from "./pages/EditEmployeePage.jsx";
+import AddEmployeeNew from "./pages/AddEmployeePage.jsx";
+import HostFrequencyReport from "./pages/HostFrequencyReport.jsx";
+
 
 // Tạo các component placeholder tương ứng từng route
 function Overview() {
@@ -25,16 +29,28 @@ function Ticket() {
     return <h2>Ticket Page</h2>;
 }
 function Employee() {
-    return <h2>Employee Page</h2>;
+    return <EmployeePage/>;
 }
 function Attendance() {
     return <h2>Attendance Page</h2>;
 }
 function Notice() {
-   return <SuggestTopic />;
+    return (
+        <>
+            <div>
+                <h2 style={{ textAlign: "center" }}>My Meeting Notes</h2>
+                <CustomTextEditor />
+            </div>
+            <div>
+                {/* xấu vl đừng dùng :>>>*/}
+                <TiptapEditor/>
+            </div>
+        </>
+
+    );
 }
-function HRTab() {
-    return <h2>HR Tab Page</h2>;
+function HostFrequency() {
+    return <HostFrequencyReport/>;
 }
 function Organization() {
     return <h2>Organization Page</h2>;
@@ -46,7 +62,27 @@ function Setting() {
     return <h2>Setting Page</h2>;
 }
 
+function Test() {
+    const handleEdit = () => alert("Edit clicked!");
+    const handleDelete = () => alert("Deleted!");
+    return (
+        <div style={{ padding: "40px" }}>
+            <NoticeCard
+                title="Notice Title"
+                author="Name"
+                date="29/8/2023"
+                content="Lorem Ipsum is simply dummy text of the printing and typesetting industry..."
+                onEdit={handleEdit}
+                onDelete={handleDelete}
+            />
+        </div>
+    );
+}
+
+
+
 function App() {
+
     return (
         <Router>
             <Layout>
@@ -57,12 +93,15 @@ function App() {
                     <Route path="/project" element={<Project />} />
                     <Route path="/ticket" element={<Ticket />} />
                     <Route path="/employee" element={<Employee />} />
+                    <Route path="/employee/add" element={<AddEmployeeNew />} />
+                    <Route path="/employee/edit/:id" element={<EditEmployeePage />} />
                     <Route path="/attendance" element={<Attendance />} />
                     <Route path="/notice" element={<Notice />} />
-                    <Route path="/hrtab" element={<HRTab />} />
+                    <Route path="/hostfrequencyreport" element={<HostFrequency />} />
                     <Route path="/organization" element={<Organization />} />
                     <Route path="/account" element={<Account />} />
                     <Route path="/setting" element={<Setting />} />
+                    <Route path="/test" element={<Test />} />
                     {/* các route khác */}
                 </Routes>
             </Layout>
