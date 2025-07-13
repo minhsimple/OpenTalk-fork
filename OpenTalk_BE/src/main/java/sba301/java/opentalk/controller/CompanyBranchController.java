@@ -16,8 +16,10 @@ public class CompanyBranchController {
     private final CompanyBranchService companyBranchService;
 
     @GetMapping
-    public ResponseEntity<List<CompanyBranchDTO>> getCompanyBranchs() {
-        List<CompanyBranchDTO> dtos = companyBranchService.getCompanyBranches();
+    public ResponseEntity<List<CompanyBranchDTO>> getCompanyBranchs(
+            @RequestParam(required = false, defaultValue = "1") int page,
+            @RequestParam(required = false, defaultValue = "10") int size) {
+        List<CompanyBranchDTO> dtos = companyBranchService.getCompanyBranches(page, size);
         return ResponseEntity.ok(dtos);
     }
 
