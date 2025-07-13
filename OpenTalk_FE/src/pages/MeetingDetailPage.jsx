@@ -65,6 +65,7 @@ const MeetingDetailPage = () => {
                     <FaArrowLeft size={16} />
                 </button>
                 <h1 className="page-title">{meeting.meetingName}</h1>
+                <button className="download-button">Download material</button>
             </div>
 
             <div className="content-grid">
