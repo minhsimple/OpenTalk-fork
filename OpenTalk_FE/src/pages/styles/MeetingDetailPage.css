@@ -2,9 +2,7 @@
     padding: 24px;
     background-color: #f9fafb;
     min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 }
 
 .page-header {
@@ -38,12 +36,102 @@
     margin: 0;
 }
 
-.detail-card {
+.content-grid {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 24px;
+}
+
+.profile-card {
     background: white;
     border-radius: 12px;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
     padding: 24px;
-    max-width: 600px;
+    height: fit-content;
+}
+
+.profile-header {
+    text-align: center;
+    margin-bottom: 24px;
+}
+
+.profile-avatar {
+    width: 96px;
+    height: 96px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 16px;
+}
+
+.profile-name {
+    font-size: 20px;
+    font-weight: bold;
+    color: #111827;
+    margin: 0 0 4px 0;
+}
+
+.profile-title {
+    color: #6b7280;
+    margin: 0 0 12px 0;
+}
+
+.contact-info {
+    margin-bottom: 24px;
+}
+
+.contact-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 12px;
+    color: #6b7280;
+    font-size: 14px;
+}
+
+.contact-icon {
+    width: 16px;
+    height: 16px;
+    color: #9ca3af;
+}
+
+.main-content {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+.tabs-header {
+    display: flex;
+    border-bottom: 1px solid #e5e7eb;
+    background: #f9fafb;
+}
+
+.tab-button {
+    padding: 16px 24px;
+    border: none;
+    background: transparent;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+    border-bottom: 2px solid transparent;
+    color: #6b7280;
+}
+
+.tab-button.active {
+    color: #10b981;
+    border-bottom-color: #10b981;
+    background: white;
+}
+
+.tab-button:hover:not(.active) {
+    color: #374151;
+    background: #f3f4f6;
+}
+
+.tab-content {
+    padding: 32px;
 }
 
 .detail-row {
@@ -52,7 +140,7 @@
 }
 
 .label {
-    width: 140px;
+    width: 160px;
     font-weight: 500;
     color: #6b7280;
 }
@@ -65,3 +153,10 @@
     color: #0369a1;
     text-decoration: underline;
 }
+
+@media (max-width: 1024px) {
+    .content-grid {
+        grid-template-columns: 1fr;
+    }
+}
+

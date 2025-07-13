@@ -2,14 +2,16 @@ import React from "react";
 import "./MeetingCard.css";
 
 const MeetingCard = ({
-                         title,
-                         time,
-                         description,
-                         participants,
-                         extraCount,
-                         onJoin,
-                         onView
-                     }) => {
+    title,
+    time,
+    description,
+    participants,
+    extraCount,
+    actionLabel = 'Join Meeting',
+    onAction,
+    showButton = true,
+    onView,
+}) => {
     return (
         <div className="meeting-card" onClick={onView}>
             <div className="meeting-icon">
@@ -28,7 +30,17 @@ const MeetingCard = ({
                 {extraCount > 0 && <div className="extra-count">+{extraCount}</div>}
             </div>
 
-            <button className="join-button" onClick={(e) => { e.stopPropagation(); onJoin(); }}>Join Meeting</button>
+            {showButton && (
+                <button
+                    className="join-button"
+                    onClick={(e) => {
+                        e.stopPropagation();
+                        if (onAction) onAction();
+                    }}
+                >
+                    {actionLabel}
+                </button>
+            )}
         </div>
     );
 };
