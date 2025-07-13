@@ -1,4 +1,5 @@
-import React from "react";
+import React, {useState} from "react";
+// import 'bootstrap/dist/css/bootstrap.min.css'
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Layout from "./layouts/MainLayout";
 import LoginForm from "./pages/LoginForm";
@@ -8,11 +9,13 @@ import AuthGuard from "./components/common/AuthGuard";
 
 import MeetingList from "./pages/test.jsx";
 import CustomTextEditor from "./components/textEdit/RichTextEditor.jsx";
-import TiptapEditor from "./components/textEdit/TiptapEditor.jsx"; // đường dẫn tùy bạn
-// import Overview from "./pages/Overview";
-// import Meeting from "./pages/Meeting";
-// import Message from "./pages/Message";
-// import thêm các trang khác
+import TiptapEditor from "./components/textEdit/TiptapEditor.jsx";
+import NoticeCard from "./components/noticeCard/NoticeCard.jsx";
+import EmployeePage from "./pages/EmployeePage.jsx";
+import EditEmployeePage from "./pages/EditEmployeePage.jsx";
+import AddEmployeeNew from "./pages/AddEmployeePage.jsx";
+import HostFrequencyReport from "./pages/HostFrequencyReport.jsx";
+
 
 // Tạo các component placeholder tương ứng từng route
 function Overview() {
@@ -31,7 +34,7 @@ function Ticket() {
   return <h2>Ticket Page</h2>;
 }
 function Employee() {
-  return <h2>Employee Page</h2>;
+    return <EmployeePage/>;
 }
 function Attendance() {
   return <h2>Attendance Page</h2>;
@@ -50,8 +53,8 @@ function Notice() {
     </>
   );
 }
-function HRTab() {
-  return <h2>HR Tab Page</h2>;
+function HostFrequency() {
+    return <HostFrequencyReport/>;
 }
 function Organization() {
   return <h2>Organization Page</h2>;
@@ -62,6 +65,25 @@ function Account() {
 function Setting() {
   return <h2>Setting Page</h2>;
 }
+
+function Test() {
+    const handleEdit = () => alert("Edit clicked!");
+    const handleDelete = () => alert("Deleted!");
+    return (
+        <div style={{ padding: "40px" }}>
+            <NoticeCard
+                title="Notice Title"
+                author="Name"
+                date="29/8/2023"
+                content="Lorem Ipsum is simply dummy text of the printing and typesetting industry..."
+                onEdit={handleEdit}
+                onDelete={handleDelete}
+            />
+        </div>
+    );
+}
+
+
 
 function App() {
   return (

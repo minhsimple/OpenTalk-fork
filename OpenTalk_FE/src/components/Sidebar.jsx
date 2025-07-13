@@ -25,10 +25,11 @@ const menuItems = [
     { label: "Employee", icon: <FaUsers />, path: "/employee" },
     { label: "Attendance", icon: <FaRegCalendarCheck />, path: "/attendance" },
     { label: "Notice", icon: <FaRegNewspaper />, path: "/notice" },
-    { label: "HR Tab", icon: <FaFileAlt />, path: "/hrtab" },
+    { label: "HostFrequencyReport", icon: <FaFileAlt />, path: "/hostfrequencyreport" },
     { label: "Organization", icon: <FaBuilding />, path: "/organization" },
     { label: "Account", icon: <FaUserCircle />, path: "/account" },
     { label: "Setting", icon: <FaCog />, path: "/setting" },
+    { label: "Test", icon: <FaCog />, path: "/test" },
 ];
 
 const activeStyle = {

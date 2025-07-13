@@ -2,10 +2,10 @@ import React, { useState, useRef } from "react";
 import "./RichTextEditor.css";
 import {MdFormatClear} from "react-icons/md";
 import { FaBold, FaItalic, FaUnderline, FaListUl, FaListOl, FaAlignLeft, FaAlignCenter, FaAlignRight, FaAlignJustify, FaLink, FaImage, FaEraser } from "react-icons/fa";
+import Input from "../common/Input.jsx";
 
 const CustomTextEditor = () => {
     const [title, setTitle] = useState("");
-    const [priority, setPriority] = useState("regular");
     const editorRef = useRef(null);
 
     const handleCommand = (command) => {
@@ -21,34 +21,16 @@ const CustomTextEditor = () => {
 
     return (
         <div className="editor-container">
-            <input
-                className="editor-title"
-                placeholder="Title"
+            <Input
                 value={title}
                 onChange={(e) => setTitle(e.target.value)}
+                placeholder="Enter title"
+                className="editor-title"
+                name="title"
+                type="text"
+                required={false}
+                editable={false}
             />
-
-            <div className="editor-priority">
-                <label>
-                    <input
-                        type="radio"
-                        value="regular"
-                        checked={priority === "regular"}
-                        onChange={() => setPriority("regular")}
-                    />
-                    Regular
-                </label>
-                <label style={{ marginLeft: "20px" }}>
-                    <input
-                        type="radio"
-                        value="urgent"
-                        checked={priority === "urgent"}
-                        onChange={() => setPriority("urgent")}
-                    />
-                    Urgent
-                </label>
-            </div>
-
             <div className="editor-toolbar">
                 {/* Heading */}
                 <select
