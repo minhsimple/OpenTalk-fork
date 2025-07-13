@@ -5,7 +5,7 @@ import { FaSearch, FaChevronDown, FaChevronLeft, FaChevronRight } from 'react-ic
 import { getMeetings } from '../api/meeting';
 import { getCompanyBranches } from '../api/companyBranch';
 import { OpenTalkMeetingStatus } from '../constants/enums/openTalkMeetingStatus';
-import { meetingMockData } from '../mock/MeetingMockData';
+import { meetingMockData } from '../api/__mocks__/data/MeetingMockData';
 import './styles/MeetingListPage.css';
 
 const mockBranches = [

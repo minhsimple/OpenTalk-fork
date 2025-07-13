@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { FaArrowLeft, FaEnvelope, FaPhone } from 'react-icons/fa';
 import { getMeetingById } from '../api/meeting';
-import { meetingMockData } from '../mock/MeetingMockData';
+import { meetingMockData } from '../api/__mocks__/data/MeetingMockData';
 import './styles/MeetingDetailPage.css';
 
 const MeetingDetailPage = () => {
