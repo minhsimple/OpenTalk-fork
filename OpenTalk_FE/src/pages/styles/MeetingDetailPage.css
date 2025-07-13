@@ -11,6 +11,23 @@
     margin-bottom: 24px;
 }
 
+.download-button {
+    margin-left: auto;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 8px;
+    background-color: #10b981;
+    color: white;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.download-button:hover {
+    background-color: #059669;
+}
+
 .back-button {
     width: 40px;
     height: 40px;
