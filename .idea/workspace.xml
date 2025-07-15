@@ -4,7 +4,150 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4a4ad0da-a035-4eb6-8277-a300dd06adf1" name="Changes" comment="" />
+    <list default="true" id="4a4ad0da-a035-4eb6-8277-a300dd06adf1" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.github/PULL_REQUEST_TEMPLATE.md" beforeDir="false" afterPath="$PROJECT_DIR$/.github/PULL_REQUEST_TEMPLATE.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/OpenTalk_BE/.gitattributes" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/OpenTalk_BE/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/OpenTalk_BE/.mvn/wrapper/maven-wrapper.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/OpenTalk_BE/mvnw" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/OpenTalk_BE/mvnw.cmd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/OpenTalk_BE/pom.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/OpenTalk_BE/src/main/java/sba301/java/opentalk/OpentalkApplication.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/OpenTalk_BE/src/main/java/sba301/java/opentalk/ServletInitializer.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/OpenTalk_BE/src/main/java/sba301/java/opentalk/common/DynamicCronUpdater.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/OpenTalk_BE/src/main/java/sba301/java/opentalk/common/RandomHostSelectionJob.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/OpenTalk_BE/src/main/java/sba301/java/opentalk/common/RandomOpenTalkNumberGenerator.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/OpenTalk_BE/src/main/java/sba301/java/opentalk/common/SyncDataUserFromHRM.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/OpenTalk_BE/src/main/java/sba301/java/opentalk/config/ApplicationConfiguration.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/OpenTalk_BE/src/main/java/sba301/java/opentalk/config/AsyncConfig.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/OpenTalk_BE/src/main/java/sba301/java/opentalk/config/I18nConfig.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/OpenTalk_BE/src/main/java/sba301/java/opentalk/config/QuartzConfig.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/OpenTalk_BE/src/main/java/sba301/java/opentalk/config/RedisConfig.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/OpenTalk_BE/src/main/java/sba301/java/opentalk/config/SecurityConfiguration.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/OpenTalk_BE/src/main/java/sba301/java/opentalk/config/WebConfig.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/OpenTalk_BE/src/main/java/sba301/java/opentalk/controller/AuthenticationController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/OpenTalk_BE/src/main/java/sba301/java/opentalk/controller/CompanyBranchController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/OpenTalk_BE/src/main/java/sba301/java/opentalk/controller/CronController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/OpenTalk_BE/src/main/java/sba301/java/opentalk/controller/FileUploadController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/OpenTalk_BE/src/main/java/sba301/java/opentalk/controller/HealthCheckController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/OpenTalk_BE/src/main/java/sba301/java/opentalk/controller/OpenTalkMeetingController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/OpenTalk_BE/src/main/java/sba301/java/opentalk/controller/OpenTalkTopicsController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/OpenTalk_BE/src/main/java/sba301/java/opentalk/controller/UserController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/OpenTalk_BE/src/main/java/sba301/java/opentalk/dto/BaseDTO.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/OpenTalk_BE/src/main/java/sba301/java/opentalk/dto/BranchEmployeeCountDTO.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/OpenTalk_BE/src/main/java/sba301/java/opentalk/dto/CompanyBranchDTO.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/OpenTalk_BE/src/main/java/sba301/java/opentalk/dto/HostRegistrationDTO.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/OpenTalk_BE/src/main/java/sba301/java/opentalk/dto/IHostRegistration.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/OpenTalk_BE/src/main/java/sba301/java/opentalk/dto/IOpenTalkRegistration.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/OpenTalk_BE/src/main/java/sba301/java/opentalk/dto/OpenTalkMeetingDTO.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/OpenTalk_BE/src/main/java/sba301/java/opentalk/dto/OpenTalkRegistrationDTO.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/OpenTalk_BE/src/main/java/sba301/java/opentalk/dto/OpenTalkSlideDto.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/OpenTalk_BE/src/main/java/sba301/java/opentalk/dto/OpenTalkTopicDTO.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/OpenTalk_BE/src/main/java/sba301/java/opentalk/dto/UserDTO.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/OpenTalk_BE/src/main/java/sba301/java/opentalk/entity/Attachment.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/OpenTalk_BE/src/main/java/sba301/java/opentalk/entity/Attendance.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/OpenTalk_BE/src/main/java/sba301/java/opentalk/entity/BaseEntity.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/OpenTalk_BE/src/main/java/sba301/java/opentalk/entity/CompanyBranch.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/OpenTalk_BE/src/main/java/sba301/java/opentalk/entity/FeedBack.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/OpenTalk_BE/src/main/java/sba301/java/opentalk/entity/HostRegistration.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/OpenTalk_BE/src/main/java/sba301/java/opentalk/entity/OpenTalkMeeting.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/OpenTalk_BE/src/main/java/sba301/java/opentalk/entity/OpenTalkRegistration.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/OpenTalk_BE/src/main/java/sba301/java/opentalk/entity/OpenTalkSlide.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/OpenTalk_BE/src/main/java/sba301/java/opentalk/entity/OpenTalkTopic.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/OpenTalk_BE/src/main/java/sba301/java/opentalk/entity/Role.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/OpenTalk_BE/src/main/java/sba301/java/opentalk/entity/Salary.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/OpenTalk_BE/src/main/java/sba301/java/opentalk/entity/Topic.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/OpenTalk_BE/src/main/java/sba301/java/opentalk/entity/TopicPoll.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/OpenTalk_BE/src/main/java/sba301/java/opentalk/entity/TopicVote.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/OpenTalk_BE/src/main/java/sba301/java/opentalk/entity/User.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/OpenTalk_BE/src/main/java/sba301/java/opentalk/enums/HostRegistrationStatus.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/OpenTalk_BE/src/main/java/sba301/java/opentalk/enums/MailType.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/OpenTalk_BE/src/main/java/sba301/java/opentalk/enums/OpenTalkRegistrationStatus.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/OpenTalk_BE/src/main/java/sba301/java/opentalk/event/HostRegistrationEvent.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/OpenTalk_BE/src/main/java/sba301/java/opentalk/event/OpenTalkRegistrationEvent.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/OpenTalk_BE/src/main/java/sba301/java/opentalk/event/handle/OpenTalkRegistrationEventListener.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/OpenTalk_BE/src/main/java/sba301/java/opentalk/exception/AppException.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/OpenTalk_BE/src/main/java/sba301/java/opentalk/exception/ErrorCode.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/OpenTalk_BE/src/main/java/sba301/java/opentalk/exception/GlobalExceptionHandler.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/OpenTalk_BE/src/main/java/sba301/java/opentalk/mapper/CompanyBranchMapper.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/OpenTalk_BE/src/main/java/sba301/java/opentalk/mapper/HostRegistrationMapper.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/OpenTalk_BE/src/main/java/sba301/java/opentalk/mapper/OpenTalkMeetingMapper.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/OpenTalk_BE/src/main/java/sba301/java/opentalk/mapper/OpenTalkRegistrationMapper.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/OpenTalk_BE/src/main/java/sba301/java/opentalk/mapper/OpenTalkSlideMapper.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/OpenTalk_BE/src/main/java/sba301/java/opentalk/mapper/OpenTalkTopicMapper.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/OpenTalk_BE/src/main/java/sba301/java/opentalk/mapper/UserMapper.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/OpenTalk_BE/src/main/java/sba301/java/opentalk/model/ApiResponse.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/OpenTalk_BE/src/main/java/sba301/java/opentalk/model/Mail/Mail.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/OpenTalk_BE/src/main/java/sba301/java/opentalk/model/Mail/MailInformation.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/OpenTalk_BE/src/main/java/sba301/java/opentalk/model/Mail/MailInvitation.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/OpenTalk_BE/src/main/java/sba301/java/opentalk/model/Mail/MailRemind.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/OpenTalk_BE/src/main/java/sba301/java/opentalk/model/Mail/MailSubject.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/OpenTalk_BE/src/main/java/sba301/java/opentalk/model/Mail/MailSubjectFactory.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/OpenTalk_BE/src/main/java/sba301/java/opentalk/model/request/AuthenticationRequest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/OpenTalk_BE/src/main/java/sba301/java/opentalk/model/request/OpenTalkCompletedRequest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/OpenTalk_BE/src/main/java/sba301/java/opentalk/model/request/RegisterRequest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/OpenTalk_BE/src/main/java/sba301/java/opentalk/model/response/AuthenticationResponse.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/OpenTalk_BE/src/main/java/sba301/java/opentalk/repository/CompanyBranchRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/OpenTalk_BE/src/main/java/sba301/java/opentalk/repository/HostRegistrationRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/OpenTalk_BE/src/main/java/sba301/java/opentalk/repository/OpenTalkMeetingRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/OpenTalk_BE/src/main/java/sba301/java/opentalk/repository/OpenTalkRegistrationRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/OpenTalk_BE/src/main/java/sba301/java/opentalk/repository/OpenTalkSlideRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/OpenTalk_BE/src/main/java/sba301/java/opentalk/repository/OpenTalkTopicRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/OpenTalk_BE/src/main/java/sba301/java/opentalk/repository/RoleRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/OpenTalk_BE/src/main/java/sba301/java/opentalk/repository/TopicRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/OpenTalk_BE/src/main/java/sba301/java/opentalk/repository/UserRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/OpenTalk_BE/src/main/java/sba301/java/opentalk/security/AuthenticationFilter.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/OpenTalk_BE/src/main/java/sba301/java/opentalk/serverHrm/config/WebClientConfig.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/OpenTalk_BE/src/main/java/sba301/java/opentalk/serverHrm/model/UserFromHRM.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/OpenTalk_BE/src/main/java/sba301/java/opentalk/serverHrm/model/UserHRM.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/OpenTalk_BE/src/main/java/sba301/java/opentalk/serverHrm/service/HrmService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/OpenTalk_BE/src/main/java/sba301/java/opentalk/serverHrm/service/serviceImpl/HrmServiceImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/OpenTalk_BE/src/main/java/sba301/java/opentalk/service/AuthenticationService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/OpenTalk_BE/src/main/java/sba301/java/opentalk/service/CompanyBranchService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/OpenTalk_BE/src/main/java/sba301/java/opentalk/service/FileUploadService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/OpenTalk_BE/src/main/java/sba301/java/opentalk/service/HostRegistrationService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/OpenTalk_BE/src/main/java/sba301/java/opentalk/service/JWTService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/OpenTalk_BE/src/main/java/sba301/java/opentalk/service/MailService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/OpenTalk_BE/src/main/java/sba301/java/opentalk/service/NotificationService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/OpenTalk_BE/src/main/java/sba301/java/opentalk/service/OpenTalkMeetingService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/OpenTalk_BE/src/main/java/sba301/java/opentalk/service/OpenTalkRegistrationService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/OpenTalk_BE/src/main/java/sba301/java/opentalk/service/OpenTalkSlideService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/OpenTalk_BE/src/main/java/sba301/java/opentalk/service/OpenTalkTopicService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/OpenTalk_BE/src/main/java/sba301/java/opentalk/service/RedisService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/OpenTalk_BE/src/main/java/sba301/java/opentalk/service/UserService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/OpenTalk_BE/src/main/java/sba301/java/opentalk/service/impl/AuthenticationSerrviceImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/OpenTalk_BE/src/main/java/sba301/java/opentalk/service/impl/CompanyBranchServiceImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/OpenTalk_BE/src/main/java/sba301/java/opentalk/service/impl/FileUploadServiceImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/OpenTalk_BE/src/main/java/sba301/java/opentalk/service/impl/HostRegistrationServiceImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/OpenTalk_BE/src/main/java/sba301/java/opentalk/service/impl/JWTServiceImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/OpenTalk_BE/src/main/java/sba301/java/opentalk/service/impl/MailServiceImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/OpenTalk_BE/src/main/java/sba301/java/opentalk/service/impl/NotificationServiceImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/OpenTalk_BE/src/main/java/sba301/java/opentalk/service/impl/OpenTalkMeetingServiceImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/OpenTalk_BE/src/main/java/sba301/java/opentalk/service/impl/OpenTalkRegistrationServiceImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/OpenTalk_BE/src/main/java/sba301/java/opentalk/service/impl/OpenTalkSlideServiceImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/OpenTalk_BE/src/main/java/sba301/java/opentalk/service/impl/OpenTalkTopicServiceImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/OpenTalk_BE/src/main/java/sba301/java/opentalk/service/impl/RedisServiceImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/OpenTalk_BE/src/main/java/sba301/java/opentalk/service/impl/UserServiceImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/OpenTalk_BE/src/main/java/sba301/java/opentalk/tasks/FileUploadTask.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/OpenTalk_BE/src/main/java/sba301/java/opentalk/tasks/MailFactoryTask.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/OpenTalk_BE/src/main/java/sba301/java/opentalk/utils/ConfigReader.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/OpenTalk_BE/src/main/java/sba301/java/opentalk/utils/OpenTalkProperties.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/OpenTalk_BE/src/main/java/sba301/java/opentalk/utils/PracticeReflection.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/OpenTalk_BE/src/main/java/sba301/java/opentalk/validator/PasswordConstraint.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/OpenTalk_BE/src/main/java/sba301/java/opentalk/validator/PasswordValidator.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/OpenTalk_BE/src/main/resources/application-check.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/OpenTalk_BE/src/main/resources/application-dev.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/OpenTalk_BE/src/main/resources/application-test.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/OpenTalk_BE/src/main/resources/application.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/OpenTalk_BE/src/main/resources/data.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/OpenTalk_BE/src/main/resources/messages.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/OpenTalk_BE/src/main/resources/messages_vi.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/OpenTalk_BE/src/main/resources/schema.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/OpenTalk_BE/uploads/Gmail.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/OpenTalk_FE/src/App.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/OpenTalk_FE/src/App.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/OpenTalk_FE/src/components/textEdit/RichTextEditor.css" beforeDir="false" afterPath="$PROJECT_DIR$/OpenTalk_FE/src/components/textEdit/RichTextEditor.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/OpenTalk_FE/src/pages/EmployeePage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/OpenTalk_FE/src/pages/EmployeePage.jsx" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -13,9 +156,21 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 7
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN",
+    "assignee": "AnhVu-NAV"
+  }
 }]]></component>
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/AnhVu-NAV/OpenTalk.git",
+    "accountId": "54ecb8a7-9c89-4d59-9a30-98718e515ead"
+  }
+}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 7
+}</component>
   <component name="ProjectId" id="2xZyfNmjYimqRTZ4vjCIt1klOsw" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -24,6 +179,7 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
     "git-widget-placeholder": "main",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "D:/Anh Vu Nguyen/FPT_University/Semester 7/SBA301/OpenTalk/OpenTalk_BE",
@@ -36,8 +192,7 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-jdk-9f38398b9061-39b83d9b5494-intellij.indexing.shared.core-IU-241.15989.150" />
-        <option value="bundled-js-predefined-1d06a55b98c1-91d5c284f522-JavaScript-IU-241.15989.150" />
+        <option value="bundled-js-predefined-d6986cc7102b-6a121458b545-JavaScript-WS-251.25410.117" />
       </set>
     </attachedChunks>
   </component>
@@ -50,6 +205,7 @@
       <option name="presentableId" value="Default" />
       <updated>1748159992922</updated>
       <workItem from="1748159994103" duration="24000" />
+      <workItem from="1752386191894" duration="58000" />
     </task>
     <servers />
   </component>
