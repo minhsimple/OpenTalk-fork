@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { FaArrowLeft, FaEnvelope, FaPhone } from 'react-icons/fa';
+import FeedBackCard from '../components/feedBackCard/FeedBackCard';
+import { feedbackMockData } from '../api/__mocks__/data/feedback';
 import { getMeetingById } from '../api/meeting';
 import { meetingMockData } from '../api/__mocks__/data/MeetingMockData';
 import './styles/MeetingDetailPage.css';
@@ -10,10 +12,12 @@ const MeetingDetailPage = () => {
     const navigate = useNavigate();
     const [meeting, setMeeting] = useState(null);
     const [activeTab, setActiveTab] = useState('general');
+    const [feedbacks, setFeedbacks] = useState([]);
 
     useEffect(() => {
         const local = meetingMockData.find((m) => m.id === Number(id));
         setMeeting(local);
+        setFeedbacks(feedbackMockData[id] || []);
         const load = async () => {
             try {
                 const data = await getMeetingById(id);
@@ -70,21 +74,46 @@ const MeetingDetailPage = () => {
 
             <div className="content-grid">
                 <div className="profile-card">
-                    {host ? renderUserInfo(host) : (
-                        <div className="profile-header">
-                            <img src="/placeholder.svg" alt="No Host" className="profile-avatar" />
-                            <h2 className="profile-name">No Host</h2>
+                    <div className="meeting-highlight">
+                        <h2 className="meeting-name">{meeting.meetingName}</h2>
+                        <div className="detail-row">
+                            <span className="label">Scheduled Date:</span>
+                            <span className="value">{meeting.scheduledDate}</span>
                         </div>
-                    )}
+                        <div className="detail-row">
+                            <span className="label">Meeting Link:</span>
+                            <a href={meeting.meetingLink} className="value link" target="_blank" rel="noreferrer">
+                                {meeting.meetingLink}
+                            </a>
+                        </div>
+                        <div className="detail-row">
+                            <span className="label">Status:</span>
+                            <span className="value">{meeting.status}</span>
+                        </div>
+                        <div className="detail-row">
+                            <span className="label">Branch:</span>
+                            <span className="value">{meeting.companyBranch.name}</span>
+                        </div>
+                    </div>
+                    <div className="host-section">
+                        <h3 className="section-title">Host</h3>
+                        {host ? renderUserInfo(host) : (
+                            <div className="profile-header">
+                                <img src="/placeholder.svg" alt="No Host" className="profile-avatar" />
+                                <h2 className="profile-name">No Host</h2>
+                            </div>
+                        )}
+                    </div>
                 </div>
 
-                <div className="main-content">
+                <div className="topic-content">
+                    <h2 className="section-title">Topic</h2>
                     <div className="tabs-header">
                         <button
                             className={`tab-button ${activeTab === 'general' ? 'active' : ''}`}
                             onClick={() => setActiveTab('general')}
                         >
-                            Meeting General
+                            Topic General
                         </button>
                         <button
                             className={`tab-button ${activeTab === 'suggest' ? 'active' : ''}`}
@@ -104,25 +133,7 @@ const MeetingDetailPage = () => {
                         {activeTab === 'general' && (
                             <>
                                 <div className="detail-row">
-                                    <span className="label">Meeting Name:</span>
-                                    <span className="value">{meeting.meetingName}</span>
-                                </div>
-                                <div className="detail-row">
-                                    <span className="label">Scheduled Date:</span>
-                                    <span className="value">{meeting.scheduledDate}</span>
-                                </div>
-                                <div className="detail-row">
-                                    <span className="label">Meeting Link:</span>
-                                    <a href={meeting.meetingLink} className="value link" target="_blank" rel="noreferrer">
-                                        {meeting.meetingLink}
-                                    </a>
-                                </div>
-                                <div className="detail-row">
-                                    <span className="label">Status:</span>
-                                    <span className="value">{meeting.status}</span>
-                                </div>
-                                <div className="detail-row">
-                                    <span className="label">Topic Title:</span>
+                                    <span className="label">Title:</span>
                                     <span className="value">{meeting.topic.title}</span>
                                 </div>
                                 <div className="detail-row">
@@ -133,14 +144,19 @@ const MeetingDetailPage = () => {
                                     <span className="label">Remark:</span>
                                     <span className="value">{meeting.topic.remark}</span>
                                 </div>
-                                <div className="detail-row">
-                                    <span className="label">Branch:</span>
-                                    <span className="value">{meeting.companyBranch.name}</span>
-                                </div>
                             </>
                         )}
                         {activeTab === 'suggest' && suggestBy && renderUserInfo(suggestBy)}
-                        {activeTab === 'evaluate' && evaluteBy && renderUserInfo(evaluteBy)}
+                    {activeTab === 'evaluate' && evaluteBy && renderUserInfo(evaluteBy)}
+                    </div>
+                </div>
+
+                <div className="feedback-section">
+                    <h2 className="section-title">FeedBack</h2>
+                    <div className="feedback-list">
+                        {feedbacks.map((fb) => (
+                            <FeedBackCard key={fb.id} feedback={fb} />
+                        ))}
                     </div>
                 </div>
             </div>
