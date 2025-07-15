@@ -27,9 +27,9 @@ const MeetingListPage = () => {
 
   const tabs = [
     { id: 'inactive', label: 'Inactive' },
-    { id: 'completed', label: 'Completed' },
+    { id: 'completed', label: 'History' },
     { id: 'waitingHost', label: 'Waiting Host To Register' },
-    { id: 'notScheduled', label: 'Not Scheduled Yet' },
+    { id: 'notScheduled', label: 'Upcoming' },
     { id: 'ongoing', label: 'Ongoing' },
   ];
 

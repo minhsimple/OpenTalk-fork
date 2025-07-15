@@ -64,7 +64,7 @@ const MeetingDetailPage = () => {
                 <button onClick={() => navigate('/meeting')} className="back-button">
                     <FaArrowLeft size={16} />
                 </button>
-                <h1 className="page-title">{meeting.meetingName}</h1>
+                <h1 className="page-title">Meeting Detail</h1>
                 <button className="download-button">Download material</button>
             </div>
 
