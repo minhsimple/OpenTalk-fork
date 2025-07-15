@@ -21,12 +21,11 @@ const MeetingListPage = () => {
   const [branches, setBranches] = useState(mockBranches);
   const [searchTerm, setSearchTerm] = useState('');
   const [branchFilter, setBranchFilter] = useState('');
-  const [activeTab, setActiveTab] = useState('inactive');
+  const [activeTab, setActiveTab] = useState('notScheduled');
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 8;
 
   const tabs = [
-    { id: 'inactive', label: 'Inactive' },
     { id: 'completed', label: 'History' },
     { id: 'waitingHost', label: 'Waiting Host To Register' },
     { id: 'notScheduled', label: 'Upcoming' },
@@ -76,9 +75,9 @@ const MeetingListPage = () => {
     const meetingDate = new Date(m.scheduledDate);
     const diffDays = Math.floor((meetingDate - now) / (1000 * 60 * 60 * 24));
 
+    if (m.status === OpenTalkMeetingStatus.INACTIVE) return false;
+
     switch (activeTab) {
-      case 'inactive':
-        return m.status === OpenTalkMeetingStatus.INACTIVE;
       case 'completed':
         return m.status === OpenTalkMeetingStatus.COMPLETED;
       case 'waitingHost':
