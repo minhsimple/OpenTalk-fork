@@ -14,6 +14,7 @@ import EmployeePage from "./pages/EmployeePage.jsx";
 import EditEmployeePage from "./pages/EditEmployeePage.jsx";
 import AddEmployeeNew from "./pages/AddEmployeePage.jsx";
 import HostFrequencyReport from "./pages/HostFrequencyReport.jsx";
+import OrganizationListPage from "./pages/OrganizationListPage.jsx";
 
 
 // Tạo các component placeholder tương ứng từng route
@@ -105,7 +106,7 @@ function App() {
             <Route path="/attendance" element={<Attendance />} />
             <Route path="/notice" element={<Notice />} />
             <Route path="/hostfrequencyreport" element={<HostFrequency />} />
-            <Route path="/organization" element={<Organization />} />
+            <Route path="/organization" element={<OrganizationListPage />} />
             <Route path="/account" element={<Account />} />
             <Route path="/setting" element={<Setting />} />
           </Route>
