@@ -1,4 +1,4 @@
-import MeetingCard from "../components/meetingCard/MeetingCard";
+// import MeetingCard from "../components/meetingCard/MeetingCard";
 
 const MeetingList = () => {
     const handleJoin = () => {
@@ -7,7 +7,7 @@ const MeetingList = () => {
 
     return (
         <div style={{ padding: "20px" }}>
-            <MeetingCard
+            {/* <MeetingCard
                 title="UI/UX Design Team Meeting"
                 time="10:00 - 12:00"
                 description="Dorem ipsum dolor sit amet, consectetur adipiscing elit..."
@@ -18,7 +18,7 @@ const MeetingList = () => {
                 ]}
                 extraCount={5}
                 onJoin={handleJoin}
-            />
+            /> */}
         </div>
     );
 };

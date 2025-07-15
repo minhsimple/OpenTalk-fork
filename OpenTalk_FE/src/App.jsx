@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 // import 'bootstrap/dist/css/bootstrap.min.css'
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Layout from "./layouts/MainLayout";
@@ -15,6 +15,8 @@ import EditEmployeePage from "./pages/EditEmployeePage.jsx";
 import AddEmployeeNew from "./pages/AddEmployeePage.jsx";
 import HostFrequencyReport from "./pages/HostFrequencyReport.jsx";
 import OrganizationListPage from "./pages/OrganizationListPage.jsx";
+import MeetingDetailPage from "./pages/MeetingDetailPage.jsx";
+import MeetingListPage from "./pages/MeetingListPage.jsx";
 
 
 // Tạo các component placeholder tương ứng từng route
@@ -34,7 +36,7 @@ function Ticket() {
   return <h2>Ticket Page</h2>;
 }
 function Employee() {
-    return <EmployeePage/>;
+  return <EmployeePage />;
 }
 function Attendance() {
   return <h2>Attendance Page</h2>;
@@ -54,7 +56,7 @@ function Notice() {
   );
 }
 function HostFrequency() {
-    return <HostFrequencyReport/>;
+  return <HostFrequencyReport />;
 }
 function Organization() {
   return <h2>Organization Page</h2>;
@@ -67,20 +69,20 @@ function Setting() {
 }
 
 function Test() {
-    const handleEdit = () => alert("Edit clicked!");
-    const handleDelete = () => alert("Deleted!");
-    return (
-        <div style={{ padding: "40px" }}>
-            <NoticeCard
-                title="Notice Title"
-                author="Name"
-                date="29/8/2023"
-                content="Lorem Ipsum is simply dummy text of the printing and typesetting industry..."
-                onEdit={handleEdit}
-                onDelete={handleDelete}
-            />
-        </div>
-    );
+  const handleEdit = () => alert("Edit clicked!");
+  const handleDelete = () => alert("Deleted!");
+  return (
+    <div style={{ padding: "40px" }}>
+      <NoticeCard
+        title="Notice Title"
+        author="Name"
+        date="29/8/2023"
+        content="Lorem Ipsum is simply dummy text of the printing and typesetting industry..."
+        onEdit={handleEdit}
+        onDelete={handleDelete}
+      />
+    </div>
+  );
 }
 
 
@@ -89,16 +91,17 @@ function App() {
   return (
     <Router>
       <Routes>
-         public
+        public
         <Route path="/login" element={<LoginForm />} />
         <Route path="/register" element={<RegisterForm />} />
 
-         protected
+        protected
         <Route element={<AuthGuard />}>
           <Route element={<Layout />}>
             <Route path="/" element={<Overview />} />
+            <Route path="/meeting" element={<MeetingListPage />} />
+            <Route path="/meeting/:id" element={<MeetingDetailPage />} />
             <Route path="/dashboard" element={<DashBoard />} />
-            <Route path="/meeting" element={<Meeting />} />
             <Route path="/message" element={<Message />} />
             <Route path="/project" element={<Project />} />
             <Route path="/ticket" element={<Ticket />} />
