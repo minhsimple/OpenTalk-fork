@@ -107,7 +107,6 @@ const MeetingDetailPage = () => {
                 </div>
 
                 <div className="topic-content">
-                    <h2 className="section-title">Topic</h2>
                     <div className="tabs-header">
                         <button
                             className={`tab-button ${activeTab === 'general' ? 'active' : ''}`}
