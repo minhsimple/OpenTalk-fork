@@ -1,57 +1,101 @@
-import { useState } from "react"
-import { useNavigate } from "react-router-dom";
+import {useState, useEffect} from "react"
+import axios from "axios"
+import {useNavigate} from "react-router-dom"
 import "./styles/AddEmployeePage.css"
+import {getAccessToken} from "../helper/auth.jsx";
 
 const AddEmployeeNew = () => {
-    const navigate = useNavigate();
-    const [activeTab, setActiveTab] = useState("personal")
-    const [formData, setFormData] = useState({
-        firstName: "",
-        lastName: "",
-        mobileNumber: "",
-        emailAddress: "",
-        dateOfBirth: "",
-        maritalStatus: "",
-        gender: "",
-        nationality: "",
-        address: "",
-        city: "",
-        state: "",
-        zipCode: "",
+    const [employee, setEmployee] = useState({
+        fullName: "",
+        email: "",
+        username: "",
+        password: "",
+        isEnabled: true,
+        companyBranchId: "",
+        roleId: "2", // default USER
+        avatarUrl: "",
     })
+    const [branches, setBranches] = useState([])
+    const [loading, setLoading] = useState(false)
+    const [errors, setErrors] = useState({})
+    const navigate = useNavigate()
 
-    const handleInputChange = (e) => {
-        const { name, value } = e.target
-        setFormData((prev) => ({
+
+    useEffect(() => {
+        const fetchBranches = async () => {
+            try {
+                const res = await axios.get("http://localhost:8080/api/company-branch",
+                    {
+                        headers: {
+                            Authorization: `Bearer ${getAccessToken()}`,
+                        },
+                    }
+                );
+
+                setBranches(res.data)
+            } catch (error) {
+                console.error("Failed to fetch branches", error)
+            }
+        }
+        fetchBranches()
+    }, [])
+
+    const validateForm = () => {
+        const newErrors = {}
+
+        if (!employee.fullName.trim()) newErrors.fullName = "Full name is required"
+        if (!employee.email.trim()) newErrors.email = "Email is required"
+        if (!employee.username.trim()) newErrors.username = "Username is required"
+        if (!employee.password.trim()) newErrors.password = "Password is required"
+        if (employee.password.length < 6) newErrors.password = "Password must be at least 6 characters"
+        if (!employee.companyBranchId) newErrors.companyBranchId = "Company branch is required"
+
+        // Email validation
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+        if (employee.email && !emailRegex.test(employee.email)) {
+            newErrors.email = "Please enter a valid email address"
+        }
+
+        setErrors(newErrors)
+        return Object.keys(newErrors).length === 0
+    }
+
+    const handleChange = (e) => {
+        const {name, value, type, checked} = e.target
+        setEmployee((prev) => ({
             ...prev,
-            [name]: value,
+            [name]: type === "checkbox" ? checked : value,
         }))
+
+        // Clear error when user starts typing
+        if (errors[name]) {
+            setErrors((prev) => ({...prev, [name]: ""}))
+        }
     }
 
-    const handleSubmit = () => {
-        console.log("Form Data:", formData)
-        alert("Employee added successfully!")
+    const handleSubmit = async (e) => {
+        e.preventDefault()
+
+        if (!validateForm()) return
+
+        setLoading(true)
+        try {
+            await axios.post("http://localhost:8080/api/hr/employees", employee,
+                {
+                    headers: {
+                        Authorization: `Bearer ${getAccessToken()}`,
+                    },
+                }
+            );
+            alert("Employee created successfully!")
+            navigate("/employee")
+        } catch (error) {
+            console.error("Error creating employee:", error)
+            alert("Failed to create employee.")
+        } finally {
+            setLoading(false)
+        }
     }
-
-    const tabs = [
-        { id: "personal", label: "Personal Information", icon: "👤" },
-        { id: "professional", label: "Professional Information", icon: "💼" },
-        { id: "documents", label: "Documents", icon: "📄" },
-        { id: "account", label: "Account Access", icon: "🔒" },
-    ]
-
-    const menuItems = [
-        { id: "dashboard", label: "Dashboard", icon: "📊", active: false },
-        { id: "employees", label: "All Employees", icon: "👥", active: true },
-        { id: "departments", label: "All Departments", icon: "🏢", active: false },
-        { id: "attendance", label: "Attendance", icon: "📅", active: false },
-        { id: "payroll", label: "Payroll", icon: "💰", active: false },
-        { id: "jobs", label: "Jobs", icon: "💼", active: false },
-        { id: "candidates", label: "Candidates", icon: "👤", active: false },
-        { id: "leaves", label: "Leaves", icon: "🏖️", active: false },
-        { id: "holidays", label: "Holidays", icon: "🎉", active: false },
-        { id: "settings", label: "Settings", icon: "⚙️", active: false },
-    ]
 
     return (
         <div className="hrms-container">
@@ -60,232 +104,200 @@ const AddEmployeeNew = () => {
             <div className="main-content">
                 <div className="header">
                     <div className="header-left">
-                        <h1 className="page-title">Add New Employee</h1>
-                        <div className="breadcrumb">
-                            <span>All Employee</span>
-                            <span className="breadcrumb-separator">›</span>
-                            <span>Add New Employee</span>
+                        <button onClick={() => navigate("/employee")} className="back-button">
+                            ←
+                        </button>
+                        <div>
+                            <h1 className="page-title">Add New Employee</h1>
+                            <div className="breadcrumb">
+                                <span>All Employees</span>
+                                <span className="breadcrumb-separator">›</span>
+                                <span className="breadcrumb-current">Add New Employee</span>
+                            </div>
                         </div>
                     </div>
+
+
                 </div>
+
                 {/* Form Container */}
                 <div className="form-container">
-                    {/* Tabs */}
-                    <div className="tabs-header">
-                        {tabs.map((tab) => (
-                            <button
-                                key={tab.id}
-                                className={`tab-button ${activeTab === tab.id ? "active" : ""}`}
-                                onClick={() => setActiveTab(tab.id)}
-                            >
-                                <span className="tab-icon">{tab.icon}</span>
-                                {tab.label}
-                            </button>
-                        ))}
+                    <div className="form-header">
+                        <h2 className="form-title">Employee Information</h2>
+                        <p className="form-subtitle">Fill in the details to create a new employee account</p>
                     </div>
 
-                    {/* Form Content */}
-                    <div className="form-content">
-                        {activeTab === "personal" && (
-                            <>
-                                {/* Profile Upload */}
-                                <div className="profile-upload">
-                                    <div className="upload-area">
-                                        <span className="upload-icon">📷</span>
-                                        <button className="upload-button">+</button>
+                    <form onSubmit={handleSubmit} className="employee-form">
+                        {/* Profile Section */}
+                        <div className="form-section">
+                            <h3 className="section-title">Profile Information</h3>
+
+                            <div className="profile-upload-section">
+                                <div className="avatar-upload">
+                                    <div className="avatar-preview">
+                                        {employee.avatarUrl ? (
+                                            <img src={employee.avatarUrl || "/placeholder.svg"} alt="Avatar"
+                                                 className="avatar-image"/>
+                                        ) : (
+                                            <div className="avatar-placeholder">
+                                                <span className="avatar-icon">👤</span>
+                                            </div>
+                                        )}
+                                    </div>
+                                    <div className="upload-info">
+                                        <h4>Profile Picture</h4>
+                                        <p>Add a profile picture for the employee</p>
                                     </div>
                                 </div>
+                            </div>
 
-                                {/* Form Fields */}
-                                <div className="form-grid">
-                                    <div className="form-group">
-                                        <label className="form-label">First Name</label>
-                                        <input
-                                            type="text"
-                                            name="firstName"
-                                            className="form-input"
-                                            placeholder="First Name"
-                                            value={formData.firstName}
-                                            onChange={handleInputChange}
-                                        />
-                                    </div>
-
-                                    <div className="form-group">
-                                        <label className="form-label">Last Name</label>
-                                        <input
-                                            type="text"
-                                            name="lastName"
-                                            className="form-input"
-                                            placeholder="Last Name"
-                                            value={formData.lastName}
-                                            onChange={handleInputChange}
-                                        />
-                                    </div>
-                                </div>
-
-                                <div className="form-grid">
-                                    <div className="form-group">
-                                        <label className="form-label">Mobile Number</label>
-                                        <input
-                                            type="tel"
-                                            name="mobileNumber"
-                                            className="form-input"
-                                            placeholder="Mobile Number"
-                                            value={formData.mobileNumber}
-                                            onChange={handleInputChange}
-                                        />
-                                    </div>
-
-                                    <div className="form-group">
-                                        <label className="form-label">Email Address</label>
-                                        <input
-                                            type="email"
-                                            name="emailAddress"
-                                            className="form-input"
-                                            placeholder="Email Address"
-                                            value={formData.emailAddress}
-                                            onChange={handleInputChange}
-                                        />
-                                    </div>
-                                </div>
-
-                                <div className="form-grid">
-                                    <div className="form-group">
-                                        <label className="form-label">Date of Birth</label>
-                                        <div className="date-input-container">
-                                            <input
-                                                type="date"
-                                                name="dateOfBirth"
-                                                className="form-input"
-                                                value={formData.dateOfBirth}
-                                                onChange={handleInputChange}
-                                            />
-                                            <span className="date-icon">📅</span>
-                                        </div>
-                                    </div>
-
-                                    <div className="form-group">
-                                        <label className="form-label">Marital Status</label>
-                                        <select
-                                            name="maritalStatus"
-                                            className="form-select"
-                                            value={formData.maritalStatus}
-                                            onChange={handleInputChange}
-                                        >
-                                            <option value="">Marital Status</option>
-                                            <option value="single">Single</option>
-                                            <option value="married">Married</option>
-                                            <option value="divorced">Divorced</option>
-                                            <option value="widowed">Widowed</option>
-                                        </select>
-                                    </div>
-                                </div>
-
-                                <div className="form-grid">
-                                    <div className="form-group">
-                                        <label className="form-label">Gender</label>
-                                        <select name="gender" className="form-select" value={formData.gender} onChange={handleInputChange}>
-                                            <option value="">Gender</option>
-                                            <option value="male">Male</option>
-                                            <option value="female">Female</option>
-                                            <option value="other">Other</option>
-                                        </select>
-                                    </div>
-
-                                    <div className="form-group">
-                                        <label className="form-label">Nationality</label>
-                                        <select
-                                            name="nationality"
-                                            className="form-select"
-                                            value={formData.nationality}
-                                            onChange={handleInputChange}
-                                        >
-                                            <option value="">Nationality</option>
-                                            <option value="vietnamese">Vietnamese</option>
-                                            <option value="american">American</option>
-                                            <option value="british">British</option>
-                                            <option value="other">Other</option>
-                                        </select>
-                                    </div>
-                                </div>
-
-                                <div className="form-group form-grid-full">
-                                    <label className="form-label">Address</label>
+                            <div className="form-grid">
+                                <div className="form-group">
+                                    <label className="form-label">
+                                        Full Name <span className="required">*</span>
+                                    </label>
                                     <input
                                         type="text"
-                                        name="address"
+                                        className={`form-input ${errors.fullName ? "error" : ""}`}
+                                        name="fullName"
+                                        value={employee.fullName}
+                                        onChange={handleChange}
+                                        placeholder="Enter full name"
+                                    />
+                                    {errors.fullName && <span className="error-message">{errors.fullName}</span>}
+                                </div>
+
+                                <div className="form-group">
+                                    <label className="form-label">
+                                        Email Address <span className="required">*</span>
+                                    </label>
+                                    <input
+                                        type="email"
+                                        className={`form-input ${errors.email ? "error" : ""}`}
+                                        name="email"
+                                        value={employee.email}
+                                        onChange={handleChange}
+                                        placeholder="Enter email address"
+                                    />
+                                    {errors.email && <span className="error-message">{errors.email}</span>}
+                                </div>
+
+                                <div className="form-group">
+                                    <label className="form-label">Avatar URL</label>
+                                    <input
+                                        type="url"
                                         className="form-input"
-                                        placeholder="Address"
-                                        value={formData.address}
-                                        onChange={handleInputChange}
+                                        name="avatarUrl"
+                                        value={employee.avatarUrl}
+                                        onChange={handleChange}
+                                        placeholder="https://example.com/avatar.jpg"
                                     />
                                 </div>
 
-                                <div className="form-grid-three">
-                                    <div className="form-group">
-                                        <label className="form-label">City</label>
-                                        <select name="city" className="form-select" value={formData.city} onChange={handleInputChange}>
-                                            <option value="">City</option>
-                                            <option value="hanoi">Hanoi</option>
-                                            <option value="hcmc">Ho Chi Minh City</option>
-                                            <option value="danang">Da Nang</option>
-                                        </select>
-                                    </div>
-
-                                    <div className="form-group">
-                                        <label className="form-label">State</label>
-                                        <select name="state" className="form-select" value={formData.state} onChange={handleInputChange}>
-                                            <option value="">State</option>
-                                            <option value="north">North</option>
-                                            <option value="central">Central</option>
-                                            <option value="south">South</option>
-                                        </select>
-                                    </div>
-
-                                    <div className="form-group">
-                                        <label className="form-label">ZIP Code</label>
-                                        <select
-                                            name="zipCode"
-                                            className="form-select"
-                                            value={formData.zipCode}
-                                            onChange={handleInputChange}
-                                        >
-                                            <option value="">ZIP Code</option>
-                                            <option value="10000">10000</option>
-                                            <option value="70000">70000</option>
-                                            <option value="50000">50000</option>
-                                        </select>
-                                    </div>
+                                <div className="form-group">
+                                    <label className="form-label">
+                                        Company Branch <span className="required">*</span>
+                                    </label>
+                                    <select
+                                        className={`form-select ${errors.companyBranchId ? "error" : ""}`}
+                                        name="companyBranchId"
+                                        value={employee.companyBranchId}
+                                        onChange={handleChange}
+                                    >
+                                        <option value="">Select a branch</option>
+                                        {branches.map((branch) => (
+                                            <option key={branch.id} value={branch.id}>
+                                                {branch.name}
+                                            </option>
+                                        ))}
+                                    </select>
+                                    {errors.companyBranchId &&
+                                        <span className="error-message">{errors.companyBranchId}</span>}
                                 </div>
-                            </>
-                        )}
-
-                        {activeTab !== "personal" && (
-                            <div style={{ textAlign: "center", padding: "60px 20px" }}>
-                                <div style={{ fontSize: "48px", marginBottom: "16px" }}>
-                                    {activeTab === "professional" && "💼"}
-                                    {activeTab === "documents" && "📄"}
-                                    {activeTab === "account" && "🔒"}
-                                </div>
-                                <h3 style={{ marginBottom: "8px", color: "#374151" }}>
-                                    {activeTab === "professional" && "Professional Information"}
-                                    {activeTab === "documents" && "Documents"}
-                                    {activeTab === "account" && "Account Access"}
-                                </h3>
-                                <p style={{ color: "#6b7280" }}>This section will contain {activeTab} information</p>
                             </div>
-                        )}
-                    </div>
+                        </div>
 
-                    {/* Action Buttons */}
-                    <div className="form-actions">
-                        <button className="btn btn-secondary" onClick={() => navigate("/employee")}>
-                            Cancel
-                        </button>
-                        <button className="btn btn-primary" onClick={handleSubmit}>
-                            Next
-                        </button>
-                    </div>
+                        {/* Account Section */}
+                        <div className="form-section">
+                            <h3 className="section-title">Account Credentials</h3>
+
+                            <div className="form-grid">
+                                <div className="form-group">
+                                    <label className="form-label">
+                                        Username <span className="required">*</span>
+                                    </label>
+                                    <input
+                                        type="text"
+                                        className={`form-input ${errors.username ? "error" : ""}`}
+                                        name="username"
+                                        value={employee.username}
+                                        onChange={handleChange}
+                                        placeholder="Enter username"
+                                    />
+                                    {errors.username && <span className="error-message">{errors.username}</span>}
+                                </div>
+
+                                <div className="form-group">
+                                    <label className="form-label">
+                                        Password <span className="required">*</span>
+                                    </label>
+                                    <input
+                                        type="password"
+                                        className={`form-input ${errors.password ? "error" : ""}`}
+                                        name="password"
+                                        value={employee.password}
+                                        onChange={handleChange}
+                                        placeholder="Enter password (min 6 characters)"
+                                    />
+                                    {errors.password && <span className="error-message">{errors.password}</span>}
+                                </div>
+
+                                <div className="form-group form-group-full">
+                                    <div className="checkbox-group">
+                                        <label className="checkbox-label">
+                                            <input
+                                                type="checkbox"
+                                                className="checkbox-input"
+                                                name="isEnabled"
+                                                checked={employee.isEnabled}
+                                                onChange={handleChange}
+                                            />
+                                            <span className="checkbox-custom"></span>
+                                            <span className="checkbox-text">
+                        <strong>Enable Account</strong>
+                        <small>Allow this employee to access the system</small>
+                      </span>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        {/* Action Buttons */}
+                        <div className="form-actions">
+                            <button
+                                type="button"
+                                className="btn btn-secondary"
+                                onClick={() => navigate("/employee")}
+                                disabled={loading}
+                            >
+                                Cancel
+                            </button>
+                            <button type="submit" className="btn btn-primary" disabled={loading}>
+                                {loading ? (
+                                    <>
+                                        <span className="loading-spinner"></span>
+                                        Creating...
+                                    </>
+                                ) : (
+                                    <>
+                                        <span>✓</span>
+                                        Create Employee
+                                    </>
+                                )}
+                            </button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
