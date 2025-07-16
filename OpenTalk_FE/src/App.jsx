@@ -6,7 +6,6 @@ import LoginForm from "./pages/LoginForm";
 import RegisterForm from "./pages/RegisterForm";
 import DashBoard from "./pages/DashBoard.jsx";
 import AuthGuard from "./components/common/AuthGuard";
-
 import MeetingList from "./pages/test.jsx";
 import TopicProposalCategory from "./pages/TopicProposalCategory.jsx";
 import CampaignPage from "./pages/CampaignPage.jsx";
@@ -78,11 +77,11 @@ function App() {
   return (
     <Router>
       <Routes>
-        {/* public */}
+         public
         <Route path="/login" element={<LoginForm />} />
         <Route path="/register" element={<RegisterForm />} />
 
-        {/* protected */}
+         protected
         <Route element={<AuthGuard />}>
           <Route element={<Layout />}>
             <Route path="/" element={<Overview />} />
@@ -94,7 +93,7 @@ function App() {
             <Route path="/employee" element={<Employee />} />
             <Route path="/attendance" element={<Attendance />} />
             <Route path="/notice" element={<Notice />} />
-            <Route path="/hrtab" element={<HRTab />} />
+            <Route path="/hostfrequencyreport" element={<HostFrequency />} />
             <Route path="/organization" element={<Organization />} />
             <Route path="/account" element={<Account />} />
             <Route path="/setting" element={<Setting />} />
