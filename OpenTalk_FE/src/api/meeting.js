@@ -1,9 +1,9 @@
-import axios from 'axios';
+import axiosClient from './axiosClient';
 
-const API_BASE = 'http://localhost:8080/api/opentalk-meeting';
+const API_BASE = '/opentalk-meeting';
 
 export const getMeetings = () =>
-  axios.get(API_BASE).then(res => res.data);
+  axiosClient.get(API_BASE).then(res => res.data);
 
 export const getMeetingById = (id) =>
-  axios.get(`${API_BASE}/${id}`).then(res => res.data);
+  axiosClient.get(`${API_BASE}/${id}`).then(res => res.data);

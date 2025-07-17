@@ -73,7 +73,7 @@ const MeetingListPage = () => {
     if (!nameMatch || !branchMatch) return false;
 
     const meetingDate = new Date(m.scheduledDate);
-    const diffDays = Math.floor((meetingDate - now) / (1000 * 60 * 60 * 24));
+    const diffDays = (meetingDate - now) / (1000 * 60 * 60 * 24);
 
     if (m.status === OpenTalkMeetingStatus.INACTIVE) return false;
 

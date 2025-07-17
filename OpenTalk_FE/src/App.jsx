@@ -24,7 +24,7 @@ function Overview() {
   return <h2>Overview Page</h2>;
 }
 function Meeting() {
-  return <MeetingList />;
+  return <MeetingListPage />;
 }
 function Message() {
   return <h2>Message Page</h2>;
@@ -99,7 +99,7 @@ function App() {
         <Route element={<AuthGuard />}>
           <Route element={<Layout />}>
             <Route path="/" element={<Overview />} />
-            <Route path="/meeting" element={<MeetingListPage />} />
+            <Route path="/meeting" element={<Meeting />} />
             <Route path="/meeting/:id" element={<MeetingDetailPage />} />
             <Route path="/dashboard" element={<DashBoard />} />
             <Route path="/message" element={<Message />} />

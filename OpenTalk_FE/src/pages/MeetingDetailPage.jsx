@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { FaArrowLeft, FaEnvelope, FaPhone } from 'react-icons/fa';
+import { FaArrowLeft, FaEnvelope, FaPhone, FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 import FeedBackCard from '../components/feedBackCard/FeedBackCard';
 import { feedbackMockData } from '../api/__mocks__/data/feedback';
 import { getMeetingById } from '../api/meeting';
@@ -13,11 +13,14 @@ const MeetingDetailPage = () => {
     const [meeting, setMeeting] = useState(null);
     const [activeTab, setActiveTab] = useState('general');
     const [feedbacks, setFeedbacks] = useState([]);
+    const [currentPage, setCurrentPage] = useState(1);
+    const itemsPerPage = 5;
 
     useEffect(() => {
         const local = meetingMockData.find((m) => m.id === Number(id));
         setMeeting(local);
         setFeedbacks(feedbackMockData[id] || []);
+        setCurrentPage(1);
         const load = async () => {
             try {
                 const data = await getMeetingById(id);
@@ -34,6 +37,9 @@ const MeetingDetailPage = () => {
     const host = meeting.topic.host;
     const suggestBy = meeting.topic.suggestBy;
     const evaluteBy = meeting.topic.evaluteBy;
+    const totalPages = Math.ceil(feedbacks.length / itemsPerPage);
+    const startIndex = (currentPage - 1) * itemsPerPage;
+    const paginatedFeedbacks = feedbacks.slice(startIndex, startIndex + itemsPerPage);
 
     const renderUserInfo = (user) => (
         <>
@@ -146,16 +152,46 @@ const MeetingDetailPage = () => {
                             </>
                         )}
                         {activeTab === 'suggest' && suggestBy && renderUserInfo(suggestBy)}
-                    {activeTab === 'evaluate' && evaluteBy && renderUserInfo(evaluteBy)}
+                        {activeTab === 'evaluate' && evaluteBy && renderUserInfo(evaluteBy)}
                     </div>
                 </div>
 
                 <div className="feedback-section">
                     <h2 className="section-title">FeedBack</h2>
                     <div className="feedback-list">
-                        {feedbacks.map((fb) => (
+                        {paginatedFeedbacks.map((fb) => (
                             <FeedBackCard key={fb.id} feedback={fb} />
                         ))}
+                    </div>
+                    <div className="pagination">
+                        <div className="pagination-info">
+                            Showing {startIndex + 1} to {Math.min(startIndex + itemsPerPage, feedbacks.length)} of {feedbacks.length} results
+                        </div>
+                        <div className="pagination-buttons">
+                            <button
+                                onClick={() => setCurrentPage(Math.max(1, currentPage - 1))}
+                                disabled={currentPage === 1}
+                                className="pagination-btn"
+                            >
+                                <FaChevronLeft />
+                            </button>
+                            {[...Array(totalPages)].map((_, i) => (
+                                <button
+                                    key={i + 1}
+                                    onClick={() => setCurrentPage(i + 1)}
+                                    className={`pagination-number ${currentPage === i + 1 ? 'active' : ''}`}
+                                >
+                                    {i + 1}
+                                </button>
+                            ))}
+                            <button
+                                onClick={() => setCurrentPage(Math.min(totalPages, currentPage + 1))}
+                                disabled={currentPage === totalPages}
+                                className="pagination-btn"
+                            >
+                                <FaChevronRight />
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>
