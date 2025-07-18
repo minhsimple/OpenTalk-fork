@@ -1,20 +1,11 @@
-import React from "react";
-import { NavLink } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { NavLink, useNavigate } from "react-router-dom";
 import {
-    FaHome,
-    FaVideo,
-    FaEnvelope,
-    FaProjectDiagram,
-    FaTicketAlt,
-    FaUsers,
-    FaRegCalendarCheck,
-    FaRegNewspaper,
-    FaFileAlt,
-    FaBuilding,
-    FaUserCircle,
-    FaCog,
-    FaSignOutAlt,
+    FaHome, FaVideo, FaEnvelope, FaProjectDiagram, FaTicketAlt, FaUsers,
+    FaRegCalendarCheck, FaRegNewspaper, FaFileAlt, FaBuilding, FaUserCircle,
+    FaCog, FaSignOutAlt,
 } from "react-icons/fa";
+import { getCurrentUser, clearTokens } from "../helper/auth";
 
 const menuItems = [
     { label: "Overview", icon: <FaHome />, path: "/" },
@@ -25,10 +16,11 @@ const menuItems = [
     { label: "Employee", icon: <FaUsers />, path: "/employee" },
     { label: "Attendance", icon: <FaRegCalendarCheck />, path: "/attendance" },
     { label: "Notice", icon: <FaRegNewspaper />, path: "/notice" },
-    { label: "HR Tab", icon: <FaFileAlt />, path: "/hrtab" },
+    { label: "HostFrequencyReport", icon: <FaFileAlt />, path: "/hostfrequencyreport" },
     { label: "Organization", icon: <FaBuilding />, path: "/organization" },
     { label: "Account", icon: <FaUserCircle />, path: "/account" },
     { label: "Setting", icon: <FaCog />, path: "/setting" },
+    { label: "Test", icon: <FaCog />, path: "/test" },
 ];
 
 const activeStyle = {
@@ -44,10 +36,34 @@ const inactiveStyle = {
 };
 
 function Sidebar() {
+    const navigate = useNavigate();
+    const [user, setUser] = useState(null);
+
+    useEffect(() => {
+        setUser(getCurrentUser());
+    }, []);
+
+    const roleMap = {
+        1: "ADMIN",
+        2: "USER"
+    };
+
+    const visibleMenuItems = menuItems.filter(({ label }) => {
+        const role = roleMap[user?.role];
+
+        if (role === "ADMIN") return true;
+
+        if (role === "USER") {
+            return ["Overview", "Meeting", "Message", "Notice", "Account"].includes(label);
+        }
+
+        return false;
+    });
+
     return (
         <div className="d-flex flex-column bg-light vh-100 p-3" style={{ width: 250 }}>
             <nav className="nav flex-column">
-                {menuItems.map(({ label, icon, path }) => (
+                {visibleMenuItems.map(({ label, icon, path }) => (
                     <NavLink
                         to={path}
                         key={label}
@@ -63,6 +79,10 @@ function Sidebar() {
             <button
                 className="btn btn-outline-danger mt-auto d-flex align-items-center gap-2"
                 style={{ width: "100%" }}
+                onClick={() => {
+                    clearTokens();
+                    navigate("/login");
+                }}
             >
                 <FaSignOutAlt />
                 Logout

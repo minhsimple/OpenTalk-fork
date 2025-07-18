@@ -9,12 +9,16 @@
     "lint": "eslint .",
     "preview": "vite preview"
   },
+  "config": {
+    "api": "http://localhost:8080"
+  },
   "dependencies": {
     "@tiptap/extension-link": "^2.25.0",
     "@tiptap/extension-underline": "^2.25.0",
     "@tiptap/react": "^2.25.0",
     "@tiptap/starter-kit": "^2.25.0",
     "bootstrap": "^5.3.6",
+    "lucide-react": "^0.525.0",
     "react": "^19.1.0",
     "react-bootstrap": "^2.10.10",
     "react-confirm": "^0.4.0",
