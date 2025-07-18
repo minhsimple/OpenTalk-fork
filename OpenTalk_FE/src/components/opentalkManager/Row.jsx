@@ -32,6 +32,7 @@ function OpenTalkRow({ meeting, onView, onEdit, onDelete }) {
     <tr>
       <td>{meeting.id}</td>
       <td>{meeting.meetingTitle}</td>
+      <td>{meeting.topic}</td>
       <td>{meeting.host}</td>
       <td>{meeting.companyBranch}</td>
       <td>{formatDate(meeting.scheduledDate)}</td>
@@ -75,7 +76,8 @@ function OpenTalkRow({ meeting, onView, onEdit, onDelete }) {
             </div>
           )}
         </div>
-        <style>{`
+      </td>
+      <style>{`
           .icon-btn {
             background: #fff;
             border: 1px solid #e5e7eb;
@@ -124,7 +126,6 @@ function OpenTalkRow({ meeting, onView, onEdit, onDelete }) {
             color: #e53935;
           }
         `}</style>
-      </td>
     </tr>
   );
 }

@@ -1,15 +1,16 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import Header from "../components/opentalk_manager/Header";
-import Table from "../components/opentalk_manager/Table";
-import OpenTalkPagination from "../components/opentalk_manager/Pagination";
-import MeetingDetail from "../components/opentalk_manager/MeetingDetail";
+import Header from "../components/opentalkManager/Header";
+import Table from "../components/opentalkManager/Table";
+import OpenTalkPagination from "../components/opentalkManager/Pagination";
+import MeetingDetail from "../components/opentalkManager/MeetingDetail";
 
 // Dữ liệu giả lập (có thể fetch từ API thực tế)
 const DUMMY_MEETINGS = [
   {
     id: 1,
     meetingTitle: "OpenTalk Kick-off",
+    topic: "Introduction to OpenTalk",
     host: "Pristia Candra",
     companyBranch: "Unpixel Office",
     scheduledDate: "2023-08-20T09:00:00",
@@ -20,6 +21,7 @@ const DUMMY_MEETINGS = [
   {
     id: 2,
     meetingTitle: "Design Weekly",
+    topic: "Weekly Design Sync",
     host: "Hanna Baptista",
     companyBranch: "Hanoi Branch",
     scheduledDate: "2023-08-23T14:30:00",
@@ -30,6 +32,7 @@ const DUMMY_MEETINGS = [
   {
     id: 3,
     meetingTitle: "Sprint Review",
+    topic: "Review Sprint Progress",
     host: "Alex Nguyen",
     companyBranch: "Saigon Hub",
     scheduledDate: "2023-08-25T16:00:00",
@@ -57,8 +60,7 @@ function OpenTalkManagerPage() {
 
   // Xem chi tiết Meeting
   const handleViewDetail = (meeting) => {
-    setDetailMeeting(meeting);
-    setShowDetail(true);
+    navigate(`meeting-details/${meeting.id}`);
   };
 
   return (
@@ -85,13 +87,6 @@ function OpenTalkManagerPage() {
         <div className="d-flex justify-content-start mt-3">
           <OpenTalkPagination page={page} totalPages={totalPages} onPageChange={setPage} />
         </div>
-
-        {/* Chi tiết meeting dạng modal */}
-        <MeetingDetail
-          show={showDetail}
-          onClose={() => setShowDetail(false)}
-          meeting={detailMeeting}
-        />
       </div>
     </div>
   );

@@ -3,7 +3,7 @@ import { Form, Row, Col } from "react-bootstrap";
 
 function OpenTalkHeader({ onAddNew }) {
   return (
-    <div className="py-4 px-4">
+    <div className="py-4">
       <div className="d-flex align-items-center justify-content-between mb-4">
         <div>
           <h2 className="fw-bold mb-1" style={{ fontSize: 32 }}>OpenTalk Meeting</h2>
