@@ -1,8 +1,24 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { FaBell, FaMoon } from "react-icons/fa";
+import { getCurrentUser, clearTokens } from "../helper/auth";
+import { useNavigate } from "react-router-dom";
 
 function Header() {
     const [dropdownOpen, setDropdownOpen] = useState(false);
+    const [user, setUser] = useState(null);
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        const current = getCurrentUser();
+        console.log("Loaded user:", current);
+        setUser(current);
+    }, []);
+
+    const handleLogout = () => {
+        clearTokens();
+        navigate("/login");
+    };
+
     return (
         <nav className="navbar navbar-light bg-white shadow-sm px-3 d-flex justify-content-between align-items-center">
             {/* Logo */}
@@ -19,13 +35,13 @@ function Header() {
             </div>
 
             {/* Search bar */}
-            <form className="d-flex flex-grow-1 mx-3">
-                <input
-                    className="form-control rounded-pill"
-                    type="search"
-                    placeholder="Search here"
-                />
-            </form>
+            {/*<form className="d-flex flex-grow-1 mx-3">*/}
+            {/*    <input*/}
+            {/*        className="form-control rounded-pill"*/}
+            {/*        type="search"*/}
+            {/*        placeholder="Search here"*/}
+            {/*    />*/}
+            {/*</form>*/}
 
             {/* Right Icons */}
             <div className="d-flex align-items-center gap-3">
@@ -35,8 +51,8 @@ function Header() {
                         className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
                         style={{ fontSize: "0.6rem" }}
                     >
-            13
-          </span>
+                        13
+                    </span>
                 </button>
                 <button type="button" className="btn p-0">
                     <FaMoon size={18} className="text-secondary" />
@@ -57,8 +73,8 @@ function Header() {
                             height={32}
                         />
                         <span className="d-none d-md-inline text-secondary fw-semibold">
-              Masum Khan
-            </span>
+                            {user?.fullName || user?.username || "Unknown"}
+                        </span>
                         <svg
                             className={`bi bi-caret-down-fill ms-1 ${
                                 dropdownOpen ? "rotate-180" : ""
@@ -89,9 +105,9 @@ function Header() {
                                 <hr className="dropdown-divider" />
                             </li>
                             <li>
-                                <a className="dropdown-item" href="#">
+                                <button className="dropdown-item" onClick={handleLogout}>
                                     Logout
-                                </a>
+                                </button>
                             </li>
                         </ul>
                     )}
@@ -101,4 +117,4 @@ function Header() {
     );
 }
 
-export default Header
+export default Header;
