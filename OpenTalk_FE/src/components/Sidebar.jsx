@@ -3,7 +3,7 @@ import { NavLink, useNavigate } from "react-router-dom";
 import {
     FaHome, FaVideo, FaEnvelope, FaProjectDiagram, FaTicketAlt, FaUsers,
     FaRegCalendarCheck, FaRegNewspaper, FaFileAlt, FaBuilding, FaUserCircle,
-    FaCog, FaSignOutAlt,
+    FaCog, FaSignOutAlt,FaRegLightbulb
 } from "react-icons/fa";
 import { getCurrentUser, clearTokens } from "../helper/auth";
 
@@ -15,7 +15,8 @@ const menuItems = [
     { label: "Ticket", icon: <FaTicketAlt />, path: "/ticket" },
     { label: "Employee", icon: <FaUsers />, path: "/employee" },
     { label: "Attendance", icon: <FaRegCalendarCheck />, path: "/attendance" },
-    { label: "Notice", icon: <FaRegNewspaper />, path: "/notice" },
+    { label: "Suggest", icon: <FaRegNewspaper />, path: "/suggestTopic" },
+    { label: "Topic Proposal", icon: <FaRegLightbulb />, path: "/topicProposal" },
     { label: "HostFrequencyReport", icon: <FaFileAlt />, path: "/hostfrequencyreport" },
     { label: "Organization", icon: <FaBuilding />, path: "/organization" },
     { label: "Account", icon: <FaUserCircle />, path: "/account" },
@@ -54,7 +55,7 @@ function Sidebar() {
         if (role === "ADMIN") return true;
 
         if (role === "USER") {
-            return ["Overview", "Meeting", "Message", "Notice", "Account"].includes(label);
+            return ["Overview", "Meeting", "Message", "Notice", "Account", "Suggest"].includes(label);
         }
 
         return false;

@@ -7,14 +7,14 @@ const statusStyles = {
     approved: 'status--approved',
     rejected: 'status--rejected',
 };
-const TopicProposalCard = ({  title, excerpt, authorName, date, avatarUrl, status  }) => {
+const TopicProposalCard = ({  title, description, authorName, date, avatarUrl, status  }) => {
     const statusClass = statusStyles[status] || '';
     const statusLabel = status ? status.charAt(0).toUpperCase() + status.slice(1) : '';
     return (
         <div className="proposal-card">
             <div className="proposal-card__content">
                 <h3 className="proposal-card__title">{title}</h3>
-                <p className="proposal-card__excerpt">{excerpt}</p>
+                <p className="proposal-card__excerpt">{description}</p>
                 {status && (
                     <div className={`proposal-card__status ${statusClass}`}>{statusLabel}</div>
                 )}

@@ -1,9 +1,39 @@
 import React, { useState, useEffect } from 'react';
 import CustomTextEditor from "../components/textEdit/RichTextEditor.jsx";
 import '../css/SuggestTopic.css'
+import {getCurrentUser, getAccessToken} from "../helper/auth.jsx";
+import axios from '/src/api/axiosClient.jsx';
+
 
 import {AiOutlineCalendar, AiOutlineEye, AiOutlineFileText, AiOutlineFlag} from "react-icons/ai";
+import TopicProposal from "../components/common/TopicProposalCard.jsx";
 const SuggestTopic = () => {
+    const [topicUser, setTopicUser] = useState([]);
+    const [loading, setLoading] = useState(true);
+    useEffect(() => {
+        const user = getCurrentUser();
+        if (!user) {
+            console.error('Chưa tìm thấy user, bạn cần login trước!');
+            setLoading(false);
+            return;
+        }
+
+        const userId = user.id;
+        const token = getAccessToken();
+
+        axios.get(`/topic-idea/suggestedBy/1`, {
+            headers: { Authorization: `Bearer ${token}` }
+        })
+            .then(res => {
+                setTopicUser(res.data);
+            })
+            .catch(err => {
+                console.error('Lỗi khi fetch suggested topics:', err);
+            })
+            .finally(() => {
+                setLoading(false);
+            });
+    }, []);
     return (
         <div className="page-wrapper">
             <div className="page-header">
@@ -54,7 +84,27 @@ const SuggestTopic = () => {
                     </div>
                 </aside>
             </div>
+            {topicUser.length === 0 ? (
+                <div style={{ textAlign: "center", marginTop: "2rem", fontSize: "18px", color: "#666" }}>
+                    You have not suggest before.
+                </div>
+            ) : (
+                <div className="category-list">
+                    {topicUser.map(post => (
+                        <TopicProposal
+                            key={post.id}
+                            title={post.title}
+                            description={post.description}
+                            authorName={post.suggestedBy.fullName}
+                            date={post.createdAt}
+                            avatarUrl="https://cdn.pixabay.com/photo/2024/05/26/10/15/bird-8788491_1280.jpg"
+                            status={post.status}
+                        />
+                    ))}
+                </div>
+            )}
         </div>
+
     );
 };
 

@@ -20,12 +20,11 @@ import HostFrequencyReport from "./pages/HostFrequencyReport.jsx";
 function Overview() {
     return <CampaignPage/>;
 }
-
 function Meeting() {
     return <MeetingList/>;
 }
 function Message() {
-    return <h2>Message Page</h2>;
+  return <h2>Message Page</h2>;
 }
 function Project() {
   return <h2>Project Page</h2>;
@@ -37,7 +36,7 @@ function Employee() {
     return <EmployeePage/>;
 }
 function Attendance() {
-    return <h2>Attendance Page</h2>;
+  return <h2>Attendance Page</h2>;
 }
 function Notice() {
    return <SuggestTopic />;
@@ -46,7 +45,7 @@ function HostFrequency() {
     return <HostFrequencyReport/>;
 }
 function Organization() {
-    return <h2>Organization Page</h2>;
+  return <h2>Organization Page</h2>;
 }
 function Account() {
   return <h2>Account Page</h2>;
@@ -78,11 +77,11 @@ function App() {
     return (
         <Router>
             <Routes>
-                public
+                {/* public */}
                 <Route path="/login" element={<LoginForm/>}/>
                 <Route path="/register" element={<RegisterForm/>}/>
 
-                protected
+                {/* protected */}
                 <Route element={<AuthGuard/>}>
                     <Route element={<Layout/>}>
                         <Route path="/" element={<Overview/>}/>
@@ -91,6 +90,7 @@ function App() {
                         <Route path="/message" element={<Message/>}/>
                         <Route path="/project" element={<Project/>}/>
                         <Route path="/ticket" element={<Ticket/>}/>
+                        <Route path="/topicProposal" element={<TopicProposalCategory/>}/>
                         <Route path="/employee" element={<Employee/>}/>
                         <Route path="/employee/add" element={<AddEmployeeNew/>}/>
                         <Route path="/employee/edit/:id" element={<EditEmployeePage/>}/>
@@ -98,6 +98,7 @@ function App() {
                         <Route path="/notice" element={<Notice/>}/>
                         <Route path="/hostfrequencyreport" element={<HostFrequency/>}/>
                         <Route path="/organization" element={<Organization/>}/>
+                        <Route path="/suggestTopic" element={<SuggestTopic/>}/>
                         <Route path="/account" element={<Account/>}/>
                         <Route path="/setting" element={<Setting/>}/>
                     </Route>
