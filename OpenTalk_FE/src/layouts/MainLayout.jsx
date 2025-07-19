@@ -12,9 +12,6 @@ export default function Layout({ children }) {
                 <main className="flex-grow-1 overflow-auto p-4 bg-white">
                     <Outlet />
                 </main>
-                <main className="flex-grow-1 overflow-auto p-4 bg-white">
-                    <Outlet />
-                </main>
             </div>
         </div>
     );

@@ -2,11 +2,13 @@ import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import MeetingCard from '../components/meetingCard/meetingCard/MeetingCard';
 import { FaSearch, FaChevronDown, FaChevronLeft, FaChevronRight } from 'react-icons/fa';
-import { getMeetingDetails } from '../api/meeting';
+import { getMeetingDetails, registerHost } from '../api/meeting';
 import { getCompanyBranches } from '../api/companyBranch';
 import { OpenTalkMeetingStatus } from '../constants/enums/openTalkMeetingStatus';
 import meetingMockData from '../api/__mocks__/data/meetingMockData';
 import './styles/MeetingListPage.css';
+import { getCurrentUser } from '../helper/auth';
+import { User } from 'lucide-react';
 
 const mockBranches = [
   { id: 1, name: 'Branch A' },
@@ -150,10 +152,18 @@ const MeetingListPage = () => {
               if (activeTab === OpenTalkMeetingStatus.ONGOING) {
                 handleJoin(m.meetingLink);
               } else if (activeTab === OpenTalkMeetingStatus.WAITING_HOST_REGISTER) {
-                navigate(`/meeting/${m.id}`);
+                const currentUserInfo = getCurrentUser();
+                if (currentUserInfo) {
+                  registerHost({
+                    user: currentUserInfo,
+                    meeting: {
+                      id: m.id
+                    }
+                  });
+                }
               }
             }}
-            onView={() => navigate(`/meeting/${m.id}`, {state: { meetingList: meetings}})}
+            onView={() => navigate(`/meeting/${m.id}`, { state: { meetingList: meetings } })}
           />
         ))}
       </div>
