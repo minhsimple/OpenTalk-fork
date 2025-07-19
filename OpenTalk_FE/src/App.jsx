@@ -80,20 +80,20 @@ function Setting() {
 }
 
 function Test() {
-    const handleEdit = () => alert("Edit clicked!");
-    const handleDelete = () => alert("Deleted!");
-    return (
-        <div style={{ padding: "40px" }}>
-            <NoticeCard
-                title="Notice Title"
-                author="Name"
-                date="29/8/2023"
-                content="Lorem Ipsum is simply dummy text of the printing and typesetting industry..."
-                onEdit={handleEdit}
-                onDelete={handleDelete}
-            />
-        </div>
-    );
+  const handleEdit = () => alert("Edit clicked!");
+  const handleDelete = () => alert("Deleted!");
+  return (
+    <div style={{ padding: "40px" }}>
+      <NoticeCard
+        title="Notice Title"
+        author="Name"
+        date="29/8/2023"
+        content="Lorem Ipsum is simply dummy text of the printing and typesetting industry..."
+        onEdit={handleEdit}
+        onDelete={handleDelete}
+      />
+    </div>
+  );
 }
 
 
