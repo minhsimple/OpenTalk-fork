@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import MeetingCard from '../components/meetingCard/meetingCard/MeetingCard';
 import { FaSearch, FaChevronDown, FaChevronLeft, FaChevronRight } from 'react-icons/fa';
-import { getMeetings } from '../api/meeting';
+import { getMeetingDetails } from '../api/meeting';
 import { getCompanyBranches } from '../api/companyBranch';
 import { OpenTalkMeetingStatus } from '../constants/enums/openTalkMeetingStatus';
 import meetingMockData from '../api/__mocks__/data/meetingMockData';
@@ -17,25 +17,26 @@ const mockBranches = [
 
 const MeetingListPage = () => {
   const navigate = useNavigate();
-  const [meetings, setMeetings] = useState(meetingMockData);
-  const [branches, setBranches] = useState(mockBranches);
+  const [meetings, setMeetings] = useState([]);
+  const [branches, setBranches] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
   const [branchFilter, setBranchFilter] = useState('');
-  const [activeTab, setActiveTab] = useState('notScheduled');
+  const [activeTab, setActiveTab] = useState(OpenTalkMeetingStatus.COMPLETED);
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 8;
 
   const tabs = [
-    { id: 'completed', label: 'History' },
-    { id: 'waitingHost', label: 'Waiting Host To Register' },
-    { id: 'notScheduled', label: 'Upcoming' },
-    { id: 'ongoing', label: 'Ongoing' },
+    { id: OpenTalkMeetingStatus.COMPLETED, label: 'History' },
+    { id: OpenTalkMeetingStatus.WAITING_HOST_REGISTER, label: 'Waiting Host To Register' },
+    { id: OpenTalkMeetingStatus.UPCOMING, label: 'Upcoming' },
+    { id: OpenTalkMeetingStatus.ONGOING, label: 'Ongoing' },
   ];
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const data = await getMeetings();
+        const data = await getMeetingDetails(searchTerm, branchFilter);
+        console.log('Fetched meetings:', data);
         setMeetings(Array.isArray(data) ? data : meetingMockData);
       } catch (e) {
         console.error(e);
@@ -52,7 +53,7 @@ const MeetingListPage = () => {
     };
 
     fetchData();
-  }, []);
+  }, [searchTerm, branchFilter]);
 
   const handleJoin = (link) => {
     if (link) {
@@ -60,44 +61,16 @@ const MeetingListPage = () => {
     }
   };
 
-  const now = new Date();
-
   const filteredMeetings = meetings.filter((m) => {
-    const nameMatch = m.meetingName
-      .toLowerCase()
-      .includes(searchTerm.toLowerCase());
-    const branchMatch = branchFilter
-      ? m.companyBranch.name === branchFilter
-      : true;
-
-    if (!nameMatch || !branchMatch) return false;
-
-    const meetingDate = new Date(m.scheduledDate);
-    const diffDays = (meetingDate - now) / (1000 * 60 * 60 * 24);
-
-    if (m.status === OpenTalkMeetingStatus.INACTIVE) return false;
-
     switch (activeTab) {
-      case 'completed':
+      case OpenTalkMeetingStatus.COMPLETED:
         return m.status === OpenTalkMeetingStatus.COMPLETED;
-      case 'waitingHost':
-        return (
-          m.status === OpenTalkMeetingStatus.ACTIVE &&
-          !m.topic.host &&
-          diffDays <= 7 &&
-          diffDays > 0
-        );
-      case 'notScheduled':
-        return (
-          m.status === OpenTalkMeetingStatus.ACTIVE &&
-          diffDays > 0
-        );
-      case 'ongoing':
-        return (
-          m.status === OpenTalkMeetingStatus.ACTIVE &&
-          m.topic.host &&
-          meetingDate.toDateString() === now.toDateString()
-        );
+      case OpenTalkMeetingStatus.WAITING_HOST_REGISTER:
+        return m.status === OpenTalkMeetingStatus.WAITING_HOST_REGISTER;
+      case OpenTalkMeetingStatus.UPCOMING:
+        return m.status === OpenTalkMeetingStatus.UPCOMING;
+      case OpenTalkMeetingStatus.ONGOING:
+        return m.status === OpenTalkMeetingStatus.ONGOING;
       default:
         return true;
     }
@@ -134,7 +107,7 @@ const MeetingListPage = () => {
           >
             <option value="">All Branches</option>
             {branches.map((b) => (
-              <option key={b.id ?? b.name} value={b.name}>
+              <option key={b.id ?? b.name} value={b.id}>
                 {b.name}
               </option>
             ))}
@@ -168,19 +141,19 @@ const MeetingListPage = () => {
             participants={[]}
             extraCount={0}
             showButton={
-              activeTab === 'waitingHost' || activeTab === 'ongoing'
+              activeTab === OpenTalkMeetingStatus.WAITING_HOST_REGISTER || activeTab === OpenTalkMeetingStatus.ONGOING
             }
             actionLabel={
-              activeTab === 'waitingHost' ? 'Register Host' : 'Join Meeting'
+              activeTab === OpenTalkMeetingStatus.WAITING_HOST_REGISTER ? 'Register Host' : 'Join Meeting'
             }
             onAction={() => {
-              if (activeTab === 'ongoing') {
+              if (activeTab === OpenTalkMeetingStatus.ONGOING) {
                 handleJoin(m.meetingLink);
-              } else if (activeTab === 'waitingHost') {
+              } else if (activeTab === OpenTalkMeetingStatus.WAITING_HOST_REGISTER) {
                 navigate(`/meeting/${m.id}`);
               }
             }}
-            onView={() => navigate(`/meeting/${m.id}`)}
+            onView={() => navigate(`/meeting/${m.id}`, {state: { meetingList: meetings}})}
           />
         ))}
       </div>

@@ -1,11 +1,10 @@
 import { useEffect, useState } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import { FaArrowLeft, FaEnvelope, FaPhone, FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 import FeedBackCard from '../components/feedBackCard/FeedBackCard';
 import { feedbackMockData } from '../api/__mocks__/data/feedback';
-import { getMeetingById } from '../api/meeting';
-import meetingMockData from '../api/__mocks__/data/meetingMockData';
 import './styles/MeetingDetailPage.css';
+import { getAllFeedbacksByMeetingId } from '../api/feedback';
 
 const MeetingDetailPage = () => {
     const { id } = useParams();
@@ -16,25 +15,31 @@ const MeetingDetailPage = () => {
     const [currentPage, setCurrentPage] = useState(1);
     const itemsPerPage = 5;
 
+    const location = useLocation();
+    const [meetings] = useState(location.state?.meetingList || []);
+
     useEffect(() => {
-        const local = meetingMockData.find((m) => m.id === Number(id));
-        setMeeting(local);
-        setFeedbacks(feedbackMockData[id] || []);
-        setCurrentPage(1);
-        const load = async () => {
+        const fetchData = async () => {
+            const local = meetings.find((m) => m.id === Number(id));
+
             try {
-                const data = await getMeetingById(id);
-                setMeeting(data);
-            } catch (e) {
-                console.error(e);
+                const feedBackDatas = await getAllFeedbacksByMeetingId(local.id);
+                console.log('Fetched feedbacks:', feedBackDatas);
+                setFeedbacks(Array.isArray(feedBackDatas) ? feedBackDatas : []);
+            } catch (error) {
+                console.error('Error fetching feedbacks:', error);
+                setFeedbacks(feedbackMockData);
             }
+            setMeeting(local);
+            setCurrentPage(1);
         };
-        load();
+
+        fetchData();
     }, [id]);
 
     if (!meeting) return <div className="meeting-detail-page" />;
 
-    const host = meeting.topic.host;
+    const host = meeting.host;
     const suggestBy = meeting.topic.suggestBy;
     const evaluteBy = meeting.topic.evaluteBy;
     const totalPages = Math.ceil(feedbacks.length / itemsPerPage);
