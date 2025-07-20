@@ -8,17 +8,17 @@ import DashBoard from "./pages/DashBoard.jsx";
 import AuthGuard from "./components/common/AuthGuard";
 import MeetingList from "./pages/test.jsx";
 import TopicProposalCategory from "./pages/TopicProposalCategory.jsx";
-import CampaignPage from "./pages/CampaignPage.jsx";
 import SuggestTopic from "./pages/SuggestTopic.jsx";
 import EmployeePage from "./pages/EmployeePage.jsx";
 import EditEmployeePage from "./pages/EditEmployeePage.jsx";
 import AddEmployeeNew from "./pages/AddEmployeePage.jsx";
 import HostFrequencyReport from "./pages/HostFrequencyReport.jsx";
+import ProposalDetail from "./components/proposalTopic/ProposalDetail.jsx";
 
 
 // Tạo các component placeholder tương ứng từng route
 function Overview() {
-    return <CampaignPage/>;
+    return <h2>Message Page</h2>;
 }
 function Meeting() {
     return <MeetingList/>;
@@ -85,6 +85,7 @@ function App() {
                 <Route element={<AuthGuard/>}>
                     <Route element={<Layout/>}>
                         <Route path="/" element={<Overview/>}/>
+                        <Route path="/setting" element={<Setting/>}/>
                         <Route path="/dashboard" element={<DashBoard/>}/>
                         <Route path="/meeting" element={<Meeting/>}/>
                         <Route path="/message" element={<Message/>}/>
@@ -100,7 +101,7 @@ function App() {
                         <Route path="/organization" element={<Organization/>}/>
                         <Route path="/suggestTopic" element={<SuggestTopic/>}/>
                         <Route path="/account" element={<Account/>}/>
-                        <Route path="/setting" element={<Setting/>}/>
+                        <Route path="/topic/:id" element={<ProposalDetail/>}/>
                     </Route>
                 </Route>
             </Routes>

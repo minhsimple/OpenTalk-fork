@@ -107,3 +107,8 @@
     background: #f87171;    /* đỏ nhạt */
     color: #7f1d1d;
 }
+
+.status--discussed {
+    background: #dbeafe; /* blue-100 */
+    color: #1e3a8a;
+}

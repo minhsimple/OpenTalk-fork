@@ -106,6 +106,7 @@ const TopicProposalCategory = () => {
                     {posts.map(post => (
                         <TopicProposal
                             key={post.id}
+                            id={post.id}
                             title={post.title}
                             description={post.description}
                             authorName={post.suggestedBy.fullName}
