@@ -11,7 +11,7 @@ import {
   Input,
 } from 'reactstrap';
 
-const BranchFormModal = ({ isOpen, toggle, onSubmit, initialData }) => {
+const BranchFormModal = ({ isOpen, toggle, onSubmit, initialData, error }) => {
   const [name, setName] = useState('');
 
   useEffect(() => {
@@ -46,9 +46,10 @@ const BranchFormModal = ({ isOpen, toggle, onSubmit, initialData }) => {
               onChange={(e) => setName(e.target.value)}
               required
             />
+            {error && <div className="text-danger">{error}</div>}
           </FormGroup>
         </ModalBody>
-        <ModalFooter>
+        <ModalFooter className="d-flex ">
           <Button color="secondary" onClick={handleToggle} type="button">
             Cancel
           </Button>

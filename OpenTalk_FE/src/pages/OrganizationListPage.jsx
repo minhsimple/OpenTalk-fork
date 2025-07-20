@@ -26,6 +26,7 @@ const OrganizationListPage = () => {
   const [selectedBranch, setSelectedBranch] = useState(null);
   const [searchTerm, setSearchTerm] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
+  const [error, setError] = useState(null);
 
   const loadData = async () => {
     try {
@@ -40,18 +41,32 @@ const OrganizationListPage = () => {
     loadData();
   }, []);
 
+  function isDuplicateName(name) {
+    return branches.some((branch) => branch.name.toLowerCase() === name.toLowerCase() && branch.id !== (selected ? selected.id : null));
+  }
+
   const handleCreate = async (payload) => {
-    await createCompanyBranch(payload);
-    setModalOpen(false);
-    loadData();
+    if (isDuplicateName(payload.name)) {
+      setError('Branch name already exists');
+    } else {
+      setError(null);
+      await createCompanyBranch(payload);
+      setModalOpen(false);
+      loadData();
+    }
   };
 
   const handleUpdate = async (payload) => {
     if (!selected) return;
-    await updateCompanyBranch(selected.id, payload);
-    setModalOpen(false);
-    setSelected(null);
-    loadData();
+    if (isDuplicateName(payload.name)) {
+      setError('Branch name already exists');
+    } else {
+      setError(null);
+      await updateCompanyBranch(selected.id, payload);
+      setModalOpen(false);
+      setSelected(null);
+      loadData();
+    }
   };
 
   const handleDelete = async () => {
@@ -185,6 +200,7 @@ const OrganizationListPage = () => {
         toggle={() => { setModalOpen(false); setSelected(null); }}
         onSubmit={selected ? handleUpdate : handleCreate}
         initialData={selected}
+        error={error}
       />
     </div>
   );
