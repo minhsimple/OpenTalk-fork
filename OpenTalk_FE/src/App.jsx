@@ -17,6 +17,8 @@ import ProposalDetail from "./components/proposalTopic/ProposalDetail.jsx";
 import OrganizationListPage from "./pages/OrganizationListPage.jsx";
 import MeetingDetailPage from "./pages/MeetingDetailPage.jsx";
 import MeetingListPage from "./pages/MeetingListPage.jsx";
+import PollApp from "./pages/PollMeeting.jsx";
+import CreatePoll from "./pages/CreatePoll.jsx";
 
 // Tạo các component placeholder tương ứng từng route
 function Overview() {
@@ -47,6 +49,7 @@ function Attendance() {
 }
 
 function Notice() {
+
    return <SuggestTopic />;
 }
 
@@ -70,16 +73,16 @@ function Test() {
   const handleEdit = () => alert("Edit clicked!");
   const handleDelete = () => alert("Deleted!");
   return (
-    <div style={{ padding: "40px" }}>
-      <NoticeCard
-        title="Notice Title"
-        author="Name"
-        date="29/8/2023"
-        content="Lorem Ipsum is simply dummy text of the printing and typesetting industry..."
-        onEdit={handleEdit}
-        onDelete={handleDelete}
-      />
-    </div>
+      <div style={{ padding: "40px" }}>
+        <NoticeCard
+            title="Notice Title"
+            author="Name"
+            date="29/8/2023"
+            content="Lorem Ipsum is simply dummy text of the printing and typesetting industry..."
+            onEdit={handleEdit}
+            onDelete={handleDelete}
+        />
+      </div>
   );
 }
 
@@ -114,11 +117,14 @@ function App() {
                         <Route path="/suggestTopic" element={<SuggestTopic/>}/>
                         <Route path="/account" element={<Account/>}/>
                         <Route path="/topic/:id" element={<ProposalDetail/>}/>
+                        <Route path="/test" element={<PollApp />} />
+                        <Route path="/createPoll" element={<CreatePoll />} />
                     </Route>
                 </Route>
             </Routes>
         </Router>
     );
+
 }
 
 export default App
