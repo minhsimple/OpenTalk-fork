@@ -85,7 +85,7 @@ const MeetingListPage = () => {
 
   function isAlreadyRegiteredHost(meetingId) {
     return activeTab === OpenTalkMeetingStatus.WAITING_HOST_REGISTER &&
-      meetings.some(m => m.id === meetingId && m.registeredHostUserIds.includes(getCurrentUser()?.id));
+      meetings.some(m => m.id === meetingId && m.registeredHostUserIds?.includes(getCurrentUser()?.id));
   }
 
   const filteredMeetings = meetings.filter((m) => {
