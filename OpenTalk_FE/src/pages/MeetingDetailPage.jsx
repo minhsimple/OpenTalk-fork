@@ -8,10 +8,12 @@ import {
   FaChevronRight,
 } from "react-icons/fa";
 import FeedBackCard from "../components/feedBackCard/FeedBackCard";
+import FeedBackCardInput from "../components/feedBackCard/FeedBackCardInput";
 import { feedbackMockData } from "../api/__mocks__/data/feedback";
 import "./styles/MeetingDetailPage.css";
 import { getAllFeedbacksByMeetingId } from "../api/feedback";
 import axiosClient from '../api/axiosClient';
+import { OpenTalkMeetingStatus } from "../constants/enums/openTalkMeetingStatus";
 
 const MeetingDetailPage = () => {
   const { id } = useParams();
@@ -24,36 +26,37 @@ const MeetingDetailPage = () => {
 
   const location = useLocation();
   const [meetings] = useState(location.state?.meetingList || []);
+  const [onTab] = useState(location.state?.onTab || OpenTalkMeetingStatus.UPCOMING);
 
-    const handleDownloadMaterial = async () => {
+  const handleDownloadMaterial = async () => {
     try {
-        const response = await axiosClient.get(`/files/download-all/${id}`, {
+      const response = await axiosClient.get(`/files/download-all/${id}`, {
         responseType: 'blob',
         validateStatus: (status) => status < 500,
-        });
+      });
 
-        const contentType = response.headers['content-type'];
-        if (contentType && contentType.includes('application/json')) {
+      const contentType = response.headers['content-type'];
+      if (contentType && contentType.includes('application/json')) {
         const text = await response.data.text();
         const json = JSON.parse(text);
         alert(json.message || 'No attachment found');
         return;
-        }
+      }
 
-        const blob = new Blob([response.data], { type: 'application/zip' });
-        const url = window.URL.createObjectURL(blob);
-        const link = document.createElement('a');
-        link.href = url;
-        link.setAttribute('download', `meeting_${id}_materials.zip`);
-        document.body.appendChild(link);
-        link.click();
-        link.remove();
-        URL.revokeObjectURL(url);
+      const blob = new Blob([response.data], { type: 'application/zip' });
+      const url = window.URL.createObjectURL(blob);
+      const link = document.createElement('a');
+      link.href = url;
+      link.setAttribute('download', `meeting_${id}_materials.zip`);
+      document.body.appendChild(link);
+      link.click();
+      link.remove();
+      URL.revokeObjectURL(url);
     } catch (error) {
-        console.error(error);
-        alert('Something went wrong while downloading the file.');
+      console.error(error);
+      alert('Something went wrong while downloading the file.');
     }
-    };
+  };
 
   useEffect(() => {
     const fetchData = async () => {
@@ -113,6 +116,58 @@ const MeetingDetailPage = () => {
     </>
   );
 
+  const renderFeedBackCards = () => {
+    return (
+      <div className="feedback-section">
+          <h2 className="section-title">FeedBack</h2>
+          <div className="feedback-content">
+            <FeedBackCardInput />
+            <div className="feedback-list">
+              {paginatedFeedbacks.map((fb) => (
+                <FeedBackCard key={fb.id} feedback={fb} />
+              ))}
+            </div>
+          </div>
+          <div className="pagination">
+            <div className="pagination-info">
+              Showing {startIndex + 1} to{" "}
+              {Math.min(startIndex + itemsPerPage, feedbacks.length)} of{" "}
+              {feedbacks.length} results
+            </div>
+            <div className="pagination-buttons">
+              <button
+                onClick={() => setCurrentPage(Math.max(1, currentPage - 1))}
+                disabled={currentPage === 1}
+                className="pagination-btn"
+              >
+                <FaChevronLeft />
+              </button>
+              {[...Array(totalPages)].map((_, i) => (
+                <button
+                  key={i + 1}
+                  onClick={() => setCurrentPage(i + 1)}
+                  className={`pagination-number ${
+                    currentPage === i + 1 ? "active" : ""
+                  }`}
+                >
+                  {i + 1}
+                </button>
+              ))}
+              <button
+                onClick={() =>
+                  setCurrentPage(Math.min(totalPages, currentPage + 1))
+                }
+                disabled={currentPage === totalPages}
+                className="pagination-btn"
+              >
+                <FaChevronRight />
+              </button>
+            </div>
+          </div>
+        </div>
+    );
+  }
+
   return (
     <div className="meeting-detail-page">
       <div className="page-header">
@@ -171,25 +226,22 @@ const MeetingDetailPage = () => {
         <div className="topic-content">
           <div className="tabs-header">
             <button
-              className={`tab-button ${
-                activeTab === "general" ? "active" : ""
-              }`}
+              className={`tab-button ${activeTab === "general" ? "active" : ""
+                }`}
               onClick={() => setActiveTab("general")}
             >
               Topic General
             </button>
             <button
-              className={`tab-button ${
-                activeTab === "suggest" ? "active" : ""
-              }`}
+              className={`tab-button ${activeTab === "suggest" ? "active" : ""
+                }`}
               onClick={() => setActiveTab("suggest")}
             >
               Suggested By
             </button>
             <button
-              className={`tab-button ${
-                activeTab === "evaluate" ? "active" : ""
-              }`}
+              className={`tab-button ${activeTab === "evaluate" ? "active" : ""
+                }`}
               onClick={() => setActiveTab("evaluate")}
             >
               Evaluated By
@@ -217,51 +269,7 @@ const MeetingDetailPage = () => {
             {activeTab === "evaluate" && evaluteBy && renderUserInfo(evaluteBy)}
           </div>
         </div>
-
-        <div className="feedback-section">
-          <h2 className="section-title">FeedBack</h2>
-          <div className="feedback-list">
-            {paginatedFeedbacks.map((fb) => (
-              <FeedBackCard key={fb.id} feedback={fb} />
-            ))}
-          </div>
-          <div className="pagination">
-            <div className="pagination-info">
-              Showing {startIndex + 1} to{" "}
-              {Math.min(startIndex + itemsPerPage, feedbacks.length)} of{" "}
-              {feedbacks.length} results
-            </div>
-            <div className="pagination-buttons">
-              <button
-                onClick={() => setCurrentPage(Math.max(1, currentPage - 1))}
-                disabled={currentPage === 1}
-                className="pagination-btn"
-              >
-                <FaChevronLeft />
-              </button>
-              {[...Array(totalPages)].map((_, i) => (
-                <button
-                  key={i + 1}
-                  onClick={() => setCurrentPage(i + 1)}
-                  className={`pagination-number ${
-                    currentPage === i + 1 ? "active" : ""
-                  }`}
-                >
-                  {i + 1}
-                </button>
-              ))}
-              <button
-                onClick={() =>
-                  setCurrentPage(Math.min(totalPages, currentPage + 1))
-                }
-                disabled={currentPage === totalPages}
-                className="pagination-btn"
-              >
-                <FaChevronRight />
-              </button>
-            </div>
-          </div>
-        </div>
+        {onTab != OpenTalkMeetingStatus.UPCOMING && onTab != OpenTalkMeetingStatus.WAITING_HOST_REGISTER ? renderFeedBackCards() : null}
       </div>
     </div>
   );
