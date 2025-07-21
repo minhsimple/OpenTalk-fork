@@ -1,7 +1,6 @@
 import React from 'react';
 import '/src/css/TopicProposalCard.css';
 import {FaBars} from 'react-icons/fa';
-import {useNavigate} from "react-router-dom";
 
 const statusStyles = {
     pending: 'status--pending',
