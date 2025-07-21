@@ -6,8 +6,16 @@ import LoginForm from "./pages/LoginForm";
 import RegisterForm from "./pages/RegisterForm";
 import DashBoard from "./pages/DashBoard.jsx";
 import AuthGuard from "./components/common/AuthGuard";
-import TopicProposalCategory from "./pages/TopicProposalCategory.jsx";
-import SuggestTopic from "./pages/SuggestTopic.jsx";
+import MeetingList from "./pages/test.jsx";
+import React from "react";
+import OpenTalkManagerPage from "./pages/OpenTalkManager";
+import OpenTalkHostRequestPage from "./pages/OpenTalkHostRequest";
+import AddMeeting from "./components/opentalkManager/AddNewMeeting.jsx"; 
+import MeetingDetail from "./components/opentalkManager/MeetingDetail.jsx";
+import EditMeeting from "./components/opentalkManager/EditMeeting.jsx";
+import CustomTextEditor from "./components/textEdit/RichTextEditor.jsx";
+import TiptapEditor from "./components/textEdit/TiptapEditor.jsx";
+import NoticeCard from "./components/noticeCard/NoticeCard.jsx";
 import EmployeePage from "./pages/EmployeePage.jsx";
 import EditEmployeePage from "./pages/EditEmployeePage.jsx";
 import AddEmployeeNew from "./pages/AddEmployeePage.jsx";
@@ -25,7 +33,8 @@ function Overview() {
     return <h2>Overview Page</h2>;
 }
 function Meeting() {
-  return <MeetingListPage />;
+    return <MeetingList/>;
+    return <h2>Meeting Page</h2>;
 }
 
 function Message() {
@@ -33,11 +42,11 @@ function Message() {
 }
 
 function Project() {
-    return <h2>Project Page</h2>;
+    return <OpenTalkManagerPage />;
 }
 
 function Ticket() {
-    return <TopicProposalCategory/>;
+    return <OpenTalkHostRequestPage />;
 }
 
 function Employee() {
@@ -45,7 +54,7 @@ function Employee() {
 }
 
 function Attendance() {
-  return <h2>Attendance Page</h2>;
+    return <TopicProposalCategory />;
 }
 
 function Notice() {
@@ -122,6 +131,26 @@ function App() {
                     </Route>
                 </Route>
             </Routes>
+            <Layout>
+                <Routes>
+                    <Route path="/" element={<Overview />} />
+                    <Route path="/meeting" element={<Meeting />} />
+                    <Route path="/message" element={<Message />} />
+                    <Route path="/project" element={<Project />} />
+                    <Route path="/ticket" element={<Ticket />} />
+                    <Route path="/employee" element={<Employee />} />
+                    <Route path="/attendance" element={<Attendance />} />
+                    <Route path="/notice" element={<Notice />} />
+                    <Route path="/hrtab" element={<HRTab />} />
+                    <Route path="/organization" element={<Organization />} />
+                    <Route path="/account" element={<Account />} />
+                    <Route path="/setting" element={<Setting />} />
+                    <Route path="/project/new-meeting" element={<AddMeeting />} />
+                    <Route path="/project/meeting-details/:id" element={<MeetingDetail />} />
+                    <Route path="/project/edit-meeting/:id" element={<EditMeeting />} />
+                    {/* các route khác */}
+                </Routes>
+            </Layout>
         </Router>
     );
 
