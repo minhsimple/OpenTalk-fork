@@ -8,6 +8,7 @@ import {
   FaChevronRight,
 } from "react-icons/fa";
 import FeedBackCard from "../components/feedBackCard/FeedBackCard";
+import FeedBackCardInput from "../components/feedBackCard/FeedBackCardInput";
 import { feedbackMockData } from "../api/__mocks__/data/feedback";
 import "./styles/MeetingDetailPage.css";
 import { getAllFeedbacksByMeetingId } from "../api/feedback";
@@ -118,48 +119,52 @@ const MeetingDetailPage = () => {
   const renderFeedBackCards = () => {
     return (
       <div className="feedback-section">
-        <h2 className="section-title">FeedBack</h2>
-        <div className="feedback-list">
-          {paginatedFeedbacks.map((fb) => (
-            <FeedBackCard key={fb.id} feedback={fb} />
-          ))}
-        </div>
-        <div className="pagination">
-          <div className="pagination-info">
-            Showing {startIndex + 1} to{" "}
-            {Math.min(startIndex + itemsPerPage, feedbacks.length)} of{" "}
-            {feedbacks.length} results
+          <h2 className="section-title">FeedBack</h2>
+          <div className="feedback-content">
+            <FeedBackCardInput />
+            <div className="feedback-list">
+              {paginatedFeedbacks.map((fb) => (
+                <FeedBackCard key={fb.id} feedback={fb} />
+              ))}
+            </div>
           </div>
-          <div className="pagination-buttons">
-            <button
-              onClick={() => setCurrentPage(Math.max(1, currentPage - 1))}
-              disabled={currentPage === 1}
-              className="pagination-btn"
-            >
-              <FaChevronLeft />
-            </button>
-            {[...Array(totalPages)].map((_, i) => (
+          <div className="pagination">
+            <div className="pagination-info">
+              Showing {startIndex + 1} to{" "}
+              {Math.min(startIndex + itemsPerPage, feedbacks.length)} of{" "}
+              {feedbacks.length} results
+            </div>
+            <div className="pagination-buttons">
               <button
-                key={i + 1}
-                onClick={() => setCurrentPage(i + 1)}
-                className={`pagination-number ${currentPage === i + 1 ? "active" : ""
-                  }`}
+                onClick={() => setCurrentPage(Math.max(1, currentPage - 1))}
+                disabled={currentPage === 1}
+                className="pagination-btn"
               >
-                {i + 1}
+                <FaChevronLeft />
               </button>
-            ))}
-            <button
-              onClick={() =>
-                setCurrentPage(Math.min(totalPages, currentPage + 1))
-              }
-              disabled={currentPage === totalPages}
-              className="pagination-btn"
-            >
-              <FaChevronRight />
-            </button>
+              {[...Array(totalPages)].map((_, i) => (
+                <button
+                  key={i + 1}
+                  onClick={() => setCurrentPage(i + 1)}
+                  className={`pagination-number ${
+                    currentPage === i + 1 ? "active" : ""
+                  }`}
+                >
+                  {i + 1}
+                </button>
+              ))}
+              <button
+                onClick={() =>
+                  setCurrentPage(Math.min(totalPages, currentPage + 1))
+                }
+                disabled={currentPage === totalPages}
+                className="pagination-btn"
+              >
+                <FaChevronRight />
+              </button>
+            </div>
           </div>
         </div>
-      </div>
     );
   }
 
