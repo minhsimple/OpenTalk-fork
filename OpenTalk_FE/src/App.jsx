@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-// import 'bootstrap/dist/css/bootstrap.min.css'
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Layout from "./layouts/MainLayout";
 import LoginForm from "./pages/LoginForm";
@@ -7,7 +6,6 @@ import RegisterForm from "./pages/RegisterForm";
 import DashBoard from "./pages/DashBoard.jsx";
 import AuthGuard from "./components/common/AuthGuard";
 import MeetingList from "./pages/test.jsx";
-import React from "react";
 import OpenTalkManagerPage from "./pages/OpenTalkManager";
 import OpenTalkHostRequestPage from "./pages/OpenTalkHostRequest";
 import AddMeeting from "./components/opentalkManager/AddNewMeeting.jsx"; 
@@ -20,13 +18,14 @@ import EmployeePage from "./pages/EmployeePage.jsx";
 import EditEmployeePage from "./pages/EditEmployeePage.jsx";
 import AddEmployeeNew from "./pages/AddEmployeePage.jsx";
 import HostFrequencyReport from "./pages/HostFrequencyReport.jsx";
-import NoticeCard from "./components/noticeCard/NoticeCard.jsx";
 import ProposalDetail from "./components/proposalTopic/ProposalDetail.jsx";
 import OrganizationListPage from "./pages/OrganizationListPage.jsx";
 import MeetingDetailPage from "./pages/MeetingDetailPage.jsx";
 import MeetingListPage from "./pages/MeetingListPage.jsx";
 import PollApp from "./pages/PollMeeting.jsx";
 import CreatePoll from "./pages/CreatePoll.jsx";
+import TopicProposalCategory from "./pages/TopicProposalCategory.jsx";
+import SuggestTopic from "./pages/SuggestTopic.jsx";
 
 // Tạo các component placeholder tương ứng từng route
 function Overview() {
@@ -128,29 +127,12 @@ function App() {
                         <Route path="/topic/:id" element={<ProposalDetail/>}/>
                         <Route path="/test" element={<PollApp />} />
                         <Route path="/createPoll" element={<CreatePoll />} />
+                        <Route path="/project/new-meeting" element={<AddMeeting />} />
+                    <Route path="/project/meeting-details/:id" element={<MeetingDetail />} />
+                    <Route path="/project/edit-meeting/:id" element={<EditMeeting />} />
                     </Route>
                 </Route>
             </Routes>
-            <Layout>
-                <Routes>
-                    <Route path="/" element={<Overview />} />
-                    <Route path="/meeting" element={<Meeting />} />
-                    <Route path="/message" element={<Message />} />
-                    <Route path="/project" element={<Project />} />
-                    <Route path="/ticket" element={<Ticket />} />
-                    <Route path="/employee" element={<Employee />} />
-                    <Route path="/attendance" element={<Attendance />} />
-                    <Route path="/notice" element={<Notice />} />
-                    <Route path="/hrtab" element={<HRTab />} />
-                    <Route path="/organization" element={<Organization />} />
-                    <Route path="/account" element={<Account />} />
-                    <Route path="/setting" element={<Setting />} />
-                    <Route path="/project/new-meeting" element={<AddMeeting />} />
-                    <Route path="/project/meeting-details/:id" element={<MeetingDetail />} />
-                    <Route path="/project/edit-meeting/:id" element={<EditMeeting />} />
-                    {/* các route khác */}
-                </Routes>
-            </Layout>
         </Router>
     );
 
