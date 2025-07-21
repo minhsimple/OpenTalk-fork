@@ -127,6 +127,9 @@ function App() {
                         <Route path="/topic/:id" element={<ProposalDetail/>}/>
                         <Route path="/test" element={<PollApp />} />
                         <Route path="/createPoll" element={<CreatePoll />} />
+                        <Route path="/project/new-meeting" element={<AddMeeting />} />
+                    <Route path="/project/meeting-details/:id" element={<MeetingDetail />} />
+                    <Route path="/project/edit-meeting/:id" element={<EditMeeting />} />
                     </Route>
                 </Route>
             </Routes>
