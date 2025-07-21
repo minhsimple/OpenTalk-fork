@@ -8,6 +8,7 @@ import {
   FaChevronRight,
 } from "react-icons/fa";
 import FeedBackCard from "../components/feedBackCard/FeedBackCard";
+import FeedBackCardInput from "../components/feedBackCard/FeedBackCardInput";
 import { feedbackMockData } from "../api/__mocks__/data/feedback";
 import "./styles/MeetingDetailPage.css";
 import { getAllFeedbacksByMeetingId } from "../api/feedback";
@@ -220,10 +221,13 @@ const MeetingDetailPage = () => {
 
         <div className="feedback-section">
           <h2 className="section-title">FeedBack</h2>
-          <div className="feedback-list">
-            {paginatedFeedbacks.map((fb) => (
-              <FeedBackCard key={fb.id} feedback={fb} />
-            ))}
+          <div className="feedback-content">
+            <FeedBackCardInput />
+            <div className="feedback-list">
+              {paginatedFeedbacks.map((fb) => (
+                <FeedBackCard key={fb.id} feedback={fb} />
+              ))}
+            </div>
           </div>
           <div className="pagination">
             <div className="pagination-info">
