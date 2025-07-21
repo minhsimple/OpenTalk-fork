@@ -1,0 +1,35 @@
+1. Import component
+Ở đầu file:
+
+import SuccessToast from "../components/SuccessToast"
+2. Thêm state
+Ngay sau const [errors, setErrors] = useState({}), thêm:
+
+const [showToast, setShowToast] = useState(false)
+const [toastMessage, setToastMessage] = useState("")
+3. Thay đổi đoạn handleSubmit:
+
+try {
+    await axios.post("http://localhost:8080/api/hr/employees", employee, {
+        headers: { Authorization: `Bearer ${getAccessToken()}` },
+    })
+
+    setToastMessage("Employee created successfully!")
+    setShowToast(true)
+
+    // Sau 2.5s quay lại danh sách
+    setTimeout(() => {
+        navigate("/employee")
+    }, 2500)
+} catch (error) {
+    console.error("Error creating employee:", error)
+    alert("Failed to create employee.")
+}
+4. Thêm SuccessToast vào cuối JSX:
+Ngay trước </div> của return:
+
+<SuccessToast
+    message={toastMessage}
+    isVisible={showToast}
+    onClose={() => setShowToast(false)}
+/>
