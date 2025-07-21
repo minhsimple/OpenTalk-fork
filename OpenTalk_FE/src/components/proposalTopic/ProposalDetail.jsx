@@ -1,231 +1,317 @@
-import React, { useEffect, useState, useCallback } from 'react';
-import "/src/css/ProposalDetail.css";
-import { FaBuilding, FaCalendarAlt, FaUser } from "react-icons/fa";
-import { useParams } from "react-router-dom";
-import {getAccessToken, getCurrentUser} from "../../helper/auth.jsx";
-import axios from '/src/api/axiosClient.jsx';
-import { Modal, Button, Form, Spinner } from 'react-bootstrap';
+"use client"
 
-const ProposalDetail = () => {
-    const { id } = useParams();
+import { useEffect, useState, useCallback } from "react"
+import "/src/css/ProposalDetail.css"
+import { FaBuilding, FaCalendarAlt, FaUser, FaTimes, FaCheck } from "react-icons/fa"
+import { getAccessToken, getCurrentUser } from "../../helper/auth.jsx"
+import axios from "/src/api/axiosClient.jsx"
+import { Modal, Button, Form, Spinner } from "react-bootstrap"
 
-    const [data, setData] = useState(null);
-    const [successMsg, setSuccessMsg] = useState('');
-    const [errorMsg, setErrorMsg] = useState('');
-
-    // Reject modal state
-    const [showRejectModal, setShowRejectModal] = useState(false);
-    const [rejectNote, setRejectNote] = useState('');
-    const [rejectSubmitting, setRejectSubmitting] = useState(false);
-    const [rejectError, setRejectError] = useState('');
-    const user = getCurrentUser();
-    // Approve state (nếu vẫn dùng nút Approve trực tiếp)
-    const [approveSubmitting, setApproveSubmitting] = useState(false);
+const ProposalDetail = ({ id, onClose, showToast, onOpenRejectModal }) => {
+    const [data, setData] = useState(null)
+    const [successMsg, setSuccessMsg] = useState("")
+    const [errorMsg, setErrorMsg] = useState("")
+    const [showRejectModal, setShowRejectModal] = useState(false)
+    const [rejectNote, setRejectNote] = useState("")
+    const [rejectSubmitting, setRejectSubmitting] = useState(false)
+    const [rejectError, setRejectError] = useState("")
+    const user = getCurrentUser()
+    const [approveSubmitting, setApproveSubmitting] = useState(false)
+    const [toastVisible, setToastVisible] = useState(false)
+    const [toastMessage, setToastMessage] = useState("")
 
     const fetchData = useCallback(async () => {
         try {
             const res = await axios.get(`/topic-idea/${id}`, {
-                headers: { Authorization: `Bearer ${getAccessToken()}` }
-            });
-            setData(res.data);
+                headers: { Authorization: `Bearer ${getAccessToken()}` },
+            })
+            setData(res.data)
         } catch (err) {
-            console.error(err);
-            setErrorMsg('Không tải được dữ liệu.');
+            console.error(err)
+            setErrorMsg("Không tải được dữ liệu.")
         }
-    }, [id]);
+    }, [id])
 
     useEffect(() => {
-        fetchData();
-    }, [fetchData]);
+        fetchData()
+    }, [fetchData])
 
     const openRejectModal = () => {
-        setRejectNote('');
-        setRejectError('');
-        setShowRejectModal(true);
-    };
+        setRejectNote("")
+        setRejectError("")
+        setShowRejectModal(true)
+    }
 
     const closeRejectModal = () => {
         if (!rejectSubmitting) {
-            setShowRejectModal(false);
-            setRejectError('');
+            setShowRejectModal(false)
+            setRejectError("")
         }
-    };
+    }
 
     const handleRejectSubmit = async () => {
-        setRejectError('');
+        setRejectError("")
         if (rejectNote.trim().length < 5) {
-            setRejectError('Lý do phải ≥ 5 ký tự.');
-            return;
+            setRejectError("Lý do phải ≥ 5 ký tự.")
+            return
         }
         try {
-            setRejectSubmitting(true);
+            setRejectSubmitting(true)
             await axios.put(
                 `/topic-idea/${id}/decision`,
-                { decision: 'REJECTED',
-                       remark: rejectNote.trim(),
-                        topicId: data.id,
-                       userId: user.id},
-                { headers: { Authorization: `Bearer ${getAccessToken()}` } }
-            );
-            setSuccessMsg('Đã từ chối thành công!');
-            setShowRejectModal(false);
-            // Optional: cập nhật status local nếu BE trả về status mới:
-            // setData(prev => ({ ...prev, status: 'REJECTED' }));
+                {
+                    decision: "REJECTED",
+                    remark: rejectNote.trim(),
+                    topicId: data.id,
+                    userId: user.id,
+                },
+                { headers: { Authorization: `Bearer ${getAccessToken()}` } },
+            )
+            setSuccessMsg("Đã từ chối thành công!")
+            setShowRejectModal(false)
+            if (typeof showToast === "function") {
+                showToast("Từ chối thành công!", "success")
+            }
         } catch (err) {
-            console.error(err);
-            setRejectError('Gửi yêu cầu từ chối thất bại. Thử lại.');
+            console.error(err)
+            setRejectError("Gửi yêu cầu từ chối thất bại. Thử lại.")
+            if (typeof showToast === "function") {
+                showToast("Từ chối thất bại. Thử lại.", "error")
+            }
         } finally {
-            setRejectSubmitting(false);
+            setRejectSubmitting(false)
         }
-    };
+    }
 
     const handleApprove = async () => {
-        setErrorMsg('');
-        setSuccessMsg('');
+        setErrorMsg("")
+        setSuccessMsg("")
         try {
-            setApproveSubmitting(true);
+            setApproveSubmitting(true)
             await axios.put(
                 `/topic-idea/decision`,
-                {  decision: 'approved',
-                        remark: null,
-                        topicId: data.id,
-                        userId: user.id},
-                { headers: { Authorization: `Bearer ${getAccessToken()}` } }
-            );
-            setSuccessMsg('Đã phê duyệt thành công!');
-            // setData(prev => ({ ...prev, status: 'APPROVED' }));
+                {
+                    decision: "approved",
+                    remark: null,
+                    topicId: data.id,
+                    userId: user.id,
+                },
+                { headers: { Authorization: `Bearer ${getAccessToken()}` } },
+            )
+            setSuccessMsg("Đã phê duyệt thành công!")
+            if (typeof showToast === "function") {
+                showToast("Phê duyệt thành công!", "success")
+            }
         } catch (err) {
-            console.error(err);
-            setErrorMsg('Phê duyệt thất bại. Thử lại.');
+            console.error(err)
+            setErrorMsg("Phê duyệt thất bại. Thử lại.")
+            if (typeof showToast === "function") {
+                showToast("Phê duyệt thất bại. Thử lại.", "error")
+            }
         } finally {
-            setApproveSubmitting(false);
+            setApproveSubmitting(false)
         }
-    };
+    }
 
-    if (!data) return <div>Loading...</div>;
+    useEffect(() => {
+        if (successMsg) {
+            const timeout = setTimeout(() => {
+                if (typeof onClose === "function") {
+                    onClose()
+                }
+            }, 500)
+            return () => clearTimeout(timeout)
+        }
+    }, [successMsg])
+
+    const getStatusBadge = (status) => {
+        const statusConfig = {
+            APPROVED: { class: "status-approved", icon: "✅", text: "Approved" },
+            REJECTED: { class: "status-rejected", icon: "❌", text: "Rejected" },
+            PENDING: { class: "status-pending", icon: "⏳", text: "Pending" },
+            pending: { class: "status-pending", icon: "⏳", text: "Pending" },
+        }
+
+        const config = statusConfig[status] || { class: "status-default", icon: "📋", text: status }
+
+        return (
+            <span className={`status-badge ${config.class}`}>
+        <span className="status-icon">{config.icon}</span>
+                {config.text}
+      </span>
+        )
+    }
+
+    if (!data) {
+        return (
+            <div className="proposal-detail-loading">
+                <div className="loading-spinner"></div>
+                <p>Loading proposal details...</p>
+            </div>
+        )
+    }
 
     return (
-        <div className="campaign-card">
-            <div className="card-header">
-                <h2 className="card-title">
-                    {data.title}
-                    {data.status && (
-                        <span style={{
-                            marginLeft: '12px',
-                            fontSize: '0.8rem',
-                            padding: '4px 8px',
-                            borderRadius: '12px',
-                            background: data.status === 'APPROVED' ? '#e6ffed'
-                                : data.status === 'REJECTED' ? '#ffe6e6'
-                                    : '#f0f0f0',
-                            color: '#333'
-                        }}>
-              {data.status}
-            </span>
-                    )}
-                </h2>
+        <div className={`proposal-detail-container ${showRejectModal ? "blur-background" : ""}`}>
+            {/* Header */}
+            <div className="proposal-header">
+                <div className="header-content">
+                    <h1 className="proposal-title">{data.title}</h1>
+                    {data.status && getStatusBadge(data.status)}
+                </div>
+                <button className="close-btn" onClick={onClose}>
+                    <FaTimes />
+                </button>
             </div>
 
-            {successMsg && <div className="alert success">{successMsg}</div>}
-            {errorMsg && <div className="alert error">{errorMsg}</div>}
-
-            <div className="card-details">
-                <div className="detail-item">
-                    <FaUser className="icon" />
-                    <span>Assignee: </span>
-                    <div className="assignees">
-                        <img
-                            src="https://cdn.pixabay.com/photo/2024/05/26/10/15/bird-8788491_1280.jpg"
-                            alt={data?.evalutedBy?.fullName}
-                            title={data?.evalutedBy?.fullName}
-                            className="avatar"
-                        />
+            {/* Proposal Info */}
+            <div className="proposal-info-grid">
+                <div className="info-card">
+                    <div className="info-icon">
+                        <FaUser />
+                    </div>
+                    <div className="info-content">
+                        <h4>Assignee</h4>
+                        <div className="assignee-info">
+                            <img
+                                src="https://cdn.pixabay.com/photo/2024/05/26/10/15/bird-8788491_1280.jpg"
+                                alt={data?.evalutedBy?.fullName}
+                                className="assignee-avatar"
+                            />
+                            <span>{data?.evalutedBy?.fullName || "Not assigned"}</span>
+                        </div>
                     </div>
                 </div>
-                <div className="detail-item">
-                    <FaCalendarAlt className="icon" />
-                    <span>Create date: {data?.updatedAt && new Date(data.updatedAt).toLocaleDateString('vi-VN')}</span>
+
+                <div className="info-card">
+                    <div className="info-icon">
+                        <FaCalendarAlt />
+                    </div>
+                    <div className="info-content">
+                        <h4>Created Date</h4>
+                        <p>{data?.updatedAt && new Date(data.updatedAt).toLocaleDateString("vi-VN")}</p>
+                    </div>
                 </div>
-                <div className="detail-item">
-                    <FaBuilding className="icon" />
-                    <span>Branch: {data.suggestedBy.companyBranch}</span>
+
+                <div className="info-card">
+                    <div className="info-icon">
+                        <FaBuilding />
+                    </div>
+                    <div className="info-content">
+                        <h4>Branch</h4>
+                        <p>{data.suggestedBy.companyBranch}</p>
+                    </div>
                 </div>
             </div>
 
-            <div className="comment-section">
-                <h3 className="comment-title">About Topic</h3>
-                <div className="comment-box">
-                    <div className="comment-header">
+            {/* Description Section */}
+            <div className="description-section">
+                <h3 className="section-title">About This Topic</h3>
+                <div className="description-card">
+                    <div className="author-info">
                         <img
                             src="https://cdn.pixabay.com/photo/2024/05/26/10/15/bird-8788491_1280.jpg"
                             alt={data.suggestedBy.fullName}
-                            className="avatar-lg"
+                            className="author-avatar"
                         />
-                        <div>
-                            <p className="comment-author">{data.suggestedBy.fullName}</p>
+                        <div className="author-details">
+                            <h4>{data.suggestedBy.fullName}</h4>
+                            <p>Topic Proposer</p>
                         </div>
                     </div>
-                    <p className="comment-body">{data.description}</p>
+                    <div className="description-content">
+                        <p>{data.description}</p>
+                    </div>
                 </div>
             </div>
 
-            {data?.status === 'pending' && (
-                <div className="button-group" style={{ marginTop: '1.2rem' }}>
-                    <button
-                        className="btn btn-reject"
-                        onClick={openRejectModal}
-                        disabled={approveSubmitting}
-                    >
+            {/* Action Buttons */}
+            {data?.status === "pending" && (
+                <div className="action-buttons">
+                    <button className="btn btn-reject" onClick={onOpenRejectModal} disabled={approveSubmitting}>
+                        <FaTimes />
                         Reject
                     </button>
-                    <button
-                        className="btn btn-approve"
-                        onClick={handleApprove}
-                        disabled={rejectSubmitting || approveSubmitting}
-                    >
-                        {approveSubmitting ? <Spinner animation="border" size="sm" /> : 'Approve'}
+                    <button className="btn btn-approve" onClick={handleApprove} disabled={rejectSubmitting || approveSubmitting}>
+                        {approveSubmitting ? (
+                            <Spinner animation="border" size="sm" />
+                        ) : (
+                            <>
+                                <FaCheck />
+                                Approve
+                            </>
+                        )}
                     </button>
                 </div>
             )}
 
             {/* Reject Modal */}
-            <Modal show={showRejectModal} onHide={closeRejectModal} centered backdrop="static">
+            <Modal
+                show={showRejectModal}
+                onHide={closeRejectModal}
+                centered
+                backdrop="static"
+                className="modern-reject-modal"
+            >
                 <Modal.Header closeButton={!rejectSubmitting}>
-                    <Modal.Title>Từ chối đề xuất</Modal.Title>
+                    <Modal.Title>
+                        <FaTimes className="modal-icon" />
+                        Reject Proposal
+                    </Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    <Form.Group className="mb-3" controlId="rejectReason">
-                        <Form.Label>Lý do từ chối <span style={{ color: 'red' }}>*</span></Form.Label>
+                    <Form.Group className="mb-3">
+                        <Form.Label>
+                            Reason for rejection <span className="required">*</span>
+                        </Form.Label>
                         <Form.Control
                             as="textarea"
                             rows={4}
-                            placeholder="Nhập lý do tối thiểu 5 ký tự..."
+                            placeholder="Please provide a detailed reason (minimum 5 characters)..."
                             value={rejectNote}
                             disabled={rejectSubmitting}
                             onChange={(e) => setRejectNote(e.target.value)}
+                            className="modern-textarea"
                         />
                     </Form.Group>
-                    {rejectError && <div className="alert error">{rejectError}</div>}
+                    {rejectError && (
+                        <div className="error-alert">
+                            <span className="error-icon">⚠️</span>
+                            {rejectError}
+                        </div>
+                    )}
                 </Modal.Body>
                 <Modal.Footer>
                     <Button
-                        variant="secondary"
+                        variant="outline-secondary"
                         onClick={closeRejectModal}
                         disabled={rejectSubmitting}
+                        className="modern-btn-secondary"
                     >
-                        Hủy
+                        Cancel
                     </Button>
                     <Button
                         variant="danger"
                         onClick={handleRejectSubmit}
                         disabled={rejectSubmitting}
+                        className="modern-btn-danger"
                     >
-                        {rejectSubmitting ? <Spinner animation="border" size="sm" /> : 'Xác nhận từ chối'}
+                        {rejectSubmitting ? (
+                            <>
+                                <Spinner animation="border" size="sm" />
+                                <span>Processing...</span>
+                            </>
+                        ) : (
+                            <>
+                                <FaTimes />
+                                Confirm Reject
+                            </>
+                        )}
                     </Button>
                 </Modal.Footer>
             </Modal>
         </div>
-    );
-};
+    )
+}
 
-export default ProposalDetail;
+export default ProposalDetail

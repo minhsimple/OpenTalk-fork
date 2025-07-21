@@ -8,13 +8,10 @@ const statusStyles = {
     rejected: 'status--rejected',
     discussed: 'status--discussed',
 };
-const TopicProposalCard = ({id,  title, description, authorName, date, avatarUrl, status  }) => {
+const TopicProposalCard = ({ id, title, description, authorName, date, avatarUrl, status, onClickDetail }) => {
     const statusClass = statusStyles[status] || '';
     const statusLabel = status ? status.charAt(0).toUpperCase() + status.slice(1) : '';
-    const handleClick = () => {
-        // Navigate to the TopicDetail page with the given id
-        window.location.href = `/topic/${id}`
-    };
+
     return (
         <div className="proposal-card">
             <div className="proposal-card__content">
@@ -26,23 +23,19 @@ const TopicProposalCard = ({id,  title, description, authorName, date, avatarUrl
             </div>
             <div className="proposal-card__footer">
                 <div className="proposal-card__author">
-                    <img
-                        className="proposal-card__avatar"
-                        src={avatarUrl}
-                        alt={authorName}
-                    />
+                    <img className="proposal-card__avatar" src={avatarUrl} alt={authorName} />
                     <div>
                         <div className="proposal-card__name">{authorName}</div>
                         <div className="proposal-card__date">{date}</div>
                     </div>
                 </div>
-                <button className="proposal-card__bookmark"  onClick={handleClick}>
+                <button className="proposal-card__bookmark" onClick={() => onClickDetail(id)}>
                     <FaBars className="proposal-card__bookmark-icon" />
                     <span>Detail</span>
                 </button>
             </div>
         </div>
-    )
+    );
 };
 
 export default TopicProposalCard;

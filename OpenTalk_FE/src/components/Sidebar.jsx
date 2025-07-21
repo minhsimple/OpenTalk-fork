@@ -77,17 +77,17 @@ function Sidebar() {
                 ))}
             </nav>
 
-            <button
-                className="btn btn-outline-danger mt-auto d-flex align-items-center gap-2"
-                style={{ width: "100%" }}
-                onClick={() => {
-                    clearTokens();
-                    navigate("/login");
-                }}
-            >
-                <FaSignOutAlt />
-                Logout
-            </button>
+            {/*<button*/}
+            {/*    className="btn btn-outline-danger mt-auto d-flex align-items-center gap-2"*/}
+            {/*    style={{ width: "100%" }}*/}
+            {/*    onClick={() => {*/}
+            {/*        clearTokens();*/}
+            {/*        navigate("/login");*/}
+            {/*    }}*/}
+            {/*>*/}
+            {/*    <FaSignOutAlt />*/}
+            {/*    Logout*/}
+            {/*</button>*/}
         </div>
     );
 }
