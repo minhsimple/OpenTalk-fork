@@ -126,9 +126,8 @@ const ProposalDetail = ({ id, onClose, showToast, onOpenRejectModal }) => {
 
     const getStatusBadge = (status) => {
         const statusConfig = {
-            APPROVED: { class: "status-approved", icon: "✅", text: "Approved" },
-            REJECTED: { class: "status-rejected", icon: "❌", text: "Rejected" },
-            PENDING: { class: "status-pending", icon: "⏳", text: "Pending" },
+            approved: { class: "status-approved", icon: "✅", text: "Approved" },
+            rejected: { class: "status-rejected", icon: "❌", text: "Rejected" },
             pending: { class: "status-pending", icon: "⏳", text: "Pending" },
         }
 

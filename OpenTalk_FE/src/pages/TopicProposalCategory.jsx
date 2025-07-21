@@ -65,7 +65,7 @@ const TopicProposalCategory = () => {
 
     useEffect(() => {
         axios
-            .get("/topic-idea/status", {
+            .get("/topic-idea/admin/status", {
                 headers: { Authorization: `Bearer ${getAccessToken()}` },
             })
             .then((res) => setStatusOptions(res.data))
@@ -110,9 +110,9 @@ const TopicProposalCategory = () => {
             setRejectSubmitting(true)
             const user = getCurrentUser()
             await axios.put(
-                `/topic-idea/${selectedTopicId}/decision`,
+                `/topic-idea/decision`,
                 {
-                    decision: "REJECTED",
+                    decision: "rejected",
                     remark: rejectNote.trim(),
                     topicId: selectedTopicId,
                     userId: user.id,
