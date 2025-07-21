@@ -77,6 +77,7 @@ const MeetingListPage = () => {
           if (m.id === meetingId) {
             return { ...m, registeredHostUserIds: [...m.registeredHostUserIds, currentUserInfo.id] };
           }
+          return m;
         });
       });
     }
@@ -178,6 +179,7 @@ const MeetingListPage = () => {
                 handleJoin(m.meetingLink);
               } else if (activeTab === OpenTalkMeetingStatus.WAITING_HOST_REGISTER) {
                 handleRegisterHost(m.id);
+                alert('Your host request has been sent successfully.');
               }
             }}
             onView={() => navigate(`/meeting/${m.id}`, { state: { meetingList: meetings, onTab: activeTab } })}
