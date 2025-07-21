@@ -60,8 +60,8 @@ const ProposalDetail = () => {
         try {
             setRejectSubmitting(true);
             await axios.put(
-                `/topic-idea/${id}/decision`,
-                { decision: 'REJECTED',
+                `/topic-idea/decision`,
+                { decision: 'rejected',
                        remark: rejectNote.trim(),
                         topicId: data.id,
                        userId: user.id},
@@ -101,6 +101,8 @@ const ProposalDetail = () => {
             setApproveSubmitting(false);
         }
     };
+
+
 
     if (!data) return <div>Loading...</div>;
 
@@ -178,6 +180,18 @@ const ProposalDetail = () => {
                     >
                         Reject
                     </button>
+                    <button
+                        className="btn btn-approve"
+                        onClick={handleApprove}
+                        disabled={rejectSubmitting || approveSubmitting}
+                    >
+                        {approveSubmitting ? <Spinner animation="border" size="sm" /> : 'Approve'}
+                    </button>
+                </div>
+            )}
+
+            {data?.status === 'aproved' && (
+                <div className="button-group" style={{ marginTop: '1.2rem' }}>
                     <button
                         className="btn btn-approve"
                         onClick={handleApprove}
