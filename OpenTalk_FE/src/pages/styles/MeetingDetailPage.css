@@ -201,6 +201,22 @@
     grid-column: span 2;
 }
 
+.feedback-content {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+.feedback-section .feedback-input {
+    position: sticky;
+    top: 0;
+    background: white;
+    z-index: 1;
+    padding-bottom: 8px;
+}
+
 .feedback-list {
     display: flex;
     flex-direction: column;
