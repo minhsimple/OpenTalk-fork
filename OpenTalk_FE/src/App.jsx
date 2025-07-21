@@ -18,6 +18,7 @@ import OrganizationListPage from "./pages/OrganizationListPage.jsx";
 import MeetingDetailPage from "./pages/MeetingDetailPage.jsx";
 import MeetingListPage from "./pages/MeetingListPage.jsx";
 import PollApp from "./pages/PollMeeting.jsx";
+import CreatePoll from "./pages/CreatePoll.jsx";
 
 
 // Tạo các component placeholder tương ứng từng route
@@ -126,6 +127,7 @@ function App() {
               <Route path="/account" element={<Account />} />
               <Route path="/setting" element={<Setting />} />
               <Route path="/test" element={<PollApp />} />
+              <Route path="/createPoll" element={<CreatePoll />} />
             </Route>
           </Route>
         </Routes>

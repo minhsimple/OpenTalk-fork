@@ -20,7 +20,7 @@ const PollApp = (meetingId, meetingName) => {
     useEffect(() => {
         const fetchPoll = async () => {
             try {
-                const response = await axios.get(`/poll/5`,
+                const response = await axios.get(`/poll/${meetingId}`,
                     { headers: { Authorization: `Bearer ${getAccessToken()}` }});
                 setPoll(response.data);
                 setPollId(response.data.id);
