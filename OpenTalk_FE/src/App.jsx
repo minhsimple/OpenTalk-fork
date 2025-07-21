@@ -17,6 +17,7 @@ import HostFrequencyReport from "./pages/HostFrequencyReport.jsx";
 import OrganizationListPage from "./pages/OrganizationListPage.jsx";
 import MeetingDetailPage from "./pages/MeetingDetailPage.jsx";
 import MeetingListPage from "./pages/MeetingListPage.jsx";
+import FeedBackCardInput from "./components/feedBackCard/FeedBackCardInput.jsx";
 
 
 // Tạo các component placeholder tương ứng từng route
@@ -84,14 +85,7 @@ function Test() {
   const handleDelete = () => alert("Deleted!");
   return (
     <div style={{ padding: "40px" }}>
-      <NoticeCard
-        title="Notice Title"
-        author="Name"
-        date="29/8/2023"
-        content="Lorem Ipsum is simply dummy text of the printing and typesetting industry..."
-        onEdit={handleEdit}
-        onDelete={handleDelete}
-      />
+      <FeedBackCardInput/>
     </div>
   );
 }
@@ -109,7 +103,7 @@ function App() {
         <Route element={<AuthGuard />}>
           <Route element={<Layout />}>
             <Route path="/" element={<Overview />} />
-            <Route path="/dashboard" element={<DashBoard />} />
+            <Route path="/dashboard" element={<Test />} />
             <Route path="/meeting" element={<Meeting />} />
             <Route path="/meeting/:id" element={<MeetingDetailPage />} />
             <Route path="/message" element={<Message />} />
