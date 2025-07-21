@@ -176,21 +176,21 @@ const TopicProposalCategory = () => {
                 <div className="stat-card">
                     <div className="stat-icon">✅</div>
                     <div className="stat-content">
-                        <h3>{posts.filter((p) => p.status === "APPROVED").length}</h3>
+                        <h3>{posts.filter((p) => p.status === "approved").length}</h3>
                         <p>Approved</p>
                     </div>
                 </div>
                 <div className="stat-card">
                     <div className="stat-icon">⏳</div>
                     <div className="stat-content">
-                        <h3>{posts.filter((p) => p.status === "PENDING").length}</h3>
+                        <h3>{posts.filter((p) => p.status === "pending").length}</h3>
                         <p>Pending</p>
                     </div>
                 </div>
                 <div className="stat-card">
                     <div className="stat-icon">❌</div>
                     <div className="stat-content">
-                        <h3>{posts.filter((p) => p.status === "REJECTED").length}</h3>
+                        <h3>{posts.filter((p) => p.status === "rejected").length}</h3>
                         <p>Rejected</p>
                     </div>
                 </div>
