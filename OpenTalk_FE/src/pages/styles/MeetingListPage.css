@@ -56,10 +56,12 @@
 
 .select-container {
     position: relative;
+    min-width: 200px;
 }
 
 .select {
     appearance: none;
+    -webkit-appearance: none;
     background: rgba(255, 255, 255, 0.9);
     backdrop-filter: blur(10px);
     border: 2px solid rgba(226, 232, 240, 0.8);
@@ -69,7 +71,7 @@
     cursor: pointer;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
-    min-width: 180px;
+    width: 100%;
 }
 
 .select:focus {
@@ -93,7 +95,7 @@
 .meeting-list-container {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    gap: 24px;
+    gap: 16px;
     margin-bottom: 32px;
 }
 
