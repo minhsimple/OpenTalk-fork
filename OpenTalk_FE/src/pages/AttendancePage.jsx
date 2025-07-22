@@ -5,6 +5,7 @@ import SuccessToast from "../components/SuccessToast/SuccessToast.jsx";
 import { getCurrentUser } from "../helper/auth.jsx";
 import { getRecentMeetingsWithStatus, submitCheckin } from "../api/apiList.jsx";
 
+
 const AttendancePage = () => {
   const [sessions, setSessions] = useState([]);
   const [attendanceCode, setAttendanceCode] = useState("");
