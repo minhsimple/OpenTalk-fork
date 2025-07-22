@@ -97,6 +97,7 @@
     grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
     gap: 16px;
     margin-bottom: 32px;
+    justify-items: center;
 }
 
 .pagination {
@@ -228,6 +229,7 @@
     .meeting-list-container {
         grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
         gap: 20px;
+        justify-items: center;
     }
 }
 
@@ -262,6 +264,7 @@
     .meeting-list-container {
         grid-template-columns: 1fr;
         gap: 16px;
+        justify-items: center;
     }
     
     .pagination {
