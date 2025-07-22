@@ -2,10 +2,26 @@
     background: #fff;
     padding: 20px;
     border-radius: 16px;
-    box-shadow: 0 0 15px rgba(0,0,0,0.1);
-    width: 300px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    width: 100%;
     font-family: Arial, sans-serif;
     cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.meeting-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 6px 16px rgba(0,0,0,0.15);
+}
+
+.meeting-card h3 {
+    font-size: 1.1rem;
+    margin: 0;
+    color: #111827;
+    font-weight: 600;
 }
 
 .meeting-icon {
@@ -19,12 +35,14 @@
 }
 
 .meeting-time {
-    background: #d1fae5;
+    background: #ecfdf5;
     padding: 4px 8px;
     border-radius: 8px;
     display: inline-block;
     font-size: 0.875rem;
     margin-top: 8px;
+    color: #047857;
+    font-weight: 500;
 }
 
 .meeting-description {
@@ -57,16 +75,22 @@
 
 .join-button {
     width: 100%;
-    background-color: #022c22;
+    background: linear-gradient(135deg, #10b981, #059669);
     color: #fff;
     border: none;
     padding: 10px;
     border-radius: 8px;
     cursor: pointer;
+    font-weight: 600;
+    transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.join-button:hover:not(:disabled) {
+    transform: translateY(-2px);
 }
 
 .join-button:disabled {
     opacity: 0.6;
     cursor: not-allowed;
-    background-color: #6b7280;
+    background: #6b7280;
 }
