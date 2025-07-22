@@ -4,7 +4,7 @@
     border-radius: 16px;
     box-shadow: 0 2px 8px rgba(0,0,0,0.1);
     width: 100%;
-    max-width: 400px;
+    /* Allow the card to fully occupy the grid column to avoid large gaps */
     margin: 0;
     font-family: Arial, sans-serif;
     cursor: pointer;
